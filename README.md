@@ -1,4 +1,4 @@
-# Discord Clone
+# Friction
 
 **A real-time chat application inspired by Discord, built with the power of MERN stack and Next.js.**
 
