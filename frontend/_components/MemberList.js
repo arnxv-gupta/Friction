@@ -10,11 +10,17 @@ const MemberList = () => {
   }
 
   const [members, setMembers]=useState(data.membersList);
+  const [collapsed, setCollapsed] = useState(false)
 
   return (
-    <div className="w-64 h-screen p-4 bg-[#2B2D31]">
-      <h3 className="font-semibold mb-4 text-sm uppercase">Members</h3>
-      <ul>
+    <div className={`w-64 h-screen p-4 bg-[#2B2D31] ${(collapsed)?"w-auto":null}`}>
+      <span className="flex justify-between text-sm  mb-4">
+      <h3 className={`font-semibold uppercase ${collapsed?"hidden":null}`}>Members</h3>
+      <button onClick={()=>{
+        setCollapsed(!collapsed)
+      }}>Hide</button>
+      </span>
+      <ul className={(collapsed)?"hidden":null}>
       {(members!=null)?(members.map((member, index) => (
         <UserItem userID={member} key={member}/>
       ))):(<span>Loading</span>)}

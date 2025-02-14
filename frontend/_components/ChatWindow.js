@@ -81,10 +81,19 @@ const ChatWindow = () => {
 
   return (
     <div className="flex-1 pb-6 flex flex-col justify-between bg-[#313338]  max-h-[100lvh] ">
-      <ul className="divide-y divide-gray-600 overflow-y-scroll">
-        {data.channels[data.channels.findIndex((channel)=>{
+      <ul className="overflow-y-scroll">
+        {
+        (()=>{
+          
+        let prevID=null;
+        let channel = data.channels[data.channels.findIndex((channel)=>{
           return data.currChannel==channel.channelID;
-        })].data.map((el) => {
+        })];
+
+        return channel.data.map((el) => {
+          let isAuthorSame = el.authorID==prevID;
+          prevID=el.authorID
+
           return (
             <ChatItem
               authorID={el.authorID}
@@ -92,9 +101,13 @@ const ChatWindow = () => {
               timestamp={el.timestamp}
               key={el.timestamp}
               image={el.image}
+              continued={isAuthorSame}
             />
           );
-        })}
+
+        })
+        })()
+        }
       </ul>
       <ChatInput
         userID={localStorage.getItem("userID")}

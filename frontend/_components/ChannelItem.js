@@ -17,7 +17,7 @@ export default function ChannelItem({name, type, link, active}) {
                 setDropdownVisibility(true)             
             }
         }}>
-            <Link href={link} className={`px-3 py-2 m-2 hover:bg-[#35373C] block rounded- ${active?"underline":null}`}>
+            <Link href={link} className={`px-3 py-2 m-2 hover:bg-[#35373C] block rounded ${active?"underline font-semibold":null}`}>
                 <span className="mr-2">{type=="text"?<FontAwesomeIcon icon={faHashtag} />:<FontAwesomeIcon icon={faVolumeHigh} />}</span>
                 {name}            
             </Link>
