@@ -11,7 +11,10 @@ export default function ServerDropDown({serverID}) {
   
 
   return (
-    <ul className="absolute top-full left-0 w-full bg-[#2B2D31] shadow-lg rounded-lg text-white text-sm z-10">
+    <ul className="absolute top-full left-0 w-full bg-[#2B2D31] rounded-lg text-white text-sm z-10">
+      <ServerDropItem label="Invite people" call={()=>{}} />
+      <ServerDropItem label="Server settings" call={()=>{}} />
+      <ServerDropItem label="Leave server" call={()=>{}} />
         <ServerDropItem label="Create channel" call={()=>{
             fetch("http://localhost:3030/createChannel/", {
                 method: "POST",

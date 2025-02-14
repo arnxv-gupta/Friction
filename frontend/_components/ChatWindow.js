@@ -10,7 +10,8 @@ import { usePathname } from "next/navigation";
 
 const ChatWindow = () => {
   const data = useContext(appContext);
-  const pathname = usePathname().split("/");  
+  const pathname = usePathname().split("/");
+  const channelName = data!=null && data.currChannel && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].name; 
 
   const {socketData, sendMessage} = useContext(socketContext)
   
@@ -80,7 +81,11 @@ const ChatWindow = () => {
   }  
 
   return (
-    <div className="flex-1 pb-6 flex flex-col justify-between bg-[#313338]  max-h-[100lvh] ">
+    <div className="flex flex-col bg-[#313338] flex-1">
+    <div className="text-lg text-white flex justify-between items-center w-full bg-[#3a3c3f] px-4 py-2">
+      # {channelName}
+    </div>
+    <div className="flex-1 pb-6 flex flex-col justify-between max-h-[100lvh] ">
       <ul className="overflow-y-scroll">
         {
         (()=>{
@@ -114,6 +119,7 @@ const ChatWindow = () => {
         serverID={data.serverID}
         chatID={data.currChannel}
       />
+    </div>
     </div>
   );
 };

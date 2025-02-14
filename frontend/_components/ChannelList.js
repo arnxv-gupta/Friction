@@ -15,10 +15,10 @@ const ChannelList = () => {
   return (
     <div className="w-64 h-screen flex flex-col bg-[#2B2D31]">
       {/* Server Dropdown */}
-      <div className="p-4 relative">
+      <div className="relative mb-3">
         <button
           onClick={toggleDropdown}
-          className="text-lg font-bold text-white flex justify-between items-center w-full bg-[#3b3d41] px-4 py-2 rounded"
+          className="text-lg font-bold text-white flex justify-between items-center w-full bg-[#414244] px-4 py-2"
         >
           <span>{data.name}</span>
           <span className="text-gray-400 text-lg">
@@ -30,16 +30,10 @@ const ChannelList = () => {
 
       {/* Channels List */}
       <div className="mb-6">
-        {data.channels.length > 0 && (
+        {data.categories.length > 0 && (
           <ul>
-            {data.channels.map((el, i) => (
-              <ChannelItem
-                key={i}
-                link={`/channels/${data.serverID}/${el.channelID}/`}
-                name={el.name}
-                type={el.type}
-                active={el.channelID === data.currChannel}
-              />
+            {data.categories.map((el, i) => (
+              (<span>{el.name}</span>)
             ))}
           </ul>
         )}

@@ -21,6 +21,7 @@ let serverSchema = new mongoose.Schema({
         type: Number,
         default: ()=>Date.now()
     },
+    categories: [],
     membersList: [],
     channels: [],
     adminID: {
