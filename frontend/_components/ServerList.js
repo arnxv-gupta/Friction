@@ -32,7 +32,16 @@ const ServerList = memo(() => {
       {isDialog && <ServerDialogue />}
 
       <ul className="p-3 h-screen flex flex-col items-center space-y-1 bg-[#1E1F22]"> 
-        {/* <ServerItem id={null} link="/channels/@me" /> */}
+        <li className="w-12 h-12 my-2">
+            <Link href="/channels/@me">
+                <img
+                src="/image.png"
+                width={48}
+                height={48}
+                className="object-contain opacity-100 transition rounded-full hover:rounded-sm" 
+            />
+            </Link>
+        </li>
         <hr className="w-10/12  border-gray-600" />
 
         <ul className="w-full flex flex-col items-center space-y-2">

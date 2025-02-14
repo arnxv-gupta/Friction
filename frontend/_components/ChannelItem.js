@@ -14,8 +14,7 @@ export default function ChannelItem({name, type, link, active}) {
         <li onContextMenu={(e)=>{
             if(e.nativeEvent.button === 2) {
                 e.preventDefault()
-                setDropdownVisibility(true)
-                setMouseCords({x: e.pageX, y: e.pageY});                
+                setDropdownVisibility(true)             
             }
         }}>
             <Link href={link} className={`px-3 py-2 m-2 hover:bg-[#35373C] block rounded- ${active?"underline":null}`}>

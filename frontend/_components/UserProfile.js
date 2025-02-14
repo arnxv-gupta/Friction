@@ -22,8 +22,17 @@ export default function UserProfile({userID}) {
         />
             <div className="p-3 pt-0">
             <h3 className="text-lg">{data.username}</h3>
+            <small className="block">User ID: {userID}</small>
             <small>Joined on {new Date(data.createdAt).toDateString()}</small>
-            </div>    
+            </div>
+            <button onClick={()=>{
+                console.log(localStorage.getItem("userID"));
+                
+                fetch(`http://localhost:3030/addFriend?userID=${localStorage.getItem("userID")}&friendID=${userID}`).then(res=>res.json()).then(data=>{
+                    console.log(data);
+                    
+                })
+            }}>Add friend</button>
         </div>
     )
 }

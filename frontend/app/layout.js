@@ -1,10 +1,9 @@
 "use client"
-import "./globals.css";
-
+// import "./globals.css";
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { createContext, useState } from "react";
-import useWebSocket from "@/app/hooks/useWebSocket";
+import useWebSocket from "/app/hooks/useWebSocket";
 
 config.autoAddCss = false
 

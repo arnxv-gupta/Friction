@@ -4,14 +4,34 @@ import ChatInput from "./ChatInput";
 import { appContext } from "./ServerWindow";
 import { socketContext } from '@/app/layout';
 import VideoView from "./VideoView";
+import FriendsList from "./FriendsList";
+import { usePathname } from "next/navigation";
 
 
 const ChatWindow = () => {
   const data = useContext(appContext);
+  const pathname = usePathname().split("/");  
+
   const {socketData, sendMessage} = useContext(socketContext)
   
   
-  if (data == null || !data.currChannel) {
+  if ((data == null || !data.currChannel) && pathname[2]=="@me"&& pathname.length==3) {
+    return (
+      <div className="flex-1 flex flex-row bg-[#313338]">
+        <FriendsList/>
+        asdas
+      </div>
+    );
+  } else if((data==null || !data.currChannel) && pathname[2]=="@me" && pathname.length==4) {
+    return (
+      <div className="flex-1 flex flex-row bg-[#313338]">
+        <FriendsList/>
+        <div>
+          {pathname[3]}
+        </div>
+      </div>
+    );
+  } else if(data==null||!data.currChannel) {
     return (
       <div className="flex-1 p-6 flex flex-col justify-between bg-[#313338]">
         <small>This looks empty.. too empty :(</small>{" "}
