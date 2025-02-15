@@ -2,8 +2,7 @@ import Link from "next/link";
 import OptionItem from "./OptionItem";
 import { useContext, useState } from "react";
 import { appContext } from "./ServerWindow";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHashtag, faVolumeHigh } from '@fortawesome/free-solid-svg-icons'
+import { Icon } from "@iconify/react";
 
 export default function ChannelItem({name, type, link, active}) {    
     const data = useContext(appContext);
@@ -18,7 +17,7 @@ export default function ChannelItem({name, type, link, active}) {
             }
         }}>
             <Link href={link} className={`px-3 py-2 m-2 hover:bg-[#35373C] block rounded ${active?"underline font-semibold":null}`}>
-                <span className="mr-2">{type=="text"?<FontAwesomeIcon icon={faHashtag} />:<FontAwesomeIcon icon={faVolumeHigh} />}</span>
+                <span className="mr-1 text-lg">{type=="text"?<Icon icon="tabler:hash" className="inline"/>:<Icon icon="tabler:volume" className="inline" />}</span>
                 {name}            
             </Link>
             {

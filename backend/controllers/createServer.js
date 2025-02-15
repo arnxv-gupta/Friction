@@ -3,7 +3,7 @@ const userModel = require("../models/userModel");
 
 async function createServer(req) {
 
-    let channelID = Math.floor(Math.random() * (999999999 - 111111111) + 111111111);
+    let categoryID = Math.floor(Math.random() * (999999999 - 111111111) + 111111111);
 
     let serverObj = {
         name: req.body.name,
@@ -12,13 +12,14 @@ async function createServer(req) {
         categories: [{
             name: "main",
             createdAt: Date.now(),
-            channels: [channelID]
+            categoryID: categoryID
         }],
         channels: [{
             name:"general",
             type: "text",
             createdAt: Date.now(),
-            channelID: channelID,
+            channelID: Math.floor(Math.random() * (999999999 - 111111111) + 111111111),
+            categoryID: categoryID,
             data:[]
         },{
             name:"general",

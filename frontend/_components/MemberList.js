@@ -1,6 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react';
 import UserItem from './UserItem';
 import { appContext } from './ServerWindow';
+import { Icon } from "@iconify/react";
+
 
 const MemberList = () => {
   const data = useContext(appContext)
@@ -18,7 +20,9 @@ const MemberList = () => {
       <h3 className={`font-semibold uppercase ${collapsed?"hidden":null}`}>Members</h3>
       <button onClick={()=>{
         setCollapsed(!collapsed)
-      }}>Hide</button>
+      }}>
+        {collapsed?<Icon icon="tabler:layout-sidebar-right-filled" className="inline text-lg"/>:<Icon icon="tabler:layout-sidebar-right" className="inline text-lg"/>}
+      </button>
       </span>
       <ul className={(collapsed)?"hidden":null}>
       {(members!=null)?(members.map((member, index) => (

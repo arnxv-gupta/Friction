@@ -4,6 +4,7 @@ import ChannelItem from "./ChannelItem";
 import ServerDropDown from "./ServerDropDown";
 import UserProfile from "./User";
 import { appContext } from "./ServerWindow";
+import CategoryItem from "./CategoryItem";
 
 const ChannelList = () => {
   const data = useContext(appContext);
@@ -11,6 +12,8 @@ const ChannelList = () => {
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
   if (!data) return null;
+  console.log(data);
+  
 
   return (
     <div className="w-64 h-screen flex flex-col bg-[#2B2D31]">
@@ -32,9 +35,15 @@ const ChannelList = () => {
       <div className="mb-6">
         {data.categories.length > 0 && (
           <ul>
-            {data.categories.map((el, i) => (
-              (<span>{el.name}</span>)
-            ))}
+            {data.categories.map((el, i) => {
+              return (
+                <>
+                <CategoryItem name={el.name} channels={data.channels.filter((channel)=>(channel.categoryID==el.categoryID))}>
+
+              </CategoryItem>
+                </>
+              )
+            })}
           </ul>
         )}
       </div>

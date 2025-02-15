@@ -22,6 +22,7 @@
     "react-use-websocket": "^4.10.1"
   },
   "devDependencies": {
+    "@iconify/react": "^5.2.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "postcss": "^8.5.1",
