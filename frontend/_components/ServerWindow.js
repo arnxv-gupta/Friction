@@ -20,8 +20,10 @@ export default function ServerWindow() {
       .then((res) => res.json())
       .then((data) => {
         if (data.type == "SUCCESS") {
+          
           let nData = data.res;
           nData.currChannel=params.slug[1];
+          nData.currCategory=params.slug[1] && nData.channels[nData.channels.findIndex((el)=>el.channelID==params.slug[1])].categoryID;
           setData(nData);
         }
       });

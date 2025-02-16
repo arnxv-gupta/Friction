@@ -6,7 +6,6 @@ import { Icon } from "@iconify/react";
 
 export default function ChannelItem({name, type, link, active}) {    
     const data = useContext(appContext);
-        console.log(data);
         
     const [showDropdown, setDropdownVisibility] = useState(false);
     return (

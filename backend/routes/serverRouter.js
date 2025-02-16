@@ -6,6 +6,7 @@ const joinServer = require("../controllers/joinServer");
 const createServer = require("../controllers/createServer");
 const sendMessage = require("../controllers/sendMessage");
 const createChannel = require("../controllers/createChannel");
+const createCategory = require("../controllers/createCategory");
 const joinVoice = require("../controllers/joinVoice");
 
 router.post("/createServer", async (req, res)=>{
@@ -18,6 +19,10 @@ router.get("/joinServer", async (req, res)=>{
 
 router.post("/createChannel", async (req, res)=>{
     res.json(await createChannel(req));
+});
+
+router.post("/createCategory", async (req, res)=>{
+    res.json(await createCategory(req));
 });
 
 // info

@@ -3,7 +3,7 @@ import ChannelItem from "./ChannelItem";
 import { appContext } from "./ServerWindow";
 import { Icon } from "@iconify/react";
 
-export default function CategoryItem({channels, name}) {
+export default function CategoryItem({channels, name, showDialog}) {
     const data = useContext(appContext)
     const [isOpen, setOpen] = useState(true)
     
@@ -15,7 +15,9 @@ export default function CategoryItem({channels, name}) {
         }}>
             {isOpen?<Icon icon="tabler:chevron-down" className="inline mr-1"/>:<Icon icon="tabler:chevron-right"  className="inline mr-1"/>}{name}
             </span>
-            <Icon icon="tabler:plus" className="inline cursor-pointer" />
+            <Icon icon="tabler:plus" className="inline cursor-pointer" onClick={()=>{
+                showDialog(true);
+            }}/>
             </h3>
         {isOpen?(
             channels.map((el, i)=>{

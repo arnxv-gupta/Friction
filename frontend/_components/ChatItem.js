@@ -5,10 +5,8 @@ import UserMention from "./UserMention";
 import { appContext } from "./ServerWindow";
 
 export default function ChatItem({ authorID, text, timestamp, image, continued }) {
-    const data = useContext(appContext);
-    const [isMentioned, setIsMentioned] = useState(text.match(`<@${localStorage.getItem("userID")}>`))
+    const [isMentioned] = useState(text.match(`<@${localStorage.getItem("userID")}>`))
     const [authorData, setAuthorData] = useState(null);
-  console.log(data);
   
   useEffect(() => {
     fetch(`http://localhost:3030/userInfo?userID=${authorID}`)

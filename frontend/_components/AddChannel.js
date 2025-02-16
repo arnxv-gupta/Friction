@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
+import { Icon } from "@iconify/react";
+import { appContext } from "./ServerWindow";
+import { socketContext } from '@/app/layout';
+import { useRouter } from "next/navigation";
 
-export default function AddChannel({ isOpen, onClose }) {
+export default function AddChannel({isVisible, setVisible}) {
   const [isPrivate, setIsPrivate] = useState(false);
   const [channelType, setChannelType] = useState("text");
   const [channelName, setChannelName] = useState("");
 
-  if (!isOpen) return null;
+  const data = useContext(appContext);
+  let router = useRouter()
+  let {socketData, sendMessage} = useContext(socketContext)
+
+  if(isVisible==false)
+    return;
+
 
   const RadioOption = ({ type, label }) => (
     <label
@@ -30,10 +40,13 @@ export default function AddChannel({ isOpen, onClose }) {
       <div className="bg-gray-800 text-white w-96 p-6 rounded-lg shadow-lg">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-bold">Add Channels</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-white text-lg">
-            ✕
+          <button onClick={()=>[
+            setVisible(false)
+          ]} className="text-gray-400 hover:text-white text-lg">
+            <Icon icon="tabler:x" className="text-lg"/>
           </button>
         </div>
+
         <div className="mb-4">
           <label className="block text-sm mb-2">Channel Type</label>
           <div className="flex items-center space-x-4">
@@ -41,6 +54,7 @@ export default function AddChannel({ isOpen, onClose }) {
             <RadioOption type="voice" label="🎤 Voice" />
           </div>
         </div>
+
         <div className="mb-4">
           <label className="block text-sm mb-2">Channel Name</label>
           <input
@@ -52,6 +66,7 @@ export default function AddChannel({ isOpen, onClose }) {
           />
           {!channelName && <p className="text-red-500 text-sm mt-1">Channel name is required.</p>}
         </div>
+
         <div className="flex items-center mb-4">
           <input
             type="checkbox"
@@ -64,16 +79,20 @@ export default function AddChannel({ isOpen, onClose }) {
             Private Channel
           </label>
         </div>
+
         {isPrivate && (
           <p className="text-gray-400 text-sm">
             Only selected members and roles will be able to view this channel.
           </p>
         )}
+
         <div className="mt-6 flex justify-end">
-          <button onClick={onClose} className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded mr-2">
+          <button onClick={()=>[
+            setVisible(false)
+          ]} className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded mr-2">
             Cancel
           </button>
-          <Link href={channelName ? `/next-step?channelName=${channelName}` : "#"} passHref>
+
             <button
               disabled={!channelName}
               className={`${
@@ -81,10 +100,35 @@ export default function AddChannel({ isOpen, onClose }) {
                   ? "bg-blue-600 hover:bg-blue-700"
                   : "bg-gray-500 cursor-not-allowed"
               } px-4 py-2 rounded`}
+               onClick={()=>{
+                fetch("http://localhost:3030/createChannel/", {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({
+                      name: channelName,
+                      type: "text",
+                      categoryID: Number(data.currCategory),
+                      serverID: Number(data.serverID)
+                  })
+              }).then(res=>res.json()).then(data=>{
+                console.log(data);
+                
+                if(data.type=="SUCCESS") {
+                    sendMessage("CHANNEL ADDED!")
+                    router.refresh()
+                }
+              })
+            
+              setVisible(false);
+              setChannelName("");
+
+               }}
             >
               Next
             </button>
-          </Link>
+
         </div>
       </div>
     </div>

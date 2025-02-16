@@ -5,14 +5,16 @@ import ServerDropDown from "./ServerDropDown";
 import UserProfile from "./User";
 import { appContext } from "./ServerWindow";
 import CategoryItem from "./CategoryItem";
+import AddChannel from "./AddChannel";
 
 const ChannelList = () => {
   const data = useContext(appContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDialogOpen, setDialogOpen] = useState(false);
+
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
   if (!data) return null;
-  console.log(data);
   
 
   return (
@@ -27,7 +29,7 @@ const ChannelList = () => {
           <span className="text-gray-400 text-lg">
             {isDropdownOpen ? '×' : '▼'}
           </span>
-          {isDropdownOpen && <ServerDropDown serverID={data.serverID} />}
+          {isDropdownOpen && <ServerDropDown />}
         </button>
       </div>
 
@@ -37,11 +39,7 @@ const ChannelList = () => {
           <ul>
             {data.categories.map((el, i) => {
               return (
-                <>
-                <CategoryItem name={el.name} channels={data.channels.filter((channel)=>(channel.categoryID==el.categoryID))}>
-
-              </CategoryItem>
-                </>
+                <CategoryItem name={el.name} channels={data.channels.filter((channel)=>(channel.categoryID==el.categoryID))} showDialog={setDialogOpen}/>
               )
             })}
           </ul>
@@ -50,24 +48,8 @@ const ChannelList = () => {
 
       {/* User Profile Section */}
       <UserProfile user={{ name: data.userName, picture: data.userPicture }} />
-
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .truncate {
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
-      `}</style>
+      {isDialogOpen?<AddChannel isVisible={isDialogOpen} setVisible={setDialogOpen} />:null}
+      
     </div>
   );
 };
