@@ -24,6 +24,7 @@ export default function ChatItem({ authorID, text, timestamp, image, continued }
     return (
       <li className={`px-5 flex ${isMentioned?"bg-[#444037]":"hover:bg-[#2E3035]"}`}>
           <div className="w-14 h-2"></div>
+          {image != null ? <img src={image} className="max-w-xl" /> : null}
           <pre className="whitespace-normal">
               {text.match(/<@(.*?)>/)?(text.split(/<@(.*?)>/).map((el, index)=>{
   

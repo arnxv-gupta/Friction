@@ -8,8 +8,6 @@ async function createChannel(req) {
         name:req.body.name,
         type:req.body.type,
         categoryID: req.body.categoryID,
-        createdAt: Date.now(),
-        channelID: Math.floor(Math.random() * (999999999 - 111111111) + 111111111),
         data:[]
     }
     //console.log(channelObj);

@@ -12,7 +12,7 @@ async function joinServer(req) {
         return {type: "ERROR", msg: "Invalid serverID."};
     } else {
         if(serverObj.membersList.indexOf(Number(req.query.userID))==-1) {
-            await serverModel.updateOne({serverID: serverObj.serverID}, {$push: {membersList: req.query.userID}});
+            await serverModel.updateOne({serverID: serverObj.serverID}, {$push: {membersList: Number(req.query.userID)}});
             await userModel.updateOne({userID: Number(req.query.userID)}, {$push: {joinedServers: Number(req.query.serverID)}});
             
             return {type: "SUCCESS", msg: `Server joined!`};

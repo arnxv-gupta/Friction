@@ -3,9 +3,7 @@ const serverModel = require("../models/serverModel");
 async function createCategory(req) {
     
     let categoryObj = {
-        name: req.body.name,
-        createdAt: Date.now(),
-        categoryID: Math.floor(Math.random() * (999999999 - 111111111) + 111111111)
+        name: req.body.name
     }
 
     let nCategoryObj = await serverModel.updateOne({serverID: req.body.serverID}, {$push: {categories: categoryObj}});

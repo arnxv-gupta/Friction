@@ -31,6 +31,8 @@ export default function ChatInput({userID, serverID, chatID}) {
             })
         }).then(res=>res.text()).then(data=>{
             console.log(data);
+            console.log(imageURL);
+            
             inputRef.current.innerText = null;         
             sendMessage("MESSAGE RECEIVED!")
         })
@@ -61,15 +63,12 @@ export default function ChatInput({userID, serverID, chatID}) {
         <FaPlus className="text-gray-300"/>
         </label>
         <input className="hidden" id="imageUploader" type="file" accept="image/*" onChange={(e)=>{
-            console.log("a");
-            
             let formData = new FormData()
             formData.append("image", e.target.files[0]);
             fetch("http://localhost:3030/uploadImage", {
                 method: "POST",
                 body: formData
             }).then(res=>res.json()).then(data=>{
-                console.log(data);
                 if(data.type=="SUCCESS") {
                     setImageURL(data.res);
                 }  

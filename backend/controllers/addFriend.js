@@ -5,7 +5,7 @@ async function addFriend(userID, friendID) {
     
     try {
         if(await userModel.exists({userID:userID})) {
-            console.log(await userModel.updateOne({userID: userID}, {$push: {friends: friendID}}));
+            console.log(await userModel.updateOne({userID: userID}, {$push: {friends: Number(friendID)}}));
             return {type: "SUCCESS"};
         } else {
             return {type: "ERROR", msg: "Unable to find user! Invalid userID."};

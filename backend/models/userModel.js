@@ -33,8 +33,8 @@ let userSchema = new mongoose.Schema({
         type: String,
         default: "offline",
     },
-    joinedServers: [],
-    friends: []
+    joinedServers: [Number],
+    friends: [Number]
 });
 
 module.exports = mongoose.model("User", userSchema);
