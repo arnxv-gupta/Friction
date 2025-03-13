@@ -31,12 +31,12 @@ export default function ServerWindow() {
   }, [socketData]);
 
   return (
-    <>
+    <div className="mt-2 flex justify-between">
       <appContext.Provider value={data}>
         <ChannelList/>
         <ChatWindow/>
         <MemberList/>
       </appContext.Provider>
-    </>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
-const serverModel = require("../models/serverModel");
-const userModel = require("../models/userModel")
+const serverModel = require("../../models/serverModel");
+const userModel = require("../../models/userModel")
 
 async function joinServer(req) {
     //almost works

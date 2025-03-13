@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const createAccount = require("../controllers/createAccount");
-const loginAccount = require("../controllers/loginAccount");
+const createAccount = require("../controllers/auth/createAccount");
+const loginAccount = require("../controllers/auth/loginAccount");
 
 // auth
 router.post("/createAccount", async (req, res)=>{

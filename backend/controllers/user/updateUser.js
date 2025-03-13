@@ -1,5 +1,5 @@
-const userModel = require("../models/userModel");
-const emitter = require("../emitter");
+const userModel = require("../../models/userModel");
+const emitter = require("../../emitter");
 
 async function updateUser(userObj) {
     if(await userModel.updateOne({userID: userObj.userID}, userObj)) {

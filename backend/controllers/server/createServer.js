@@ -1,5 +1,5 @@
-const serverModel = require("../models/serverModel");
-const userModel = require("../models/userModel");
+const serverModel = require("../../models/serverModel");
+const userModel = require("../../models/userModel");
 
 async function createServer(req) {
 
@@ -17,7 +17,6 @@ async function createServer(req) {
             name:"general",
             type: "text",
             categoryID: categoryID,
-            data:[]
         }
     ],
         adminID: req.body.adminID

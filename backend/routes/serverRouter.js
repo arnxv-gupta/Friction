@@ -1,28 +1,44 @@
 const express = require("express");
 const router = express.Router();
 
-const getServer = require("../controllers/getServer");
-const joinServer = require("../controllers/joinServer");
-const createServer = require("../controllers/createServer");
-const sendMessage = require("../controllers/sendMessage");
-const createChannel = require("../controllers/createChannel");
-const createCategory = require("../controllers/createCategory");
-const joinVoice = require("../controllers/joinVoice");
+const getServer = require("../controllers/server/getServer");
+const joinServer = require("../controllers/server/joinServer");
+const createServer = require("../controllers/server/createServer");
+const sendMessage = require("../controllers/server/createMessage");
+const createChannel = require("../controllers/server/createChannel");
+const createCategory = require("../controllers/server/createCategory");
+const joinVoice = require("../controllers/server/joinVoice");
 
 router.post("/createServer", async (req, res)=>{
     res.json(await createServer(req));
 });
 
+router.delete("/deleteServer", async (req, res)=>{
+    //
+})
+
 router.get("/joinServer", async (req, res)=>{
     res.json(await joinServer(req));
 });
+
+router.delete("/leaveServer", async (req, res)=>{
+    //
+})
 
 router.post("/createChannel", async (req, res)=>{
     res.json(await createChannel(req));
 });
 
+router.delete("/deleteChannel", async (req, res)=>{
+    //
+});
+
 router.post("/createCategory", async (req, res)=>{
     res.json(await createCategory(req));
+});
+
+router.delete("/deleteCategory", async (req, res)=>{
+    //
 });
 
 // info
@@ -32,10 +48,10 @@ router.get("/serverInfo", async (req, res)=>{
 
 router.post("/sendMessage", async (req, res)=>{
     res.json(await sendMessage(req));
-})
+});
 
 router.post("/joinVoice", async (req, res)=>{
     res.json(await joinVoice(req.body.serverID, req.body.channelID, req.body.userID));
-})
+});
 
 module.exports=router;

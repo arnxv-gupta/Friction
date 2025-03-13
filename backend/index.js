@@ -20,8 +20,6 @@ const server =http.createServer(app);
 const webSocket = require("ws")
 require("dotenv").config()
 
-const PORT = 3030;
-
 app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -40,7 +38,7 @@ app.get("/", (req, res)=>{
     res.send("Generated!")
 })
 
-let updateUser = require("./controllers/updateUser.js")
+let updateUser = require("./controllers/user/updateUser.js")
 
 const wsServer = new webSocket.Server({server});
 
@@ -83,7 +81,7 @@ app.post("/uploadImage", upload.single("image"), (req, res)=>{
 })
 
 
-server.listen(PORT, ()=>{
+server.listen(process.env.PORT, ()=>{
     console.log("Server started!");
 });
 

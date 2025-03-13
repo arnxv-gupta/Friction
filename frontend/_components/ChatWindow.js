@@ -83,8 +83,8 @@ const ChatWindow = () => {
   }  
 
   return (
-    <div className="flex flex-col bg-[#313338] flex-1">
-    <div className="text-lg text-white flex items-center w-full bg-[#3a3c3f] px-4 py-2">
+    <div className="flex flex-col">
+    <div className="text-lg flex items-center w-full bg-[#2c2f3d] px-4 py-2">
     <Icon icon="tabler:hash" className="inline"/> {channelName}
     </div>
     <div className="flex-1 pb-6 flex flex-col justify-between max-h-[100lvh] ">
@@ -109,6 +109,7 @@ const ChatWindow = () => {
               key={el.timestamp}
               image={el.image}
               continued={isAuthorSame}
+              type={el?.type || "text"}
             />
           );
 

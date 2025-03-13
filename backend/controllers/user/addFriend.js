@@ -1,4 +1,4 @@
-const userModel = require("../models/userModel");
+const userModel = require("../../models/userModel");
 
 async function addFriend(userID, friendID) {
     console.log(userID);

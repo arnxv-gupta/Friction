@@ -20,7 +20,7 @@ export default function ServerItem({id, link}) {
                 alt={id}
                 width={48}
                 height={48}
-                className="object-contain opacity-100 transition rounded-full hover:rounded-sm" 
+                className="object-contain opacity-100 transition rounded-xl hover:rounded-sm" 
             />
             </Link>
         </li>

@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@theme {
+  --color-primary: #1F2029;
+  --color-secondary: #2b2d38;
+  --color-accent: #78dcca;
+}
+
 @layer {
     body {
-       @apply text-gray-300 bg-[#282828];
+       @apply text-white bg-[#1F2029];
     }
 }
 

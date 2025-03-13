@@ -5,7 +5,6 @@ export default function Page() {
         <div>
             <Link href="/auth" className="m-10">Auth</Link>
             <Link href="/channels/123/232">Chat</Link>
-
         </div>
     )
 }

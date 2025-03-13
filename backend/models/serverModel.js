@@ -10,7 +10,7 @@ let serverSchema = new mongoose.Schema({
         required: true
     },
     serverIcon: {
-        type:String,
+        type: String,
         required: true,
     },
     serverID: {
@@ -38,6 +38,7 @@ let serverSchema = new mongoose.Schema({
         }
     ],
     membersList: [Number],
+    events: [], //todo
     channels: [{
         name: {
             type: String,
@@ -73,7 +74,11 @@ let serverSchema = new mongoose.Schema({
                     type: String,
                     required: true,
                 },
-                image: String  
+                type: {
+                    type: String,
+                    default: "text"
+                },
+                image: String
             }
         ]
     }],

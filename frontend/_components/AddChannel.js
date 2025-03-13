@@ -5,7 +5,7 @@ import { appContext } from "./ServerWindow";
 import { socketContext } from '@/app/layout';
 import { useRouter } from "next/navigation";
 
-export default function AddChannel({isVisible, setVisible}) {
+export default function AddChannel({isVisible, categoryID, setVisible}) {
   const [isPrivate, setIsPrivate] = useState(false);
   const [channelType, setChannelType] = useState("text");
   const [channelName, setChannelName] = useState("");
@@ -109,7 +109,7 @@ export default function AddChannel({isVisible, setVisible}) {
                   body: JSON.stringify({
                       name: channelName,
                       type: "text",
-                      categoryID: Number(data.currCategory),
+                      categoryID: Number(categoryID),
                       serverID: Number(data.serverID)
                   })
               }).then(res=>res.json()).then(data=>{
