@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 @theme {
-  --color-primary: #1F2029;
+  --color-primary: #F9F9F9;
   --color-secondary: #2b2d38;
   --color-accent: #78dcca;
 }
 
 @layer {
     body {
-       @apply text-white bg-[#1F2029];
+       @apply bg-[#131313] text-white;
     }
 }
 

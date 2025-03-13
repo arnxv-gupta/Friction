@@ -8,6 +8,13 @@ async function createServer(req) {
     let serverObj = {
         name: req.body.name,
         serverIcon: req.body.icon,
+        roles: [
+            {
+                name: "cool ppl",
+                color: "#00FF00",
+                assignedTo: [req.body.adminID]
+            }
+        ],
         membersList: [req.body.adminID],
         categories: [{
             name: "main",

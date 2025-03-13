@@ -42,7 +42,8 @@ export default function ChatInput({userID, serverID, chatID}) {
         <section>
         {isListVisible &&
         <div className="mx-3 p-1">
-            <ul>
+            <ul className="p-2 bg-[#2E343D] rounded">
+                <h5 className="mb-3">MEMBERS</h5>
                 {members!=null?members.membersList.map(el=>{
                     if(el!=localStorage.getItem("userID"))
                     return (
@@ -58,9 +59,9 @@ export default function ChatInput({userID, serverID, chatID}) {
             </ul>
         </div>
         }
-        <div className="mx-3 p-3 bg-[#383A40] flex items-center rounded-lg">
-        <label for="imageUploader" className=" bg-[#343434] p-2 rounded-full flex items-center justify-center transition duration-200">
-        <FaPlus className="text-gray-300"/>
+        <div className="mx-3 p-3 bg-[#2E343D] flex items-center rounded-lg">
+        <label for="imageUploader" className=" bg-gray-500 p-2 rounded-full flex items-center justify-center transition duration-200">
+        <FaPlus className="text-[#343434]"/>
         </label>
         <input className="hidden" id="imageUploader" type="file" accept="image/*" onChange={(e)=>{
             let formData = new FormData()

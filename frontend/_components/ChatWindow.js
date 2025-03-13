@@ -6,7 +6,7 @@ import { socketContext } from '@/app/layout';
 import VideoView from "./VideoView";
 import FriendsList from "./FriendsList";
 import { usePathname } from "next/navigation";
-import { Icon } from "@iconify/react";
+import { FaHashtag } from "react-icons/fa";
 
 
 
@@ -54,7 +54,8 @@ const ChatWindow = () => {
       }).then(res=>res.json()).then(data=>{
         console.log(data);
       })
-    }, [])
+    }, []);
+    
 
     return (
       <div className="flex-1 p-6 flex flex-col justify-between bg-[#313338]  max-h-[100lvh] ">
@@ -82,10 +83,13 @@ const ChatWindow = () => {
     );
   }  
 
+  console.log(data);
+ 
+
   return (
-    <div className="flex flex-col">
-    <div className="text-lg flex items-center w-full bg-[#2c2f3d] px-4 py-2">
-    <Icon icon="tabler:hash" className="inline"/> {channelName}
+    <div className="flex flex-col bg-[#202329] w-full">
+    <div className="text-lg flex items-center px-4 py-2">
+    <FaHashtag /> {channelName}
     </div>
     <div className="flex-1 pb-6 flex flex-col justify-between max-h-[100lvh] ">
       <ul className="overflow-y-scroll">
@@ -104,6 +108,7 @@ const ChatWindow = () => {
           return (
             <ChatItem
               authorID={el.authorID}
+              color={data.roles[0].color}
               text={el.data}
               timestamp={el.timestamp}
               key={el.timestamp}

@@ -12,11 +12,16 @@ export default function MentionItem({userID}) {
     }, [])
 
     if(data==null) return
-
+    console.log(data);
+    
     return (
-        <span>
+        <li className="flex justify-between hover:bg-[#343942] p-2 rounded">
+        <span className="flex items-center">
+            <img src={data.pfpURL} className="rounded-full size-[1.4rem] mr-2"/>
             {data.username}
         </span>
+        <span className="text-gray-500 text-sm">{userID}</span>
+        </li>
     )
     
 }

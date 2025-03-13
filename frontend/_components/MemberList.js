@@ -15,7 +15,7 @@ const MemberList = () => {
   const [collapsed, setCollapsed] = useState(false)
 
   return (
-    <div className={`w-64 h-screen p-4 bg-[#2A2D37] rounded-tr-lg ${(collapsed)?"w-auto":null}`}>
+    <div className={`w-64 h-screen p-4 mr-1 bg-[#1d1f24] rounded-tr-lg ${(collapsed)?"w-auto":null}`}>
       <span className="flex justify-between text-sm  mb-4">
       <h3 className={`font-semibold uppercase ${collapsed?"hidden":null}`}>Members</h3>
       <button onClick={()=>{

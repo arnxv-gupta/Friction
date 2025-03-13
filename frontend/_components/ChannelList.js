@@ -22,12 +22,12 @@ const ChannelList = () => {
   
 
   return (
-    <div className="w-64 h-screen flex flex-col bg-[#2A2D37] rounded-tl-lg">
+    <div className="w-64 h-screen flex flex-col bg-[#1d1f24] rounded-tl-2xl">
       {/* Server Dropdown */}
       <div className="relative mb-3">
         <button
           onClick={toggleDropdown}
-          className="text-lg font-bold text-white flex justify-between rounded-tl-lg items-center w-full bg-[#3E4252] px-4 py-2"
+          className="text-lg font-bold flex justify-between rounded-tl-2xl items-center w-full bg-[#333643] px-4 py-2"
         >
           <span>{data.name}</span>
           <span className="text-gray-400 text-lg">
@@ -66,8 +66,8 @@ const ChannelList = () => {
         )}
       </div>
 
-      {/* User Profile Section */}
-      <UserProfile user={{ name: data.userName, picture: data.userPicture }} />
+      {/* User Profile Section
+      <UserProfile user={{ name: data.userName, picture: data.userPicture }} /> */}
       {isDialogOpen?<AddChannel isVisible={isDialogOpen} categoryID={selectedCategory} setVisible={setDialogOpen} />:null}
       
     </div>

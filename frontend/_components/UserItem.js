@@ -22,7 +22,7 @@ const UserItem = ({userID}) => {
   return (
     <>
     {isProfileVisible && <UserProfile userID={userData!=null?userData.userID:null}/>}
-    <div className="p-3 text-white text-sm hover:bg-[#35373C] rounded" onClick={()=>setProfileVisible(true)}>
+    <div className="p-3 text-sm hover:bg-[#35373C] rounded" onClick={()=>setProfileVisible(true)}>
       <div className="flex items-center">
         <img 
         className="w-9 h-9 bg-gray-600 rounded-full"

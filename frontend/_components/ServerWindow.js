@@ -31,7 +31,7 @@ export default function ServerWindow() {
   }, [socketData]);
 
   return (
-    <div className="mt-2 flex justify-between">
+    <div className="flex flex-1">
       <appContext.Provider value={data}>
         <ChannelList/>
         <ChatWindow/>

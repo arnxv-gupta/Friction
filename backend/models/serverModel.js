@@ -37,6 +37,23 @@ let serverSchema = new mongoose.Schema({
         }
         }
     ],
+    roles: [
+        {
+            name: {
+                type: String,
+                required: true
+            },
+            color: {
+                type: String,
+                required: true
+            },
+            roleID: {
+                type: Number,
+                default: ()=>Math.floor(Math.random() * (999999999 - 111111111) + 111111111)
+            },
+            assignedTo: [{type: Number, required:true}],
+        }
+    ],
     membersList: [Number],
     events: [], //todo
     channels: [{
@@ -78,7 +95,8 @@ let serverSchema = new mongoose.Schema({
                     type: String,
                     default: "text"
                 },
-                image: String
+                image: String,
+                reactions: [String]
             }
         ]
     }],

@@ -18,7 +18,7 @@ export default function FriendsList() {
         <h3>Friends</h3>
         <ul className="mt-4">
             {(data!=null && data.friends.length!=0)?(data.friends.map(el=>{
-                return <FriendItem name={el} />
+                return <FriendItem name={el}/>
             })):"You have no friends :("}
         </ul>
         </div>

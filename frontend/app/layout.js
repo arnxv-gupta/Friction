@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   );
 
   return (
-    <html lang="en">
+    <html lang="en" className={archivo.variable}>
       <body>
       <socketContext.Provider value={{socketData, sendMessage}}>
         {children}

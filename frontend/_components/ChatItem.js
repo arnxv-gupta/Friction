@@ -6,6 +6,7 @@ import { appContext } from "./ServerWindow";
 
 export default function ChatItem({
   authorID,
+  color,
   text,
   timestamp,
   image,
@@ -33,10 +34,13 @@ export default function ChatItem({
     console.log("event");
   }
 
+  console.log(color);
+  
+
   return (
     <li
       className={`px-5 mt-1 flex w-auto ${
-        isMentioned ? "bg-[#444037]" : "hover:bg-[#24242b]"
+        isMentioned ? "bg-[#444037]" : "hover:bg-[#2E343D]"
       }`}
     >
       {continued ? (
@@ -57,7 +61,7 @@ export default function ChatItem({
         {continued ? null : (
           <div className="flex items-center mb-1">
             <div className="flex items-baseline">
-              <h5 className="text-md">{authorData.username}</h5>
+              <h5 className="text-md font-medium" style={{color: color}}>{authorData.username}</h5>
               <time className="text-xs text-[#b5b5b5] ml-2">
                 {(new Date(timestamp).getDate() <= 9
                   ? "0" + new Date(timestamp).getDate()
