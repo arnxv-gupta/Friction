@@ -108,7 +108,7 @@ const ChatWindow = () => {
           return (
             <ChatItem
               authorID={el.authorID}
-              color={data.roles[0].color}
+              color={data.roles.filter((element)=>element.assignedTo.includes(el.authorID))[0]}
               text={el.data}
               timestamp={el.timestamp}
               key={el.timestamp}

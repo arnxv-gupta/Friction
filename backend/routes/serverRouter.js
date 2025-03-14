@@ -8,6 +8,7 @@ const sendMessage = require("../controllers/server/createMessage");
 const createChannel = require("../controllers/server/createChannel");
 const createCategory = require("../controllers/server/createCategory");
 const joinVoice = require("../controllers/server/joinVoice");
+const createRole = require("../controllers/server/createRole");
 
 router.post("/createServer", async (req, res)=>{
     res.json(await createServer(req));
@@ -53,5 +54,9 @@ router.post("/sendMessage", async (req, res)=>{
 router.post("/joinVoice", async (req, res)=>{
     res.json(await joinVoice(req.body.serverID, req.body.channelID, req.body.userID));
 });
+
+router.post("/createRole", async (req, res)=>{
+    res.json(await createRole(req.body.serverID, req.body.name, req.body.color));
+})
 
 module.exports=router;

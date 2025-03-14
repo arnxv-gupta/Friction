@@ -13,6 +13,11 @@ async function createServer(req) {
                 name: "cool ppl",
                 color: "#00FF00",
                 assignedTo: [req.body.adminID]
+            },
+            {
+                name: "everyone",
+                color: "#FFFFFF",
+                assignedTo: [req.body.adminID]
             }
         ],
         membersList: [req.body.adminID],
