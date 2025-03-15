@@ -1,10 +1,10 @@
 "use client";
 import { useContext, useState } from "react";
 import ChannelItem from "./ChannelItem";
-import ServerDropDown from "./ServerDropDown";
-import UserProfile from "./User";
-import { appContext } from "./ServerWindow";
-import CategoryItem from "./CategoryItem";
+import ServerDropDown from "../misc/ServerDropDown";
+import UserProfile from "../misc/User";
+import { appContext } from "../server/ServerWindow";
+import CategoryItem from "../category/CategoryItem";
 import AddChannel from "./AddChannel";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
@@ -22,7 +22,7 @@ const ChannelList = () => {
   
 
   return (
-    <div className="w-64 h-screen flex flex-col bg-[#1d1f24] rounded-tl-2xl">
+    <div className="w-80 h-screen flex flex-col bg-[#1d1f24] rounded-tl-2xl">
       {/* Server Dropdown */}
       <div className="relative mb-3">
         <button

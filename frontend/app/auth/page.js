@@ -1,5 +1,5 @@
 "use client";
-import CustomInput from "@/_components/CustomInput";
+import CustomInput from "@/_components/misc/CustomInput";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 

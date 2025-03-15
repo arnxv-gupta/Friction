@@ -1,7 +1,7 @@
 import { useParams } from "next/navigation";
-import ChatWindow from "@/_components/ChatWindow";
-import ChannelList from "@/_components/ChannelList";
-import MemberList from "@/_components/MemberList";
+import ChatWindow from "@/_components/chat/ChatWindow";
+import ChannelList from "@/_components/channel/ChannelList";
+import MemberList from "@/_components/misc/MemberList";
 import { createContext, useContext, useEffect, useState } from "react";
 import { socketContext } from '@/app/layout';
 

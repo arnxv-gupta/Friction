@@ -9,6 +9,7 @@ const createChannel = require("../controllers/server/createChannel");
 const createCategory = require("../controllers/server/createCategory");
 const joinVoice = require("../controllers/server/joinVoice");
 const createRole = require("../controllers/server/createRole");
+const deleteChannel = require("../controllers/server/deleteChannel");
 
 router.post("/createServer", async (req, res)=>{
     res.json(await createServer(req));
@@ -31,7 +32,7 @@ router.post("/createChannel", async (req, res)=>{
 });
 
 router.delete("/deleteChannel", async (req, res)=>{
-    //
+    res.json(await deleteChannel(req.query.serverID, req.query.channelID));
 });
 
 router.post("/createCategory", async (req, res)=>{

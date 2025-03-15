@@ -1,7 +1,7 @@
 import Link from "next/link";
-import OptionItem from "./OptionItem";
+import OptionItem from "../misc/OptionItem";
 import { useContext, useState } from "react";
-import { appContext } from "./ServerWindow";
+import { appContext } from "../server/ServerWindow";
 import { Icon } from "@iconify/react";
 
 export default function ChannelItem({name, type, link, active}) {    

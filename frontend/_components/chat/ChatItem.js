@@ -1,8 +1,8 @@
 "use client";
 
 import { useContext, useEffect, useState } from "react";
-import UserMention from "./UserMention";
-import { appContext } from "./ServerWindow";
+import UserMention from "../misc/UserMention";
+import { appContext } from "../server/ServerWindow";
 
 export default function ChatItem({
   authorID,
@@ -29,11 +29,6 @@ export default function ChatItem({
   if (authorData == null) {
     return;
   }
-
-  if(type=="event") {
-    console.log("event");
-  }
-
 
   return (
     <li

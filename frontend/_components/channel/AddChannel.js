@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import { appContext } from "./ServerWindow";
+import { appContext } from "../server/ServerWindow";
 import { socketContext } from '@/app/layout';
 import { useRouter } from "next/navigation";
 

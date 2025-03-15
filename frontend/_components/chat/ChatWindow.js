@@ -1,33 +1,32 @@
+"use client"
+
 import React, { useContext, useEffect, useRef, useState } from "react";
-import ChatItem from "./ChatItem";
-import ChatInput from "./ChatInput";
-import { appContext } from "./ServerWindow";
-import { socketContext } from '@/app/layout';
-import VideoView from "./VideoView";
-import FriendsList from "./FriendsList";
 import { usePathname } from "next/navigation";
 import { FaHashtag } from "react-icons/fa";
 
 
+import { appContext } from "../server/ServerWindow";
+
+import ChatItem from "./ChatItem";
+import ChatInput from "./ChatInput";
+import VideoView from "../misc/VideoView";
+import FriendsList from "../friend/FriendsList";
 
 const ChatWindow = () => {
   const data = useContext(appContext);
   const pathname = usePathname().split("/");
-  const channelName = data!=null && data.currChannel && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].name; 
-
-  const {socketData, sendMessage} = useContext(socketContext)
-  
+  const channelName = data!=null && data.currChannel && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].name;   
   
   if ((data == null || !data.currChannel) && pathname[2]=="@me"&& pathname.length==3) {
     return (
-      <div className="flex-1 flex flex-row bg-[#313338]">
+      <div className="flex-1 flex flex-row bg-[#202329] rounded-tl-2xl">
         <FriendsList/>
-        asdas
+        
       </div>
     );
   } else if((data==null || !data.currChannel) && pathname[2]=="@me" && pathname.length==4) {
     return (
-      <div className="flex-1 flex flex-row bg-[#313338]">
+      <div className="flex-1 flex flex-row bg-[#202329] rounded-tl-2xl">
         <FriendsList/>
         <div>
           {pathname[3]}
@@ -36,7 +35,7 @@ const ChatWindow = () => {
     );
   } else if(data==null||!data.currChannel) {
     return (
-      <div className="flex-1 p-6 flex flex-col justify-between bg-[#313338]">
+      <div className="flex-1 p-6 flex flex-col justify-between bg-[#202329]">
         <small>This looks empty.. too empty :(</small>{" "}
       </div>
     );
@@ -72,7 +71,7 @@ const ChatWindow = () => {
 
   if (data != null && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].data.length==0) {
     return (
-      <div className="flex-1 p-6 flex flex-col justify-between bg-[#313338]">
+      <div className="flex-1 p-6 flex flex-col justify-between bg-[#202329]">
         <small>This looks empty.. too empty :(</small>
         <ChatInput
           userID={localStorage.getItem("userID")}

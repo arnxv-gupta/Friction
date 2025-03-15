@@ -7,8 +7,8 @@ import useWebSocket from "/app/hooks/useWebSocket";
 import {Archivo} from "next/font/google"
 
 const archivo = Archivo({
-    subsets: ['latin'], // Specify the character sets you need
-    variable: '--font-archivo', // Optional: for CSS variable usage
+    subsets: ['latin'],
+    variable: '--font-archivo',
   });
 
 

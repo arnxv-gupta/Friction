@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
-import ChannelItem from "./ChannelItem";
-import { appContext } from "./ServerWindow";
+import ChannelItem from "../channel/ChannelItem";
+import { appContext } from "../server/ServerWindow";
 import { Icon } from "@iconify/react";
 
 export default function CategoryItem({channels, name, showDialog}) {

@@ -1,6 +1,6 @@
 "use client";
-import ServerList from "@/_components/ServerList";
-import ServerWindow from "@/_components/ServerWindow";
+import ServerList from "@/_components/server/ServerList";
+import ServerWindow from "@/_components/server/ServerWindow";
 
 export default function Channels() {
 

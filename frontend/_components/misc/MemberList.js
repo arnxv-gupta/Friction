@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import UserItem from './UserItem';
-import { appContext } from './ServerWindow';
+import { appContext } from '../server/ServerWindow';
 import { Icon } from "@iconify/react";
 
 

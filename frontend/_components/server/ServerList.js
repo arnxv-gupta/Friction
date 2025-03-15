@@ -1,7 +1,9 @@
 "use client";
 
 import { memo, useEffect, useState } from "react";
-import ServerDialogue from "./ServerDialogue";
+import { FaPlus } from "react-icons/fa";
+
+import ServerDialogue from "../misc/ServerDialogue";
 import Link from "next/link";
 import Image from "next/image"; 
 import ServerItem from "./ServerItem";
@@ -12,19 +14,10 @@ const ServerList = memo(() => {
   const [servers, setServers] = useState([]);
 
   useEffect(() => {
-    async function getServerInfo() {
-      await fetch(`http://localhost:3030/userInfo?userID=${localStorage.getItem("userID")}`)
-        .then((res) => res.json())
-        .then(async (data) => {
-          //console.log(data);
-          
+      fetch(`http://localhost:3030/userInfo?userID=${localStorage.getItem("userID")}`).then((res) => res.json()).then(async (data) => {
           setServers(await data.res.joinedServers);
-          //console.log(servers);
-          
         });
-    }
 
-    getServerInfo();
   }, []);
 
   return (
@@ -52,12 +45,12 @@ const ServerList = memo(() => {
         </ul>
 
         <div
-          className="bg-gray-700 w-12 h-12 flex items-center justify-center rounded-full cursor-pointer transition duration-200 transform hover:bg-gray-600 hover:scale-110"
+          className="bg-[#333643] size-12 flex items-center justify-center rounded-full cursor-pointer transform hover:bg-gray-600 hover:scale-110"
           onClick={() => {
             setIsDialog(true);
           }}
         >
-          <span className="text-white text-2xl">+</span>
+          <FaPlus />
         </div>
       </ul>
     </>

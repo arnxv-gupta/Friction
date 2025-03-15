@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import ServerDropItem from "./ServerDropItem";
-import { appContext } from "./ServerWindow";
+import { appContext } from "../server/ServerWindow";
 import { socketContext } from "@/app/layout";
 
 export default function ServerDropDown() {

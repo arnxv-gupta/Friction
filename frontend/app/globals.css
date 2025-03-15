@@ -9,6 +9,9 @@
 }
 
 @layer {
+    * {
+      @apply transition duration-200;
+    }
     body {
        @apply bg-[#131313] text-white;
     }

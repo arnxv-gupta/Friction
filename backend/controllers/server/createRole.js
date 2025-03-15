@@ -1,6 +1,6 @@
 const serverModel = require("../../models/serverModel");
 
-async function createRole({serverID, name, color}) {
+async function createRole(serverID, name, color) {
     try {
         let roleCheck = await serverModel.updateOne({serverID: serverID}, {$push: {roles: {name: name, color: color}}});
         if(roleCheck.modifiedCount==1) {

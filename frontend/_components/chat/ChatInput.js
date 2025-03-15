@@ -1,14 +1,16 @@
 "use client"
 
 import { useContext, useEffect, useRef, useState } from 'react';
-import { FaPlus, FaGift, FaRegSmile } from 'react-icons/fa';
-import {appContext} from "./ServerWindow"
-import MentionItem from './MentionItem';
+
+import {appContext} from "../server/ServerWindow"
 import { socketContext } from '@/app/layout';
+import MentionItem from '../misc/MentionItem';
+
+import { FaPlus, FaLaugh  } from 'react-icons/fa';
 
 export default function ChatInput({userID, serverID, chatID}) {
 
-    const {socketData, sendMessage} = useContext(socketContext);
+    const {sendMessage} = useContext(socketContext);
     const members = useContext(appContext)
 
     const [imageURL, setImageURL] = useState(null)
@@ -17,6 +19,11 @@ export default function ChatInput({userID, serverID, chatID}) {
     const [isListVisible, setListVisible] = useState(false);
 
     function send() {
+        if(inputRef.current.innerText.length==0 || inputRef.current.innerText==null) {
+            console.log("Unabel to sent empty message");
+            return;
+        }
+
         fetch("http://localhost:3030/sendMessage", {
             method: "post",
             headers: {
@@ -30,9 +37,6 @@ export default function ChatInput({userID, serverID, chatID}) {
                 image: imageURL
             })
         }).then(res=>res.text()).then(data=>{
-            console.log(data);
-            console.log(imageURL);
-            
             inputRef.current.innerText = null;         
             sendMessage("MESSAGE RECEIVED!")
         })
@@ -59,9 +63,9 @@ export default function ChatInput({userID, serverID, chatID}) {
             </ul>
         </div>
         }
-        <div className="mx-3 p-3 bg-[#2E343D] flex items-center rounded-lg">
-        <label for="imageUploader" className=" bg-gray-500 p-2 rounded-full flex items-center justify-center transition duration-200">
-        <FaPlus className="text-[#343434]"/>
+        <div className="mx-3 px-3 py-3 bg-[#2E343D] flex items-center rounded-lg">
+        <label for="imageUploader" className="group bg-gray-500 hover:bg-[#343434] cursor-pointer p-1 rounded-full flex items-center justify-center">
+        <FaPlus className="text-[#343434] group-hover:text-gray-500"/>
         </label>
         <input className="hidden" id="imageUploader" type="file" accept="image/*" onChange={(e)=>{
             let formData = new FormData()
@@ -76,7 +80,7 @@ export default function ChatInput({userID, serverID, chatID}) {
             })
             
         }}/>
-        <img src={imageURL} className={`ml-2 w-8 h-8 ${imageURL?"block":"hidden"}`} onClick={()=>{
+        <img src={imageURL} className={`ml-2 size-12 ${imageURL?"block":"hidden"}`} onClick={()=>{
             setImageURL(null)
         }}/>
         <pre
@@ -98,7 +102,7 @@ export default function ChatInput({userID, serverID, chatID}) {
         ></pre>
         <button
         onClick={send}>
-            Send
+            <FaLaugh className="text-gray-500 text-2xl"/>
         </button>
     </div>
     </section>
