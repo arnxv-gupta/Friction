@@ -18,12 +18,14 @@
 * **Frontend:**
   - Next.js
   - React
-  -TailWind CSS
+  - TailWind CSS
 
 * **Backend:**
   - Node.js
   - Express.js
-  - MongoDB
+  - Typescript
+  - Multer
+  - Mongoose
   - Socket.IO (for real-time communication)
 
 ## Getting Started:

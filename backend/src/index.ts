@@ -3,7 +3,6 @@ import cors from "cors"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 
-
 import authRoutes from "./routes/authRoutes"
 import serverRoutes from "./routes/serverRoutes"
 import userRoutes from "./routes/userRoutes"
