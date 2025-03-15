@@ -1,9 +1,14 @@
 import { useContext, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Icon } from "@iconify/react";
+
 import { appContext } from "../server/ServerWindow";
 import { socketContext } from '@/app/layout';
-import { useRouter } from "next/navigation";
+
+import { Icon } from "@iconify/react";
+import { FaXmark } from "react-icons/fa6";
+
+import Dialog from "../ui/Dialog";
 
 export default function AddChannel({isVisible, categoryID, setVisible}) {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -36,16 +41,11 @@ export default function AddChannel({isVisible, categoryID, setVisible}) {
   );
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-5000">
-      <div className="bg-gray-800 text-white w-96 p-6 rounded-lg shadow-lg">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-bold">Add Channels</h2>
-          <button onClick={()=>[
-            setVisible(false)
-          ]} className="text-gray-400 hover:text-white text-lg">
-            <Icon icon="tabler:x" className="text-lg"/>
-          </button>
-        </div>
+    <Dialog>
+        <h3 className="text-lg font-bold flex justify-between items-center mb-4">
+              <span>Add channel</span>
+              <FaXmark className="hover:text-[#888] cursor-pointer" onClick={()=>{setVisible(false)}} />
+        </h3>
 
         <div className="mb-4">
           <label className="block text-sm mb-2">Channel Type</label>
@@ -130,7 +130,6 @@ export default function AddChannel({isVisible, categoryID, setVisible}) {
             </button>
 
         </div>
-      </div>
-    </div>
+    </Dialog>
   );
 }

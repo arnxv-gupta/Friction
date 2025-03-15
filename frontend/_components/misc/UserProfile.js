@@ -13,25 +13,26 @@ export default function UserProfile({userID}) {
     if(data==null) return;
 
     return (
-        <div className="absolute right-72 bg-[#111214] rounded-md">
+        <div className="absolute right-[11rem] bg-[#111214] rounded-md">
             <div className="bg-gray-500 h-8 rounded-t-md">
             </div>
-        <img 
-        className="w-16 h-16 bg-gray-600 rounded-full relative top-[-1rem] left-3"
-        src={data.pfpURL}
-        />
-            <div className="p-3 pt-0">
-            <h3 className="text-lg">{data.username}</h3>
-            <small className="block">User ID: {userID}</small>
-            <small>Joined on {new Date(data.createdAt).toDateString()}</small>
+            <div className="flex">
+                <img 
+                className="size-16 bg-gray-600 rounded-full relative top-[-1.5rem] left-2"
+                src={data.pfpURL}
+                />
+                <h3 className="text-lg font-medium mb-1 ml-4">{data.username}</h3>
             </div>
-            <button onClick={()=>{
-                console.log(localStorage.getItem("userID"));
-                
+            <div className="p-2 pt-0">
+                <div className="flex flex-col">
+                    <small className="text-[#888]">User ID: {userID}</small>
+                    <small className="text-[#888]">Joined on {new Date(data.createdAt).toDateString()}</small>
+                </div>
+            </div>
+            <button className="m-3" onClick={()=>{
                 fetch(`http://localhost:3030/addFriend?userID=${localStorage.getItem("userID")}&friendID=${userID}`).then(res=>res.json()).then(data=>{
                     console.log(data);
-                    
-                })
+                });
             }}>Add friend</button>
         </div>
     )

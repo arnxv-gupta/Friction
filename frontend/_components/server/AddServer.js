@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 import React, { useState, useRef } from 'react';
 
-const ServerDialogue = () => {
+const AddServer = () => {
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1); 
   const [isNotSure, setIsNotSure] = useState(false);
@@ -160,4 +160,4 @@ const ServerDialogue = () => {
   );
 };
 
-export default ServerDialogue;
+export default AddServer;

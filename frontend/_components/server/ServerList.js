@@ -3,7 +3,7 @@
 import { memo, useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 
-import ServerDialogue from "../misc/ServerDialogue";
+import AddServer from "./AddServer";
 import Link from "next/link";
 import Image from "next/image"; 
 import ServerItem from "./ServerItem";
@@ -22,7 +22,7 @@ const ServerList = memo(() => {
 
   return (
     <>
-      {isDialog && <ServerDialogue />}
+      {isDialog && <AddServer />}
 
       <ul className="p-3 h-screen flex flex-col items-center space-y-1"> 
         <li className="w-12 h-12 my-2">

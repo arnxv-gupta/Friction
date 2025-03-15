@@ -1,7 +1,8 @@
 import { useContext, useState } from "react"
-import ChannelItem from "../channel/ChannelItem";
 import { appContext } from "../server/ServerWindow";
-import { Icon } from "@iconify/react";
+import ChannelItem from "../channel/ChannelItem";
+
+import { FaPlus, FaAngleDown, FaAngleRight } from "react-icons/fa6";
 
 export default function CategoryItem({channels, name, showDialog}) {
     const data = useContext(appContext)
@@ -9,13 +10,13 @@ export default function CategoryItem({channels, name, showDialog}) {
     
     return (
         <>
-        <h3 className="px-3 flex justify-between">
-            <span className="block flex-1 cursor-pointer " onClick={()=>{
+        <h3 className="px-3 flex justify-between items-center">
+            <span className="block flex-1 cursor-pointer items-center" onClick={()=>{
             setOpen(!isOpen)
-        }}>
-            {isOpen?<Icon icon="tabler:chevron-down" className="inline mr-1"/>:<Icon icon="tabler:chevron-right"  className="inline mr-1"/>}{name}
+            }}>
+            {isOpen?<FaAngleDown  icon="tabler:chevron-down" className="inline mr-1"/>:<FaAngleRight  className="inline mr-1"/>}{name}
             </span>
-            <Icon icon="tabler:plus" className="inline cursor-pointer" onClick={()=>{
+            <FaPlus className="inline text-base cursor-pointer" onClick={()=>{
                 showDialog(true);
             }}/>
             </h3>
