@@ -69,8 +69,6 @@ const ChannelList = () => {
         )}
       </div>
 
-      {/* User Profile Section
-      <UserProfile user={{ name: data.userName, picture: data.userPicture }} /> */}
       {isChannelOpen?<AddChannel isVisible={isChannelOpen} categoryID={selectedCategory} setVisible={setChannelOpen} />:null}
       {isCategoryOpen?<AddCategory isVisible={isCategoryOpen} setVisible={setCategoryOpen} />:null}
 
