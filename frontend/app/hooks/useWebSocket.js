@@ -1,37 +1,46 @@
-const { useState, useEffect } = require("react")
+"use client";
 
-const useWebSocket = (url, userID)=>{
-    const [ws, setWS] = useState(null);
-    const [socketData, setSocketData] = useState(userID)
+import { useState, useEffect, useRef } from "react";
+import { io } from "socket.io-client";
 
-    useEffect(()=>{
+const useWebSocket = (url, userID) => {
+  const [socketData, setSocketData] = useState(null);
+  const socketRef = useRef(null); // Use useRef for socket instance
 
-        const socket = new WebSocket(url);
-        setWS(socket);
+  useEffect(() => {
+    if (!url) return; // Prevent connection without URL
 
-        socket.onopen = ()=>{
-            socket.send(userID)
-        }
-            
-        socket.onmessage = (event) =>{
-            console.log(event.data, "Data websocket!");
-            
-            setSocketData(event.data)
-        }
+    socketRef.current = io(url);
+    const socket = socketRef.current;
 
-        // return ()=>{
-        //     socket.close();
-        // };
-    }, [url])
+    socket.on("connect", () => {
+      console.log("Socket connected!");
+    });
 
-    const sendMessage = (message)=>{
-        if(ws) {
-            console.log(message);
-            ws.send(message);
-        }
+    socket.on("message", (data) => { // Listen for a message event
+      console.log(data, "Data websocket!");
+      setSocketData(data);
+    });
+
+    socket.on("disconnect", () => {
+      console.log("Socket disconnected!");
+    });
+
+    return () => {
+      if (socket) {
+        socket.disconnect();
+      }
+    };
+  }, [url]);
+
+  const sendMessage = (message) => {
+    if (socketRef.current) {
+      socketRef.current.emit("message", message); // Use a consistent event name
+      console.log("Sending message:", message);
     }
+  };
 
-    return {socketData, setSocketData, sendMessage};
-}
+  return { socketData, setSocketData, sendMessage };
+};
 
 export default useWebSocket;
