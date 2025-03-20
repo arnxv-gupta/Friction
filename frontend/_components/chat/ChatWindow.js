@@ -80,10 +80,7 @@ const ChatWindow = () => {
         />
       </div>
     );
-  }  
-
-  console.log(data);
- 
+  }
 
   return (
     <div className="flex flex-col bg-[#202329] w-full">
@@ -107,7 +104,7 @@ const ChatWindow = () => {
           return (
             <ChatItem
               authorID={el.authorID}
-              color={data.roles.filter((element)=>element.assignedTo.includes(el.authorID))[0]}
+              roleData={data.roles.filter((element)=>element.assignedTo.includes(el.authorID))[0]}
               text={el.data}
               timestamp={el.timestamp}
               key={el.timestamp}

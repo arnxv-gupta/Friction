@@ -53,6 +53,25 @@ const serverSchema: Schema<Server> = new Schema({
     ],
     membersList: [Number],
     events: [], //todo
+    emojis: [{
+        name: {
+            type: String,
+            required: true
+        },
+        serverID: {
+            type: Number,
+            required: true
+        },
+        src: {
+            type: String,
+            required: true
+        }, 
+        emojiID: {
+            type: Number, 
+            default: ()=>Math.floor(Math.random() * (999999999 - 111111111) + 111111111)
+        }
+
+    }],
     channels: [{
         name: {
             type: String,

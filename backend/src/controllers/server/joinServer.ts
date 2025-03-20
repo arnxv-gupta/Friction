@@ -10,9 +10,9 @@ export default async function joinServer(serverID: Number, userID: Number) {
         } else {
             if(serverObj.membersList.indexOf(Number(userID))==-1) {
                 await serverModel.updateOne({serverID: serverID}, {$push: {membersList: Number(userID)}});
-                await serverModel.updateOne({serverID: serverID, "roles.name": "everyone"}, {$push: {assignedTo: Number(userID)}})
+                await serverModel.updateOne({serverID: serverID, "roles.name": "everyone"}, {$push: {"roles.$.assignedTo": Number(userID)}})
                 await userModel.updateOne({userID: Number(userID)}, {$push: {joinedServers: Number(serverID)}});
-                
+
                 return {type: "SUCCESS", msg: `Server joined!`};
 
             } else {

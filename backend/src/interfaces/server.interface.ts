@@ -1,5 +1,6 @@
 import { Category } from "./category.interface"
 import { Channel } from "./channel.interface"
+import { Emoji } from "./emoji.interface"
 import { Role } from "./role.interface"
 
 export interface Server {
@@ -9,6 +10,7 @@ export interface Server {
     createdAt?: Number
     events: [Event] | [],
     roles: [Role],
+    emojis: [Emoji] | [],
     membersList: [Number],
     categories: [Category],
     channels: [Channel],

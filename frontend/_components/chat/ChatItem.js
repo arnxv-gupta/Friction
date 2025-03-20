@@ -1,12 +1,12 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import UserMention from "../misc/UserMention";
-import { appContext } from "../server/ServerWindow";
+import CustomImage from "../misc/CustomImage";
 
 export default function ChatItem({
   authorID,
-  color,
+  roleData,
   text,
   timestamp,
   image,
@@ -29,9 +29,6 @@ export default function ChatItem({
   if (authorData == null) {
     return;
   }
-
-  console.log(color);
-  
 
   return (
     <li
@@ -57,7 +54,7 @@ export default function ChatItem({
         {continued ? null : (
           <div className="flex items-center mb-1">
             <div className="flex items-baseline">
-              <h5 className="text-md font-medium" style={{color: "#fff"}}>{authorData.username}</h5>
+              <h5 className="text-md font-medium" style={{color: roleData.color}}>{authorData.username}</h5>
               <time className="text-xs text-[#b5b5b5] ml-2">
                 {(new Date(timestamp).getDate() <= 9
                   ? "0" + new Date(timestamp).getDate()
@@ -72,7 +69,7 @@ export default function ChatItem({
             </div>
           </div>
         )}
-        {image != null ? <img src={image} className="max-w-xl rounded" /> : null}
+        {image != null ? <CustomImage src={image} /> : null}
         <pre className="whitespace-normal">
           {text.match(/<@(.*?)>/)
             ? text.split(/<@(.*?)>/).map((el, index) => {

@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@theme {
-  --color-primary: #F9F9F9;
-  --color-secondary: #2b2d38;
-  --color-accent: #78dcca;
-}
-
 @layer {
     * {
       @apply transition duration-200;

@@ -7,5 +7,4 @@ export interface Channel {
     categoryID: Number
     createdAt?: Number,
     data?: [Message] | []
-
 }

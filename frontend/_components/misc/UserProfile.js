@@ -23,6 +23,12 @@ export default function UserProfile({userID}) {
                 />
                 <h3 className="text-lg font-medium mb-1 ml-4">{data.username}</h3>
             </div>
+            
+            {/* roles */}
+            <div>
+                {}
+            </div>
+            
             <div className="p-2 pt-0">
                 <div className="flex flex-col">
                     <small className="text-[#888]">User ID: {userID}</small>

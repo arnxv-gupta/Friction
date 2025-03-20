@@ -35,6 +35,7 @@ function createServer(name, icon, adminID) {
                         categoryID: categoryID
                     }],
                 events: [],
+                emojis: [],
                 channels: [{
                         name: "general",
                         type: "text",

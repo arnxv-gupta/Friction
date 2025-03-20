@@ -3,10 +3,10 @@ import { Reaction } from "./reaction.interface"
 type messageType = "default" | "event"
 
 export interface Message {
-    authorID: Number
+    authorID: Number,
     timestamp?: Number,
-    data: String
-    type: String
+    data: String,
+    type: String,
     image?: String,
     reactions: [Reaction] | []
 }

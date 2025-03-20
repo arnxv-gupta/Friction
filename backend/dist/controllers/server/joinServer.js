@@ -25,7 +25,7 @@ function joinServer(serverID, userID) {
             else {
                 if (serverObj.membersList.indexOf(Number(userID)) == -1) {
                     yield serverModel_1.default.updateOne({ serverID: serverID }, { $push: { membersList: Number(userID) } });
-                    yield serverModel_1.default.updateOne({ serverID: serverID, "roles.name": "everyone" }, { $push: { assignedTo: Number(userID) } });
+                    yield serverModel_1.default.updateOne({ serverID: serverID, "roles.name": "everyone" }, { $push: { "roles.$.assignedTo": Number(userID) } });
                     yield userModel_1.default.updateOne({ userID: Number(userID) }, { $push: { joinedServers: Number(serverID) } });
                     return { type: "SUCCESS", msg: `Server joined!` };
                 }

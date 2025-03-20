@@ -23,6 +23,7 @@ export default async function createServer(name:String, icon:String, adminID:Num
                 categoryID: categoryID
             }],
             events: [],
+            emojis: [],
             channels: [{
                 name:"general",
                 type: "text",

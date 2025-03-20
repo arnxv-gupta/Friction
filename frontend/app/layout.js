@@ -4,15 +4,15 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { createContext, useState } from "react";
 import useWebSocket from "/app/hooks/useWebSocket";
-import {Archivo} from "next/font/google"
-
-const archivo = Archivo({
-    subsets: ['latin'],
-    variable: '--font-archivo',
-  });
-
 
 config.autoAddCss = false
+
+import { Archivo } from 'next/font/google';
+
+const archivo = Archivo({
+  subsets: ['latin'],
+  variable: '--font-archivo', //optional
+});
 
 export const socketContext = createContext("");
 
@@ -23,8 +23,8 @@ export default function RootLayout({ children }) {
   );
 
   return (
-    <html lang="en" className={archivo.variable}>
-      <body>
+    <html lang="en">
+      <body className={`${archivo.variable} font-sans`}>
       <socketContext.Provider value={{socketData, sendMessage}}>
         {children}
       </socketContext.Provider>
