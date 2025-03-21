@@ -1,3 +1,5 @@
+"use client"
+
 import { useParams } from "next/navigation";
 import ChatWindow from "@/_components/chat/ChatWindow";
 import ChannelList from "@/_components/channel/ChannelList";
