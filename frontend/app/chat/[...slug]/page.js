@@ -8,19 +8,15 @@ export async function generateMetadata({params}) {
 
   if(slug[0] && slug[0]=="%40me") {
     return {
-      title: "Friends"
+      title: "Friction | Friends"
     }
   }
 
   let res = await fetch(`http://localhost:3030/serverInfo?serverID=${slug[0]}`).then(res=>res.json());
   let data = res.res;
 
-  let serverName = data.name;
-  let channelName = (slug[1])?data.channels.filter((el=>el.channelID==slug[1])):null;
-  channelName=(channelName?channelName[0].name:null);
-
   return {
-    title: (channelName?channelName + " | " + serverName:serverName)
+    title: ("Friction | " + data.name)
   }
 }
 export default async function Channels() {

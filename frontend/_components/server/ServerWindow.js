@@ -11,7 +11,7 @@ import { socketContext } from '@/app/layout';
 export const appContext = createContext();
 
 export default function ServerWindow() {
-  const {socketData, sendMessage} = useContext(socketContext)
+  const {socketData} = useContext(socketContext)
   const [data, setData] = useState(null);
   const params = useParams();
 

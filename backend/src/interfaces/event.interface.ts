@@ -1,8 +1,9 @@
 export interface Event {
     name: String,
     organizerID: Number,
-    eventTime: Number,
+    banner: String,
+    startTime: Number,
     registerDeadline: Number,
-    resgistered: [Number],
+    participants: [Number],
     eventID?:Number
 }

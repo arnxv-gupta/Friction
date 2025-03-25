@@ -25,6 +25,8 @@ const createRole_1 = __importDefault(require("../controllers/server/createRole")
 const deleteRole_1 = __importDefault(require("../controllers/server/deleteRole"));
 const createEmoji_1 = __importDefault(require("../controllers/server/createEmoji"));
 const deleteEmoji_1 = __importDefault(require("../controllers/server/deleteEmoji"));
+const createEvent_1 = __importDefault(require("../controllers/server/createEvent"));
+const deleteEvent_1 = __importDefault(require("../controllers/server/deleteEvent"));
 const createMessage_1 = __importDefault(require("../controllers/server/createMessage"));
 const router = express_1.default.Router();
 router.post("/createServer", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -62,6 +64,12 @@ router.post("/createEmoji", (req, res) => __awaiter(void 0, void 0, void 0, func
 }));
 router.delete("/deleteEmoji", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.json(yield (0, deleteEmoji_1.default)(req.query.serverID, req.query.emojiID));
+}));
+router.post("/createEvent", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.json(yield (0, createEvent_1.default)(req.body.serverID, req.body.name, req.body.organizerID, req.body.banner, req.body.startTime, req.body.registerDeadline));
+}));
+router.delete("/deleteEvent", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.json(yield (0, deleteEvent_1.default)(req.query.serverID, req.query.channelID));
 }));
 router.post("/sendMessage", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.json(yield (0, createMessage_1.default)(req.body.authorID, req.body.text, req.body.image, req.body.serverID, req.body.channelID));

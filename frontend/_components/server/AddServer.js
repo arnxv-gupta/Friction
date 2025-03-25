@@ -1,8 +1,9 @@
 import { useRouter } from 'next/navigation';
 import React, { useState, useRef } from 'react';
 import Dialog from '../ui/Dialog';
+import { FaPlus } from "react-icons/fa6";
 
-const AddServer = () => {
+const AddServer = ({setVisible}) => {
   const router = useRouter()
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -39,7 +40,7 @@ const AddServer = () => {
       <h3 className="text-lg font-bold flex justify-between text-center items-center mb-4">
         <div>
             <span>Customize your server</span>
-            <p className="text-sm text-center mb-4 text-gray-300">Give your new server a personality with a name and an icon. You can always change it later.</p>
+            <p className="text-sm font-normal text-center mb-4 text-gray-300">Give your new server a personality with a name and an icon. You can always change it later.</p>
         </div>
       </h3>
       <div className="flex justify-center items-center mb-4 relative">     
@@ -51,10 +52,12 @@ const AddServer = () => {
             <img
               src={selectedFile}
               alt="Selected Server Icon"
-              className="w-16 h-16 rounded-full object-cover"
+              className="w-20 h-20 rounded-lg object-cover"
             />
           ) : (
-            <span className="text-white text-3xl">+</span>
+            <span className="text-white text-3xl">
+              <FaPlus />
+            </span>
           )}
           <input
             type="file"
@@ -68,7 +71,7 @@ const AddServer = () => {
       <label className="block text-white text-sm font-semibold mb-2">Server Name</label>
       <input type="text" className="w-full p-2 bg-gray-600 text-white rounded-lg shadow-md mb-4" placeholder="Enter server name" ref={serverNameRef} />
       <div className="flex justify-between mt-auto">
-        <button className="bg-gray-600 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-gray-500 transition duration-200" onClick={handleBackClick}>Back</button>
+        <button className="bg-gray-600 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-gray-500 transition duration-200" onClick={()=>{setVisible(false)}}>Back</button>
         <button className="bg-[#5865F2] text-white py-2 px-4 rounded-lg shadow-lg hover:bg-[#4853d4] transition duration-200" onClick={() => {
           fetch("http://localhost:3030/createServer", {
             method: "POST",
@@ -80,7 +83,7 @@ const AddServer = () => {
             console.log(data);
             
             if(data.type=="SUCCESS") {
-              router.push(`/channels/${data.data}`)
+              router.push(`/chat/${data.data}`)
             }
           });
         }}>

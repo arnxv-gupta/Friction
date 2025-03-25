@@ -27,6 +27,7 @@
   - Multer
   - Mongoose
   - Socket.IO (for real-time communication)
+  - Open-graph-scrapper
 
 ## Getting Started:
 

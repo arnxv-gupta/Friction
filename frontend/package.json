@@ -16,6 +16,7 @@
     "@tailwindcss/vite": "^4.0.4",
     "autoprefixer": "^10.4.20",
     "next": "^14.2.15",
+    "open-graph-scraper": "^6.9.0",
     "peer": "^1.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

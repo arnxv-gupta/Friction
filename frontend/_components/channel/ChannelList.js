@@ -54,7 +54,7 @@ const ChannelList = () => {
             <li className="p-3 hover:cursor-pointer hover:bg-[#2E3035] m-2 rounded">
               <Link href={`/annoucements/${data.serverID}`} className="flex items-center">
               <FaBullhorn className="inline mr-1" />
-              Annoucements
+              Stage
               </Link>
             </li>
             {data.categories.map((el, i) => {

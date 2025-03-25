@@ -12,6 +12,8 @@ import createRole from "../controllers/server/createRole";
 import deleteRole from "../controllers/server/deleteRole";
 import createEmoji from "../controllers/server/createEmoji";
 import deleteEmoji from "../controllers/server/deleteEmoji";
+import createEvent from "../controllers/server/createEvent";
+import deleteEvent from "../controllers/server/deleteEvent";
 import sendMessage from "../controllers/server/createMessage";
 
 const router:Router = express.Router();
@@ -63,6 +65,15 @@ router.post("/createEmoji", async (req:Request, res:Response)=>{
 router.delete("/deleteEmoji", async (req:Request<{}, {}, {}, {serverID:Number, emojiID:Number}>, res:Response)=>{
     res.json(await deleteEmoji(req.query.serverID, req.query.emojiID));
 })
+
+router.post("/createEvent", async (req:Request, res:Response)=>{
+    res.json(await createEvent(req.body.serverID, req.body.name, req.body.organizerID, req.body.banner, req.body.startTime, req.body.registerDeadline));
+})
+
+router.delete("/deleteEvent", async (req:Request<{}, {}, {}, {serverID:Number, channelID:Number}>, res:Response)=>{
+    res.json(await deleteEvent(req.query.serverID, req.query.channelID));
+})
+
 
 router.post("/sendMessage", async (req:Request, res:Response)=>{
     res.json(await sendMessage(req.body.authorID, req.body.text, req.body.image, req.body.serverID, req.body.channelID));

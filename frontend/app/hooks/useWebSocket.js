@@ -14,6 +14,7 @@ const useWebSocket = (url, userID) => {
     const socket = socketRef.current;
 
     socket.on("connect", () => {
+      socketRef.current.emit("userUpdate", {userID: userID, status: "Online"})
       console.log("Socket connected!");
     });
 

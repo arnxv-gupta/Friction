@@ -10,6 +10,8 @@ import serverRoutes from "./routes/serverRoutes"
 import userRoutes from "./routes/userRoutes"
 import miscRoutes from "./routes/miscRoutes"
 
+import userUpdate from "./controllers/user/updateUser"
+
 dotenv.config();
 
 const app = express();
@@ -33,12 +35,22 @@ app.use("/", miscRoutes);
 
 io.on("connection", (socket)=>{
     console.log("Socket: New client connected!");
-    socket.on("message", ()=>{
+    socket.on("message", (msg)=>{
+        console.log(msg);
+        
         io.emit("message", Date.now())
     })
-    socket.on("disconnected", ()=>{
+    socket.on("userUpdate",async (userObj)=>{
+        console.log(userObj);
+        socket.data.userID=userObj.userID;
+        await userUpdate(userObj.userID, userObj.status)
+        io.emit("message", Date.now())
+    })
+
+    socket.on("disconnecting", async()=>{
+        await userUpdate(socket.data.userID, "Offline");
+        io.emit("message", Date.now())
         console.log("Socket: User disconnected!");
-        
     })
 })
 

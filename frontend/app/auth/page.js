@@ -29,7 +29,7 @@ export default function Auth() {
           alert(data.type + data.msg);
           if (data.type === "SUCCESS") {
             localStorage.setItem("userID", data.res);
-            router.push("/channels/@me");
+            router.push("/chat/@me");
           }
         });
     } else {

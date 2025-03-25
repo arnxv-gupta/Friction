@@ -1,11 +1,9 @@
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 import { appContext } from "../server/ServerWindow";
 import { socketContext } from '@/app/layout';
 
-import { Icon } from "@iconify/react";
 import { FaXmark } from "react-icons/fa6";
 
 import Dialog from "../ui/Dialog";

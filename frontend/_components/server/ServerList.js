@@ -22,7 +22,7 @@ const ServerList = memo(() => {
 
   return (
     <>
-      {isDialog && <AddServer />}
+      {isDialog && <AddServer setVisible={setIsDialog}/>}
 
       <ul className="p-3 h-screen flex flex-col items-center space-y-1"> 
         <li className="w-12 h-12 my-2">

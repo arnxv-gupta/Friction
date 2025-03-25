@@ -51,7 +51,7 @@ export default function Settings() {
                 </div>
             </div>
             <div className="bg-[#202329] flex-1 p-6">
-                <Link href={`/channels/${params.serverID}`} className="flex justify-between pb-6">
+                <Link href={`/chat/${params.serverID}`} className="flex justify-between pb-6">
                     <h5 className="text-xl">{settingCategory}</h5>
                     <span>Close</span>
                 </Link>

@@ -25,7 +25,7 @@ export default function CategoryItem({channels, name, showDialog}) {
                 return (
                     <ChannelItem
                     key={i}
-                    link={`/channels/${data.serverID}/${el.channelID}/`}
+                    link={`/chat/${data.serverID}/${el.channelID}/`}
                     name={el.name}
                     type={el.type}
                     active={el.channelID === data.currChannel}
