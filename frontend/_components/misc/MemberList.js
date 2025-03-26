@@ -11,7 +11,8 @@ const MemberList = () => {
     return;
   }
 
-  const [members, setMembers]=useState(data.membersList);
+  const members =  data.membersList;
+  
   const [collapsed, setCollapsed] = useState(false)
 
   return (
@@ -25,9 +26,9 @@ const MemberList = () => {
       </button>
       </span>
       <ul className={`${(collapsed)?"hidden":null}`}>
-      {(members!=null)?(members.map((member, index) => (
+      {members.map((member) => (
         <UserItem userID={member} key={member}/>
-      ))):(<span>Loading</span>)}
+      ))}
       </ul>
     </div>
   );

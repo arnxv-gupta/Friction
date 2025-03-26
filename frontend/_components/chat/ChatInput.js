@@ -13,8 +13,7 @@ export default function ChatInput({userID, serverID, chatID}) {
 
     const {sendMessage} = useContext(socketContext);
     const data = useContext(appContext)
-    console.log(data);
-    
+
     const [imageURL, setImageURL] = useState(null)
     const inputRef = useRef(null);
 
@@ -22,7 +21,7 @@ export default function ChatInput({userID, serverID, chatID}) {
     const [isEmojiVisible, setEmojiVisible] = useState(false);
     function send() {
         if(inputRef.current.innerText.length==0 || inputRef.current.innerText==null) {
-            console.log("Unabel to sent empty message");
+            console.log("Unable to sent empty message");
             return;
         }
 

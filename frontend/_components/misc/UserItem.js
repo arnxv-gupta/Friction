@@ -5,10 +5,6 @@ import UserProfile from './UserProfile';
 const UserItem = ({userID}) => {
 
   const [userData, setUserData] = useState(null);
-
-  console.log(userData);
-  
-
   useEffect(()=>{
     fetch(`http://localhost:3030/userInfo?userID=${userID}`).then(res=>res.json()).then(data=>{
       setUserData(data.res);

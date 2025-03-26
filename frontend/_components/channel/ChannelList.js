@@ -59,7 +59,7 @@ const ChannelList = () => {
             </li>
             {data.categories.map((el, i) => {
               return (
-                <CategoryItem name={el.name} channels={data.channels.filter((channel)=>(channel.categoryID==el.categoryID))} showDialog={()=>{
+                <CategoryItem key={el.categoryID} name={el.name} channels={data.channels.filter((channel)=>(channel.categoryID==el.categoryID))} showDialog={()=>{
                   setChannelOpen(true)
                   setSelectedCategory(el.categoryID)
                 }}/>
