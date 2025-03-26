@@ -26,7 +26,7 @@ const ServerList = memo(() => {
 
       <ul className="p-3 h-screen flex flex-col items-center space-y-1"> 
         <li className="w-12 h-12 my-2">
-            <Link href="/channels/@me">
+            <Link href="/chat/@me">
                 <img
                 src="/image.png"
                 width={48}
@@ -40,7 +40,7 @@ const ServerList = memo(() => {
         <ul className="w-full flex flex-col items-center space-y-2">
           {servers.length > 0  &&
             servers.map((id) => (
-              <ServerItem id={id} link={`/channels/${id}`} key={id} />
+              <ServerItem id={id} link={`/chat/${id}`} key={id} />
             ))}
         </ul>
 

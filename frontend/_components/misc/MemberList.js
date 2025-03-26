@@ -24,7 +24,7 @@ const MemberList = () => {
         {collapsed?<Icon icon="tabler:layout-sidebar-right-filled" className="inline text-lg"/>:<Icon icon="tabler:layout-sidebar-right" className="inline text-lg"/>}
       </button>
       </span>
-      <ul className={(collapsed)?"hidden":null}>
+      <ul className={`${(collapsed)?"hidden":null}`}>
       {(members!=null)?(members.map((member, index) => (
         <UserItem userID={member} key={member}/>
       ))):(<span>Loading</span>)}

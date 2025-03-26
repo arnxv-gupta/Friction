@@ -7,17 +7,19 @@ import { socketContext } from '@/app/layout';
 import MentionItem from '../misc/MentionItem';
 
 import { FaPlus, FaLaugh  } from 'react-icons/fa';
+import EmojiList from '../emoji/EmojiList';
 
 export default function ChatInput({userID, serverID, chatID}) {
 
     const {sendMessage} = useContext(socketContext);
-    const members = useContext(appContext)
-
+    const data = useContext(appContext)
+    console.log(data);
+    
     const [imageURL, setImageURL] = useState(null)
     const inputRef = useRef(null);
 
     const [isListVisible, setListVisible] = useState(false);
-
+    const [isEmojiVisible, setEmojiVisible] = useState(false);
     function send() {
         if(inputRef.current.innerText.length==0 || inputRef.current.innerText==null) {
             console.log("Unabel to sent empty message");
@@ -47,19 +49,27 @@ export default function ChatInput({userID, serverID, chatID}) {
         {isListVisible &&
         <div className="mx-3 p-1">
             <ul className="p-2 bg-[#2E343D] rounded">
-                <h5 className="mb-3">MEMBERS</h5>
-                {members!=null?members.membersList.map(el=>{
+                <h5 className="mb-3">Members</h5>
+                {data!=null?data.membersList.map(el=>{
                     if(el!=localStorage.getItem("userID"))
                     return (
                         <li onClick={()=>{
                             setListVisible(false)
                             inputRef.current.innerText = inputRef.current.innerText.substring(0, inputRef.current.innerText.length-1) + `<@${el}> `;
                         }}>
-                    <MentionItem userID={el}/>
+                            <MentionItem userID={el}/>
                         </li>
                 )
                 }):null}
                 
+            </ul>
+        </div>
+        }
+        {isEmojiVisible && 
+        <div className="mx-3 p-1">
+            <ul className="p-2 bg-[#2E343D] rounded">
+                 <h5 className="mb-3">Emojis</h5>
+                   <EmojiList emojiList={data.emojis} inputRef={inputRef} setVisible={setEmojiVisible}/>
             </ul>
         </div>
         }
@@ -90,6 +100,7 @@ export default function ChatInput({userID, serverID, chatID}) {
         autoFocus={true}
         ref={inputRef}
         contentEditable={true}
+        value={""}
         onKeyDown={(e)=>{
             if(e.code=="Enter") { 
                 e.preventDefault()
@@ -98,10 +109,16 @@ export default function ChatInput({userID, serverID, chatID}) {
             if(e.key=="@") {
                 setListVisible(true)
             }
+            if(e.key=="Backspace" && isListVisible) {
+                setListVisible(false)
+            }
+            
         }}
         ></pre>
         <button
-        onClick={send}>
+        onClick={()=>{
+            setEmojiVisible(true)
+        }}>
             <FaLaugh className="text-gray-500 text-2xl"/>
         </button>
     </div>

@@ -48,11 +48,11 @@ io.on("connection", (socket) => {
     socket.on("userUpdate", (userObj) => __awaiter(void 0, void 0, void 0, function* () {
         console.log(userObj);
         socket.data.userID = userObj.userID;
-        console.log(yield (0, updateUser_1.default)(userObj.userID, userObj.status));
+        yield (0, updateUser_1.default)(userObj.userID, userObj.status);
         io.emit("message", Date.now());
     }));
     socket.on("disconnecting", () => __awaiter(void 0, void 0, void 0, function* () {
-        console.log(yield (0, updateUser_1.default)(socket.data.userID, "Offline"));
+        yield (0, updateUser_1.default)(socket.data.userID, "Offline");
         io.emit("message", Date.now());
         console.log("Socket: User disconnected!");
     }));

@@ -6,30 +6,34 @@ const UserItem = ({userID}) => {
 
   const [userData, setUserData] = useState(null);
 
+  console.log(userData);
+  
+
   useEffect(()=>{
     fetch(`http://localhost:3030/userInfo?userID=${userID}`).then(res=>res.json()).then(data=>{
       setUserData(data.res);
     })
   }, [])
 
+  if(!userData) {
+    return <li>Loading</li>
+  }
+
   return (
-    <div className="group">
-      <div className="hidden group-hover:block" >
-        {userData && <UserProfile userID={userData.userID}/>}
-      </div>
-    <div className="p-3 text-sm hover:bg-[#35373C] rounded">
-      <div className="flex items-center">
-        <img 
-        className="w-9 h-9 bg-gray-600 rounded-full"
-        src={(userData!=null?(userData.pfpURL):("Loading"))}
+    <li className="flex items-center my-3 p-1 hover:bg-[#35373C] rounded">
+      <div className="relative">
+        <img
+          src={userData.pfpURL}
+          className="size-8 rounded-full"
         />
-        <span>{(userData!=null)?userData.onlinePresence:null}</span>
-        <div className="ml-2">
-          <p className="font-bold">{(userData!=null?(userData.username):("Loading"))}</p>
-        </div>
+      <div className={`absolute bottom-0 right-0 rounded-full size-3 ${userData.onlinePresence=="Online"?"bg-[#3F9754]":"hidden"}`}></div>
       </div>
-    </div>
-    </div>
+       <div className="p-2 ml-2">
+        <span>
+          {userData.username}
+        </span>
+       </div>
+    </li>
   );
 };
 

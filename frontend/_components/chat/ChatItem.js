@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import UserMention from "../misc/UserMention";
 import CustomImage from "../misc/CustomImage";
 import Link from "next/link";
+import Emoji from "../emoji/Emoji";
 
 export default function ChatItem({
   authorID,
@@ -32,7 +33,9 @@ export default function ChatItem({
   }
 
   const processText = (inputText) => {
-    const parts = inputText.split(/(<@.*?>(?:<\/UserMention>)?)|(https?:\/\/[^\s]+)/g);
+    const parts = inputText.split(
+      /(<@.*?>(?:<\/UserMention>)?)|(https?:\/\/[^\s]+)|(<!\d+>)/g
+    );
     return parts.map((part, index) => {
       if (part && part.startsWith("<@")) {
         const userIDMatch = part.match(/<@(.*?)>/);
@@ -42,17 +45,23 @@ export default function ChatItem({
       } else if (part && part.startsWith("http")) {
         return (
           <>
-          <Link
-            key={index}
-            href={part}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#7EAAFF] hover:underline"
-          >
-            {part}
-          </Link>
+            <Link
+              key={index}
+              href={part}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#7EAAFF] hover:underline"
+            >
+              {part}
+            </Link>
           </>
         );
+      } else if (part && part.startsWith("<!")) {
+        // Handle <!some number>
+        const numberMatch = part.match(/<!(\d+)>/);
+        if (numberMatch) {
+          return <Emoji key={index} emojiID={numberMatch[1]} />
+        }
       } else {
         return part;
       }
@@ -102,7 +111,7 @@ export default function ChatItem({
           </div>
         )}
         {image != null ? <CustomImage src={image} /> : null}
-        <pre className="whitespace-normal">
+        <pre className="whitespace-normal flex items-center">
           {processText(text)}
         </pre>
       </div>
