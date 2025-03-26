@@ -2,11 +2,13 @@
 import Image from 'next/image';
 import { useContext, useEffect, useState } from 'react';
 import { socketContext } from '@/app/layout';
+import { useRouter } from 'next/navigation';
 
 export default function Join({params}) {
-    const {socketData, sendMessage} = useContext(socketContext);
+    const {sendMessage} = useContext(socketContext);
 
-    const username = localStorage.getItem("userID");    
+    const username = localStorage.getItem("userID");
+    let router = useRouter()
 
     const [data, setData] = useState(null);
     
@@ -51,7 +53,7 @@ export default function Join({params}) {
                     onClick={()=>{
                         fetch(`http://localhost:3030/joinServer?serverID=${params.serverID}&userID=${localStorage.getItem("userID")}`).then(res=>res.json()).then(data=>{
                             sendMessage("USER JOINED!")
-                            console.log(data);
+                            router.push(`/chat/${params.serverID}`)
                             
                         })
                     }}

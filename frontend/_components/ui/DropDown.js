@@ -12,9 +12,6 @@ export default function ServerDropDown({serverID, channelDialog, categoryDialog}
 
   let [isInviteOpen, setInviteOpen] = useState(false);
 
-  console.log(isInviteOpen);
-  
-
   return (
     <>
       <ul className="absolute top-full left-0 w-full bg-[#2B2D31] text-white text-sm z-100">
