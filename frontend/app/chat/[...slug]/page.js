@@ -19,6 +19,7 @@ export async function generateMetadata({params}) {
     title: ("Friction | " + data.name)
   }
 }
+
 export default async function Channels() {
   return (
       <div className="flex">

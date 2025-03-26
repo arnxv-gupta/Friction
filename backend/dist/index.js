@@ -39,6 +39,10 @@ app.use("/", authRoutes_1.default);
 app.use("/", serverRoutes_1.default);
 app.use("/", userRoutes_1.default);
 app.use("/", miscRoutes_1.default);
+let count = 0;
+app.get("/api/count", (req, res) => {
+    res.json(count);
+});
 io.on("connection", (socket) => {
     console.log("Socket: New client connected!");
     socket.on("message", (msg) => {
@@ -50,11 +54,13 @@ io.on("connection", (socket) => {
         socket.data.userID = userObj.userID;
         yield (0, updateUser_1.default)(userObj.userID, userObj.status);
         io.emit("message", Date.now());
+        count++;
     }));
     socket.on("disconnecting", () => __awaiter(void 0, void 0, void 0, function* () {
         yield (0, updateUser_1.default)(socket.data.userID, "Offline");
         io.emit("message", Date.now());
         console.log("Socket: User disconnected!");
+        count--;
     }));
 });
 mongoose_1.default.connect(process.env.DB_URL || "").then(() => {

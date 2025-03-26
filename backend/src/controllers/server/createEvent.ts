@@ -14,7 +14,6 @@ export default async function createEvent(serverID: Number, name:String, organiz
 
             let eventCheck = await serverModel.updateOne({serverID: serverID}, {$push: {events: eventObj}});
 
-
             if(eventCheck.modifiedCount!=1) {
                 return {type: "ERROR", msg: "Unable to find server! Invalid serverID."};
             } else {

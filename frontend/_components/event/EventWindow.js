@@ -1,20 +1,36 @@
 "use client"
 
-import { useParams } from "next/navigation"
 import AddEvent from "./AddEvent";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { appContext } from "../server/ServerWindow";
 
 export default function EventWindow() {
-    const {serverID} = useParams();
+    const [isEventOpen, setEventOpen] = useState(false);
+    const [name, setName] = useState("")
 
-    const [isEventOpen, setEventOpen] = useState(true);
-
+    const data = useContext(appContext);
+    
     return (
         <>
-        <div className="flex flex-col bg-[#202329] w-full">
-            
+        <div className="bg-[#202329] w-full p-4">
+            <h3>Events</h3>
+            <div className="flex m-3">
+                <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="# new-event"
+                    className="w-full p-2 rounded bg-gray-700 border border-gray-600 focus:outline-none"
+                    />
+                    <button onClick={()=>{
+                        setEventOpen(true)
+                    }}>Create event</button> 
+            </div>
+            <ul>
+                {}
+            </ul>
         </div>
-        {isEventOpen?<AddEvent setVisible={setEventOpen}/>:null}
+        {isEventOpen?<AddEvent setVisible={setEventOpen} serverID={data.serverID}/>:null}
         </>
     )
 }

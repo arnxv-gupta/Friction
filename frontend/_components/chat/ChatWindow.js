@@ -41,6 +41,7 @@ const ChatWindow = () => {
     );
   }
 
+  // VOICE CHAT
   if(data!=null && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].type=="voice") {
   
     useEffect(()=>{
@@ -68,6 +69,7 @@ const ChatWindow = () => {
       </div>
     )
   }
+  // END OF VOICE CHAT
 
   if (data != null && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].data.length==0) {
     return (

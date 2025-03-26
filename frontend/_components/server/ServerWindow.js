@@ -1,11 +1,12 @@
 "use client"
 
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import ChatWindow from "@/_components/chat/ChatWindow";
 import ChannelList from "@/_components/channel/ChannelList";
 import MemberList from "@/_components/misc/MemberList";
 import { createContext, useContext, useEffect, useState } from "react";
 import { socketContext } from '@/app/layout';
+import EventWindow from "../event/EventWindow";
 
 
 export const appContext = createContext();
@@ -13,8 +14,9 @@ export const appContext = createContext();
 export default function ServerWindow() {
   const {socketData} = useContext(socketContext)
   const [data, setData] = useState(null);
+  
   const params = useParams();
-
+  const pathname = usePathname();
 
   useEffect(() => {
     if(params.slug[0]!="%40me") {
@@ -36,8 +38,12 @@ export default function ServerWindow() {
     <div className="flex flex-1">
       <appContext.Provider value={data}>
         <ChannelList/>
-        <ChatWindow/>
-        <MemberList/>
+        {pathname.includes("/events/")?<EventWindow/>:(
+          <>
+            <ChatWindow/>
+            <MemberList/>
+          </>
+        )}
       </appContext.Provider>
     </div>
   );

@@ -1,4 +1,4 @@
-import express from "express"
+import express, { request } from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
@@ -33,6 +33,12 @@ app.use("/", userRoutes);
 app.use("/", miscRoutes);
 
 
+let count=0;
+app.get("/api/count", (req:any, res:any)=>{
+    res.json(count);
+})
+
+
 io.on("connection", (socket)=>{
     console.log("Socket: New client connected!");
     socket.on("message", (msg)=>{
@@ -45,12 +51,14 @@ io.on("connection", (socket)=>{
         socket.data.userID=userObj.userID;
         await userUpdate(userObj.userID, userObj.status)
         io.emit("message", Date.now())
+        count++;
     })
 
     socket.on("disconnecting", async()=>{
         await userUpdate(socket.data.userID, "Offline");
         io.emit("message", Date.now())
         console.log("Socket: User disconnected!");
+        count--;
     })
 })
 

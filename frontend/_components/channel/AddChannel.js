@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { appContext } from "../server/ServerWindow";
@@ -15,7 +15,7 @@ export default function AddChannel({isVisible, categoryID, setVisible}) {
 
   const data = useContext(appContext);
   let router = useRouter()
-  let {socketData, sendMessage} = useContext(socketContext)
+  let {sendMessage} = useContext(socketContext);
 
   if(isVisible==false)
     return;
@@ -31,7 +31,9 @@ export default function AddChannel({isVisible, categoryID, setVisible}) {
         type="radio"
         name="channelType"
         checked={channelType === type}
-        onChange={() => setChannelType(type)}
+        onChange={() => {
+          setChannelType(type)         
+        }}
         className="hidden"
       />
       <span>{label}</span>
@@ -48,8 +50,8 @@ export default function AddChannel({isVisible, categoryID, setVisible}) {
         <div className="mb-4">
           <label className="block text-sm mb-2">Channel Type</label>
           <div className="flex items-center space-x-4">
-            <RadioOption type="text" label="📄 Text" />
-            <RadioOption type="voice" label="🎤 Voice" />
+            <RadioOption type="text" label="📄 Text"/>
+            <RadioOption type="voice" label="🎤 Voice"/>
           </div>
         </div>
 
@@ -106,7 +108,7 @@ export default function AddChannel({isVisible, categoryID, setVisible}) {
                   },
                   body: JSON.stringify({
                       name: channelName,
-                      type: "text",
+                      type: channelType,
                       categoryID: Number(categoryID),
                       serverID: Number(data.serverID)
                   })

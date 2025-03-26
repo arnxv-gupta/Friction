@@ -1,4 +1,4 @@
-export default function EventItem() {
+export default function EventItem({name, organizerID, startTime, deadTime, participants}) {
     return (
         <div>
             
