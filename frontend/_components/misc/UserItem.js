@@ -56,7 +56,9 @@ const UserItem = ({ userID }) => {
         </div>
         {isProfileVisible && (
           <div ref={profileRef} className="absolute top-full left-0 z-10">
-            <UserProfile userID={userID} />
+            <div className="absolute left-[-200px] top-[-50px]">
+            <UserProfile userID={userID}/>
+            </div>
           </div>
         )}
       </li>

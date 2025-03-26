@@ -10,10 +10,14 @@ export default function UserProfile({userID}) {
     }, [])
 
 
-    if(data==null) return;
+    if(data==null) 
+        return;
+
+    console.log(123);
+    
 
     return (
-        <div className="absolute left-[-200px] top-[-50px] bg-[#111214] rounded-md">
+        <div className="bg-[#111214] rounded-md z-50">
             <div className="bg-gray-500 h-8 rounded-t-md">
             </div>
             <div className="flex">
