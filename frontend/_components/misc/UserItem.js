@@ -20,7 +20,7 @@ const UserItem = ({userID}) => {
   }
 
   return (
-    <li className="flex items-center my-3 p-1 hover:bg-[#35373C] rounded">
+    <li className={`flex items-center my-3 p-1 hover:bg-[#35373C] rounded ${userData.onlinePresence=="Offline"?"opacity-70":null}`}>
       <div className="relative">
         <img
           src={userData.pfpURL}
