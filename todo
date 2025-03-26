@@ -1,5 +1,5 @@
 [ ] open graph embed for links (backend and frontend)
-[ ] fix user profile
+[X] fix user profile
 [ ] complete friend chat
 [X] fix user mention dilaog in chat
 [X] add ability to set emojis in chat

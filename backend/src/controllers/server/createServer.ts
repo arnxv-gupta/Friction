@@ -28,6 +28,7 @@ export default async function createServer(name:String, icon:String, adminID:Num
                 name:"general",
                 type: "text",
                 categoryID: categoryID,
+                access: []
             }
         ],
             adminID: adminID

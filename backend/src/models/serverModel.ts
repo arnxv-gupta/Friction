@@ -93,6 +93,20 @@ const serverSchema: Schema<Server> = new Schema({
             type: Number,
             default: ()=>Math.floor(Math.random() * (999999999 - 111111111) + 111111111)
         },
+        access: [{
+            roleID: {
+                type: Number,
+                required: true
+            },
+            read: {
+                type: Boolean,
+                required: true
+            },
+            write: {
+                type: Boolean,
+                required: true
+            }
+        }],
         data:[
             {
                 authorID: {

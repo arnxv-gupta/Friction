@@ -20,6 +20,7 @@
     "peer": "^1.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-drag-reorder": "^1.2.0",
     "react-icons": "^5.5.0",
     "react-use-websocket": "^4.10.1",
     "socket.io-client": "^4.8.1"

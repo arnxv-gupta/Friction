@@ -40,6 +40,7 @@ function createServer(name, icon, adminID) {
                         name: "general",
                         type: "text",
                         categoryID: categoryID,
+                        access: []
                     }
                 ],
                 adminID: adminID

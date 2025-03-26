@@ -6,5 +6,6 @@ export interface Channel {
     channelID?: Number,
     categoryID: Number
     createdAt?: Number,
-    data?: [Message] | []
+    data?: [Message] | [],
+    access: [{roleID: Number, read: Boolean, write: Boolean}] | []
 }

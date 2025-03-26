@@ -21,7 +21,8 @@ function createChannel(serverID, name, type, categoryID) {
                 name: name,
                 type: type,
                 categoryID: categoryID,
-                data: []
+                data: [],
+                access: []
             };
             let channelInsert = yield serverModel_1.default.updateOne({ serverID: Number(serverID) }, { $push: { channels: channelObj } });
             if (channelInsert.modifiedCount != 1) {

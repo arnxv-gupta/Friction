@@ -13,7 +13,7 @@ export default function UserProfile({userID}) {
     if(data==null) return;
 
     return (
-        <div className="absolute right-[11rem] bg-[#111214] rounded-md">
+        <div className="absolute left-[-200px] top-[-50px] bg-[#111214] rounded-md">
             <div className="bg-gray-500 h-8 rounded-t-md">
             </div>
             <div className="flex">

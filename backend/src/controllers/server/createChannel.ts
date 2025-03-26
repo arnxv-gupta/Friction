@@ -7,7 +7,8 @@ export default async function createChannel(serverID: Number, name: String, type
             name: name,
             type:type,
             categoryID: categoryID,
-            data:[]
+            data:[],
+            access: []
         }
     
         let channelInsert = await serverModel.updateOne({serverID: Number(serverID)}, {$push: {channels: channelObj}});
