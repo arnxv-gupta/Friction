@@ -28,6 +28,7 @@
   - Mongoose
   - Socket.IO (for real-time communication)
   - Open-graph-scrapper
+  - Peer.js
 
 ## Getting Started:
 

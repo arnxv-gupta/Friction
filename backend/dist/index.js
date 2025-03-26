@@ -43,7 +43,6 @@ io.on("connection", (socket) => {
     console.log("Socket: New client connected!");
     socket.on("message", (msg) => {
         console.log(msg);
-        io.emit("message", Date.now());
     });
     socket.on("userUpdate", (userObj) => __awaiter(void 0, void 0, void 0, function* () {
         console.log(userObj);

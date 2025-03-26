@@ -8,7 +8,7 @@ import CategoryItem from "../category/CategoryItem";
 import AddChannel from "./AddChannel";
 
 import { FaXmark } from "react-icons/fa6";
-import { FaBullhorn, FaCalendar, FaAngleDown} from "react-icons/fa";
+import { FaCalendar, FaAngleDown, FaBroadcastTower } from "react-icons/fa";
 import AddCategory from "../category/AddCatgory";
 
 const ChannelList = () => {
@@ -52,8 +52,8 @@ const ChannelList = () => {
               </Link>
             </li>
             <li className="p-3 hover:cursor-pointer hover:bg-[#2E3035] m-2 rounded">
-              <Link href={`/annoucements/${data.serverID}`} className="flex items-center">
-              <FaBullhorn className="inline mr-1" />
+              <Link href={`/stage/${data.serverID}`} className="flex items-center">
+              <FaBroadcastTower className="inline mr-1" />
               Stage
               </Link>
             </li>
