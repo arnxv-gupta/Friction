@@ -57,7 +57,7 @@ const ChannelList = () => {
               Stage
               </Link>
             </li>
-            {data.categories.map((el, i) => {
+            {data.categories.map((el) => {
               return (
                 <CategoryItem key={el.categoryID} name={el.name} channels={data.channels.filter((channel)=>(channel.categoryID==el.categoryID))} showDialog={()=>{
                   setChannelOpen(true)

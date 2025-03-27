@@ -74,7 +74,8 @@ export default function ChatInput({userID, serverID, chatID}) {
         }
         <div className="mx-3 px-5 bg-[#EAEAEA] dark:bg-[#404040] flex items-center rounded-lg">
         <label for="imageUploader" className="group cursor-pointer p-1 rounded-full flex items-center justify-center">
-        <Icons.Actions.TabNew className="icon" />
+            <Icons.Actions.TabNew className="icon group-hover:hidden" />
+            <Icons.Actions.MediaPlaybackPause className="icon hidden group-hover:inline" />
         </label>
         <input className="hidden" id="imageUploader" type="file" accept="image/*" onChange={(e)=>{
             let formData = new FormData()
@@ -115,9 +116,9 @@ export default function ChatInput({userID, serverID, chatID}) {
         ></pre>
         <button
         onClick={()=>{
-            setEmojiVisible(true)
+            setEmojiVisible(!isEmojiVisible)
         }}>
-            <Icons.Categories.EmojiPeople className="icon size-5" />
+            {isEmojiVisible?<Icons.Emotes.FaceSmileBig className="icon size-5" />:<Icons.Categories.EmojiPeople className="icon size-5" />}
         </button>
     </div>
     </section>

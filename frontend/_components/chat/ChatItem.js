@@ -64,6 +64,11 @@ export default function ChatItem({ authorID, roleData, text, timestamp, image, c
         );
       } else if (part && part.startsWith("<!")) {
         const numberMatch = part.match(/<!(\d+)>/);
+
+        // only emoji no text
+        if(inputText==`<!${numberMatch[1]}>`) {
+          return <Emoji key={index} emojiID={numberMatch[1]} pure={true}/>;
+        }
         if (numberMatch) {
           return <Emoji key={index} emojiID={numberMatch[1]} />;
         }
