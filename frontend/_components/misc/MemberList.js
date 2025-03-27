@@ -4,26 +4,20 @@ import { appContext } from '../server/ServerWindow';
 import { Icon } from "@iconify/react";
 
 
-const MemberList = () => {
+const MemberList = ({collapsed}) => {
   const data = useContext(appContext)
 
-  if(data==null || data==undefined) {
+  if(data==null || data==undefined || collapsed) {
     return;
   }
 
   const members =  data.membersList;
   
-  const [collapsed, setCollapsed] = useState(false)
 
   return (
-    <div className={`w-64 h-screen p-4 mr-1 bg-[#1d1f24] rounded-tr-lg ${(collapsed)?"w-auto":null}`}>
+    <div className={`w-64 h-screen p-4 mr-1 border-x-2 border-[#d4d4d4] dark:border-[#333] bg-[#F3F3F3] dark:bg-[#2A2A2A] ${(collapsed)?"w-auto":null}`}>
       <span className="flex justify-between text-sm  mb-4">
-      <h3 className={`font-semibold uppercase ${collapsed?"hidden":null}`}>Members</h3>
-      <button onClick={()=>{
-        setCollapsed(!collapsed)
-      }}>
-        {collapsed?<Icon icon="tabler:layout-sidebar-right-filled" className="inline text-lg"/>:<Icon icon="tabler:layout-sidebar-right" className="inline text-lg"/>}
-      </button>
+      <h3 className={`s${collapsed?"hidden":null}`}>Online - ({members.length})</h3>
       </span>
       <ul className={`${(collapsed)?"hidden":null}`}>
       {members.map((member) => (

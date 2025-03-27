@@ -2,12 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+html, body {
+  font-family: "Cantarell", sans-serif;
+}
+
 @layer {
     * {
       @apply transition duration-200;
     }
     body {
-       @apply bg-[#131313] text-white;
+       @apply bg-[#EBEBEB] text-[#2e2e2e] dark:bg-[#303030] dark:text-white;
     }
 }
 

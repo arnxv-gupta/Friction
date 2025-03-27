@@ -1,8 +1,9 @@
 "use client"
 
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { FaHashtag } from "react-icons/fa";
+import * as Icons from "@mielo-ui/adwaita-symbolic-icons-react"
+
 
 
 import { appContext } from "../server/ServerWindow";
@@ -12,21 +13,21 @@ import ChatInput from "./ChatInput";
 import VideoView from "../misc/VideoView";
 import FriendsList from "../friend/FriendsList";
 
-const ChatWindow = () => {
+const ChatWindow = ({collapsed, setCollapsed}) => {
   const data = useContext(appContext);
   const pathname = usePathname().split("/");
   const channelName = data!=null && data.currChannel && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].name;   
   
   if ((data == null || !data.currChannel) && pathname[2]=="@me"&& pathname.length==3) {
     return (
-      <div className="flex-1 flex flex-row bg-[#202329] rounded-tl-2xl">
+      <div className="flex-1 flex flex-row bg-[#FAFAFA] dark:bg-[#2C2C2C] rounded-tl-2xl">
         <FriendsList/>
         
       </div>
     );
   } else if((data==null || !data.currChannel) && pathname[2]=="@me" && pathname.length==4) {
     return (
-      <div className="flex-1 flex flex-row bg-[#202329] rounded-tl-2xl">
+      <div className="flex-1 flex flex-row bg-[#FAFAFA] dark:bg-[#2C2C2C] rounded-tl-2xl">
         <FriendsList/>
         <div>
           {pathname[3]}
@@ -35,7 +36,7 @@ const ChatWindow = () => {
     );
   } else if(data==null||!data.currChannel) {
     return (
-      <div className="flex-1 p-6 flex flex-col justify-between bg-[#202329]">
+      <div className="flex-1 p-6 flex flex-col justify-between bg-[#FAFAFA] dark:bg-[#2C2C2C]">
         <small>This looks empty.. too empty :(</small>{" "}
       </div>
     );
@@ -58,7 +59,7 @@ const ChatWindow = () => {
     
 
     return (
-      <div className="flex-1 p-6 flex flex-col justify-between bg-[#313338]  max-h-[100lvh] ">
+      <div className="flex-1 p-6 flex flex-col justify-between bg-[#FAFAFA] dark:bg-[#2C2C2C]  max-h-[100lvh] ">
       Voice chat
       <VideoView />
       <ul>
@@ -73,7 +74,7 @@ const ChatWindow = () => {
 
   if (data != null && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].data.length==0) {
     return (
-      <div className="flex-1 p-6 flex flex-col justify-between bg-[#202329]">
+      <div className="flex-1 p-6 flex flex-col justify-between bg-[#FAFAFA] dark:bg-[#2C2C2C]">
         <small>This looks empty.. too empty :(</small>
         <ChatInput
           userID={localStorage.getItem("userID")}
@@ -85,9 +86,20 @@ const ChatWindow = () => {
   }
 
   return (
-    <div className="flex flex-col bg-[#202329] w-full">
-    <div className="text-lg flex items-center px-4 py-2">
-    <FaHashtag /> {channelName}
+    <div className="flex flex-col bg-[#FAFAFA] dark:bg-[#2C2C2C] w-full">
+    <div className="text-lg flex justify-between items-center font-bold mb-4 px-4 py-2 border-b-2 border-[#d4d4d4] dark:border-[#333]">
+      <div>
+        <Icons.Actions.SystemSearch className="icons" />
+      </div>
+      {channelName}
+      <div className="flex gap-x-2">
+        {collapsed?<Icons.Actions.SidebarShow className="icons" onClick={()=>{
+          setCollapsed(false)
+        }}/>:<Icons.Actions.SidebarShowRight className="icons" onClick={()=>{
+          setCollapsed(true)
+        }}/>}
+        <Icons.Categories.ApplicationsSystem className="icons"/>
+      </div>
     </div>
     <div className="flex-1 pb-6 flex flex-col justify-between max-h-[100lvh] ">
       <ul className="overflow-y-scroll">

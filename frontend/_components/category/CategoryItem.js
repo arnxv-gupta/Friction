@@ -2,7 +2,7 @@ import { useContext, useState } from "react"
 import { appContext } from "../server/ServerWindow";
 import ChannelItem from "../channel/ChannelItem";
 
-import { FaPlus, FaAngleDown, FaAngleRight } from "react-icons/fa6";
+import * as Icons from "@mielo-ui/adwaita-symbolic-icons-react"
 
 export default function CategoryItem({channels, name, showDialog}) {
     const data = useContext(appContext)
@@ -11,12 +11,15 @@ export default function CategoryItem({channels, name, showDialog}) {
     return (
         <>
         <h3 className="px-3 flex justify-between items-center">
-            <span className="block flex-1 cursor-pointer items-center" onClick={()=>{
+            <span className="flex-1 cursor-pointer flex items-center" onClick={()=>{
             setOpen(!isOpen)
             }}>
-            {isOpen?<FaAngleDown  icon="tabler:chevron-down" className="inline mr-1"/>:<FaAngleRight  className="inline mr-1"/>}{name}
+            {isOpen?
+            <Icons.Actions.GoDown  className="inline mr-1 size-3 icons"/>:
+            <Icons.Actions.GoNext  className="inline mr-1 size-3 icons"/>}
+            {name}
             </span>
-            <FaPlus className="inline text-base cursor-pointer" onClick={()=>{
+            <Icons.Actions.ListAdd className="inline text-base cursor-pointer icons" onClick={()=>{
                 showDialog(true);
             }}/>
             </h3>

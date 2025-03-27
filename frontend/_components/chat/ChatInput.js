@@ -1,12 +1,12 @@
 "use client"
 
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 import {appContext} from "../server/ServerWindow"
 import { socketContext } from '@/app/layout';
 import MentionItem from '../misc/MentionItem';
+import * as Icons from "@mielo-ui/adwaita-symbolic-icons-react"
 
-import { FaPlus, FaLaugh  } from 'react-icons/fa';
 import EmojiList from '../emoji/EmojiList';
 
 export default function ChatInput({userID, serverID, chatID}) {
@@ -72,9 +72,9 @@ export default function ChatInput({userID, serverID, chatID}) {
             </ul>
         </div>
         }
-        <div className="mx-3 px-3 py-3 bg-[#2E343D] flex items-center rounded-lg">
-        <label for="imageUploader" className="group bg-gray-500 hover:bg-[#343434] cursor-pointer p-1 rounded-full flex items-center justify-center">
-        <FaPlus className="text-[#343434] group-hover:text-gray-500"/>
+        <div className="mx-3 px-5 bg-[#EAEAEA] dark:bg-[#404040] flex items-center rounded-lg">
+        <label for="imageUploader" className="group cursor-pointer p-1 rounded-full flex items-center justify-center">
+        <Icons.Actions.TabNew className="icon" />
         </label>
         <input className="hidden" id="imageUploader" type="file" accept="image/*" onChange={(e)=>{
             let formData = new FormData()
@@ -93,24 +93,23 @@ export default function ChatInput({userID, serverID, chatID}) {
             setImageURL(null)
         }}/>
         <pre
-        className="flex-grow block ml-3 border-none bg-transparent text-white placeholder-gray-400 focus:outline-none transition duration-200"
-        placeholder="Type a message"
-        spellCheck={false}
-        autoFocus={true}
-        ref={inputRef}
-        contentEditable={true}
-        value={""}
-        onKeyDown={(e)=>{
-            if(e.code=="Enter") { 
-                e.preventDefault()
-                send();
-            }
-            if(e.key=="@") {
-                setListVisible(true)
-            }
-            if(e.key=="Backspace" && isListVisible) {
-                setListVisible(false)
-            }
+            className="flex-grow block ml-3 border-none py-2 placeholder-black focus:outline-[#1c71d8] dark:focus:outline-[#78aeed] bg-transparent dark:text-white dark:placeholder-gray-400 focus:outline-none transition duration-200"
+            placeholder="Type a message"
+            spellCheck={false}
+            autoFocus={true}
+            ref={inputRef}
+            contentEditable={true}
+            onKeyDown={(e)=>{
+                if(e.code=="Enter") { 
+                    e.preventDefault()
+                    send();
+                }
+                if(e.key=="@") {
+                    setListVisible(true)
+                }
+                if(e.key=="Backspace" && isListVisible) {
+                    setListVisible(false)
+                }
             
         }}
         ></pre>
@@ -118,7 +117,7 @@ export default function ChatInput({userID, serverID, chatID}) {
         onClick={()=>{
             setEmojiVisible(true)
         }}>
-            <FaLaugh className="text-gray-500 text-2xl"/>
+            <Icons.Categories.EmojiPeople className="icon size-5" />
         </button>
     </div>
     </section>

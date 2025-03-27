@@ -1,11 +1,10 @@
 "use client";
 
 import { memo, useEffect, useState } from "react";
-import { FaPlus } from "react-icons/fa";
+import * as Icons from "@mielo-ui/adwaita-symbolic-icons-react"
 
 import AddServer from "./AddServer";
 import Link from "next/link";
-import Image from "next/image"; 
 import ServerItem from "./ServerItem";
 
 
@@ -45,12 +44,12 @@ const ServerList = memo(() => {
         </ul>
 
         <div
-          className="bg-[#333643] size-12 flex items-center justify-center rounded-full cursor-pointer transform hover:bg-gray-600 hover:scale-110"
+          className="bg-[#FAFAFA] text-[#51956d] dark:bg-[#2A2A2A] size-12 flex items-center justify-center rounded-full cursor-pointer transform hover:bg-gray-600 hover:scale-110"
           onClick={() => {
             setIsDialog(true);
           }}
         >
-          <FaPlus />
+          <Icons.Actions.ListAdd />
         </div>
       </ul>
     </>

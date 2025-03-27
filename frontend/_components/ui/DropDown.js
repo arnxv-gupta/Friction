@@ -14,7 +14,7 @@ export default function ServerDropDown({serverID, channelDialog, categoryDialog}
 
   return (
     <>
-      <ul className="absolute top-full left-0 w-full bg-[#2B2D31] text-white text-sm z-100">
+      <ul className="absolute top-full left-0 w-full bg-[#E4E4E4] text-sm z-100">
         <li
         className="px-4 py-2 rounded my-2 flex items-center hover:bg-[#333643] mx-1"
         onClick={()=>{

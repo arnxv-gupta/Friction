@@ -39,6 +39,9 @@ export default function ChatItem({ authorID, roleData, text, timestamp, image, c
     return null;
   }
 
+  console.log(roleData);
+  
+
   const processText = (inputText) => {
     const parts = inputText.split(/(<@.*?>(?:<\/UserMention>)?)|(https?:\/\/[^\s]+)|(<!\d+>)/g);
     return parts.map((part, index) => {
@@ -54,7 +57,7 @@ export default function ChatItem({ authorID, roleData, text, timestamp, image, c
             href={part}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#7EAAFF] hover:underline"
+            className="text-[#1c71d8] dark:text-[#78aeed] hover:underline"
           >
             {part}
           </Link>
@@ -73,10 +76,10 @@ export default function ChatItem({ authorID, roleData, text, timestamp, image, c
 
   return (
     <li
-      className={`px-5 mt-1 flex w-auto ${isMentioned ? "bg-[#444037]" : "hover:bg-[#2E343D]"}`}
+      className={`px-5 mt-1 flex w-auto ${isMentioned ? "bg-[#444037]" : "hover:bg-[#E4E4E4] dark:hover:bg-[#2E343D]"}`}
     >
       {continued ? (
-        <div className="w-[54px] h-2"></div>
+        <div className="w-[57px] h-2"></div>
       ) : (
         <img
           src={
@@ -85,7 +88,7 @@ export default function ChatItem({ authorID, roleData, text, timestamp, image, c
               : authorData.pfpURL
           }
           onClick={()=>{setProfileVisible(true)}}
-          className="rounded-full w-10 h-10 mr-3 mt-1"
+          className="rounded-full w-10 h-10 mr-4 mt-1"
         />
       )}
 
@@ -94,13 +97,13 @@ export default function ChatItem({ authorID, roleData, text, timestamp, image, c
           <div className="flex items-center mb-1">
             <div className="flex items-baseline">
               <h5
-                className="text-md font-medium cursor-pointer"
-                style={{ color: roleData.color }}
+                className="text-md font-semibold cursor-pointer text-[#2e2e2e] dark:text-[#fff]"
+                style={roleData.color!="#FFFFFF"?{ color: roleData.color }:null}
                 onClick={() => setProfileVisible(true)}
               >
                 {authorData.username}
               </h5>
-              <time className="text-xs text-[#b5b5b5] ml-2">
+              <time className="text-xs text-[#909090] ml-2">
                 {new Date(timestamp).getDate().toString().padStart(2, "0")}/
                 {(new Date(timestamp).getMonth() + 1).toString().padStart(2, "0")}/
                 {new Date(timestamp).getFullYear()}

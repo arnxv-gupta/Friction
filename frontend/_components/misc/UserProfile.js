@@ -14,7 +14,7 @@ export default function UserProfile({userID}) {
         return;
 
     return (
-        <div className="bg-[#111214] rounded-md z-50">
+        <div className="bg-[#EBEBEB] border-2 border-[#d4d4d4] dark:border-[#333] rounded-md z-50">
             <div className="bg-gray-500 h-8 rounded-t-md">
             </div>
             <div className="flex">

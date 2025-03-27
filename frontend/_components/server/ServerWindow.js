@@ -14,6 +14,9 @@ export const appContext = createContext();
 export default function ServerWindow() {
   const {socketData} = useContext(socketContext)
   const [data, setData] = useState(null);
+
+  const [collapsed, setCollapsed] = useState(false)
+  
   
   const params = useParams();
   const pathname = usePathname();
@@ -40,8 +43,8 @@ export default function ServerWindow() {
         <ChannelList/>
         {pathname.includes("/events/")?<EventWindow/>:(
           <>
-            <ChatWindow/>
-            <MemberList/>
+            <ChatWindow collapsed={collapsed} setCollapsed={setCollapsed}/>
+            <MemberList collapsed={collapsed}/>
           </>
         )}
       </appContext.Provider>
