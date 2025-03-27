@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Page() {
     return (
-        <div className="bg-[#262038] h-full p-4">
+        <div className="bg-[##EAECEF] text-black h-full p-4">
             <nav className="flex items-baseline justify-between">
                 <h2 className="text-2xl font-medium">Friction</h2>
                 <Link href={"/auth"} className="bg-[#D8D6DB] font-medium text-[#1F2228] px-3 py-1 rounded-sm hover:underline cursor-pointer">Sign In</Link>       

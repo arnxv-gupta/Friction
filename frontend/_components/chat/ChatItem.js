@@ -6,8 +6,9 @@ import CustomImage from "../misc/CustomImage";
 import Link from "next/link";
 import Emoji from "../emoji/Emoji";
 import UserProfile from "../misc/UserProfile";
+import * as Icons from "@mielo-ui/adwaita-symbolic-icons-react"
 
-export default function ChatItem({ authorID, roleData, text, timestamp, image, continued, type }) {
+export default function ChatItem({ authorID, roleData, text="", timestamp, image, continued, type }) {
   const [isMentioned] = useState(text.match(`<@${localStorage.getItem("userID")}>`));
   const [authorData, setAuthorData] = useState(null);
   const [isProfileVisible, setProfileVisible] = useState(false);
@@ -79,6 +80,15 @@ export default function ChatItem({ authorID, roleData, text, timestamp, image, c
     });
   };
 
+  if(type=="system") {
+    return <li className="px-5 py-2 mt-1 flex items-center w-auto text-[#909090] hover:bg-[#E4E4E4] dark:hover:bg-[#2E343D]">
+      <div className="w-[57px] h-2 flex items-center">
+        <Icons.Actions.ContactNew className="mr-1 text-[#51956d]"/>
+      </div>
+      {authorData.username} joined the server!
+      </li>
+  }
+
   return (
     <li
       className={`px-5 mt-1 flex w-auto ${isMentioned ? "bg-[#444037]" : "hover:bg-[#E4E4E4] dark:hover:bg-[#2E343D]"}`}
@@ -102,7 +112,7 @@ export default function ChatItem({ authorID, roleData, text, timestamp, image, c
           <div className="flex items-center mb-1">
             <div className="flex items-baseline">
               <h5
-                className="text-md font-semibold cursor-pointer text-[#2e2e2e] dark:text-[#fff]"
+                className="text-md cursor-pointer text-[#2e2e2e] dark:text-[#fff]"
                 style={roleData.color!="#FFFFFF"?{ color: roleData.color }:null}
                 onClick={() => setProfileVisible(true)}
               >
@@ -117,9 +127,9 @@ export default function ChatItem({ authorID, roleData, text, timestamp, image, c
           </div>
         )}
         {image != null ? <CustomImage src={image} /> : null}
-        <pre className="whitespace-normal flex items-center">
+        <span className="whitespace-normal flex items-center">
           {processText(text)}
-        </pre>
+        </span>
 
         {isProfileVisible && (
           <div

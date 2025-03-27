@@ -7,11 +7,11 @@
 [-] complete events
 [ ] complete stages
 [ ] fix roles and color logic
-[ ] settle on a unqiue theme for the website
+[X] settle on a unqiue theme for the website
 [ ] improve the ui for dialogs
 [ ] make logo for friction
 [ ] make the homepage
-[ ] add custom fonts
+[X] add custom fonts
 [ ] make image cropping 
 [ ] channel permissions
 [ ] dynamic rendering in chat input

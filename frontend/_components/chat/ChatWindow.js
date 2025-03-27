@@ -4,8 +4,6 @@ import React, { useContext, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import * as Icons from "@mielo-ui/adwaita-symbolic-icons-react"
 
-
-
 import { appContext } from "../server/ServerWindow";
 
 import ChatItem from "./ChatItem";
@@ -86,7 +84,7 @@ const ChatWindow = ({collapsed, setCollapsed}) => {
   }
 
   return (
-    <div className="flex flex-col bg-[#FAFAFA] dark:bg-[#2C2C2C] w-full">
+    <div className="flex flex-col bg-[#FAFAFA] dark:bg-[#2C2C2C] max-h-screen w-full">
     <div className="text-lg flex justify-between items-center font-bold mb-4 px-4 py-2 border-b-2 border-[#d4d4d4] dark:border-[#333]">
       <div>
         <Icons.Actions.SystemSearch className="icons" />
@@ -102,7 +100,7 @@ const ChatWindow = ({collapsed, setCollapsed}) => {
       </div>
     </div>
     <div className="flex-1 pb-6 flex flex-col justify-between max-h-[100lvh] ">
-      <ul className="overflow-y-scroll">
+      <ul className="max-h-[80lvh] overflow-y-scroll">
         {
         (()=>{
           

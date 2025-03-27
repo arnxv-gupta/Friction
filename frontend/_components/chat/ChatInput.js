@@ -93,7 +93,7 @@ export default function ChatInput({userID, serverID, chatID}) {
         <img src={imageURL} className={`ml-2 size-12 ${imageURL?"block":"hidden"}`} onClick={()=>{
             setImageURL(null)
         }}/>
-        <pre
+        <span
             className="flex-grow block ml-3 border-none py-2 placeholder-black focus:outline-[#1c71d8] dark:focus:outline-[#78aeed] bg-transparent dark:text-white dark:placeholder-gray-400 focus:outline-none transition duration-200"
             placeholder="Type a message"
             spellCheck={false}
@@ -113,7 +113,7 @@ export default function ChatInput({userID, serverID, chatID}) {
                 }
             
         }}
-        ></pre>
+        ></span>
         <button
         onClick={()=>{
             setEmojiVisible(!isEmojiVisible)

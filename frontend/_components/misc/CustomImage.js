@@ -11,7 +11,7 @@ export default function CustomImage({src}) {
                 className="rounded max-w-[50vw] md:max-w-[30vw] my-2"
                 src={src}
             />
-            <span className="hidden cursor-pointer group-hover:block absolute top-0 right-0 bg-[#888] m-2 p-1 rounded" onClick={()=>{setIsExpanded(true)}}>
+            <span className="hidden cursor-pointer group-hover:block absolute top-0 right-0 bg-[#888] text-[#fff] m-2 p-1 rounded" onClick={()=>{setIsExpanded(true)}}>
             <FaExpand />
             </span>
 

@@ -1,5 +1,5 @@
 "use client";
-import CustomInput from "@/_components/misc/CustomInput";
+
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -107,13 +107,13 @@ export default function Auth() {
             }}
             required={!isLogin}
           />
-            <CustomInput label="USERNAME" type="text" id="username" name="username" required={!isLogin} />
+            <input label="USERNAME" type="text" id="username" name="username" required={!isLogin} />
 
         </div>
 
         <div>
-            <CustomInput label="EMAIL" type="email" id="email" name="email" required={true}/>
-            <CustomInput label="PASSWORD" type="password" id="password" name="password" required={true} />
+            <input label="EMAIL" type="email" id="email" name="email" required={true}/>
+            <input label="PASSWORD" type="password" id="password" name="password" required={true} />
         </div>
 
         <button

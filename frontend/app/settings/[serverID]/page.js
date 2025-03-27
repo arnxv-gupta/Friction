@@ -7,6 +7,8 @@ import RoleItem from "@/_components/role/RoleItem";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import * as Icons from "@mielo-ui/adwaita-symbolic-icons-react"
+
 
 import { Draggable } from "react-drag-reorder";
 
@@ -40,24 +42,24 @@ export default function Settings() {
     
     return (
         <div className="flex">
-            <div className="w-80 h-screen flex flex-col bg-[#1d1f24] rounded-tl-2xl">
+            <div className="w-80 h-screen flex flex-col border-x-2 border-[#d4d4d4] dark:border-[#333] bg-[#F3F3F3] dark:bg-[#2A2A2A]">
                 <h3 className="text-2xl p-4 font-semibold">Settings</h3>
                 <div className="flex">
                     <ul className="w-80 flex flex-col">
-                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#35373C] cursor-pointer block rounded">Overview</li>
-                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#35373C] cursor-pointer block rounded">Roles</li>
-                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#35373C] cursor-pointer block rounded">Emojis</li>
-                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#35373C] cursor-pointer block rounded">Members</li>
+                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] cursor-pointer rounded flex items-center"><Icons.Status.UserAvailable className="icon inline mr-1"/> Overview</li>
+                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] cursor-pointer rounded flex items-center"><Icons.Actions.SystemSwitchUser className="icon inline mr-1"/> Roles</li>
+                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] cursor-pointer rounded flex items-center"><Icons.Emotes.FaceCool className="icon inline mr-1"/> Emojis</li>
+                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] cursor-pointer rounded flex items-center"><Icons.Status.AvatarDefault className="icon inline mr-1" />Members</li>
                     </ul>
                     <div>
                         {}
                     </div>
                 </div>
             </div>
-            <div className="bg-[#202329] flex-1 p-6">
+            <div className="bg-[#FAFAFA] dark:bg-[#2C2C2C] flex-1 p-6">
                 <Link href={`/chat/${params.serverID}`} className="flex justify-between pb-6">
                     <h5 className="text-xl">{settingCategory}</h5>
-                    <span>Close</span>
+                    <span  className="bg-[#EAEAEA] p-3 rounded-full flex items-center justify-center"><Icons.Actions.ProcessStop className="inline"/></span>
                 </Link>
 
                 {settingCategory=="Overview"?(

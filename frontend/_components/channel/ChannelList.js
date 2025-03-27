@@ -9,7 +9,6 @@ import AddChannel from "./AddChannel";
 
 import * as Icons from "@mielo-ui/adwaita-symbolic-icons-react"
 import AddCategory from "../category/AddCatgory";
-import UserItem from "../misc/UserItem";
 import Profile from "./Profile";
 
 const ChannelList = () => {

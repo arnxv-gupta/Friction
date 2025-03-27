@@ -12,7 +12,7 @@ export default function EventWindow() {
     
     return (
         <>
-        <div className="bg-[#202329] w-full p-4">
+        <div className="bg-[#FAFAFA] dark:bg-[#2C2C2C] w-full p-4">
             <h3>Events</h3>
             <div className="flex m-3">
                 <input
