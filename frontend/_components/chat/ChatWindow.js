@@ -8,7 +8,7 @@ import { appContext } from "../server/ServerWindow";
 
 import ChatItem from "./ChatItem";
 import ChatInput from "./ChatInput";
-import VideoView from "../misc/VideoView";
+import CallView from "../misc/CallView";
 import FriendsList from "../friend/FriendsList";
 
 const ChatWindow = ({collapsed, setCollapsed}) => {
@@ -57,9 +57,21 @@ const ChatWindow = ({collapsed, setCollapsed}) => {
     
 
     return (
-      <div className="flex-1 p-6 flex flex-col justify-between bg-[#FAFAFA] dark:bg-[#2C2C2C]  max-h-[100lvh] ">
-      Voice chat
-      <VideoView />
+      <div className="flex flex-col bg-[#FAFAFA] dark:bg-[#2C2C2C] max-h-screen w-full">
+        <div className="text-lg flex justify-between items-center font-bold mb-4 px-4 py-2 border-b-2 border-[#d4d4d4] dark:border-[#333]">
+          <div>
+          </div>
+          {channelName}
+          <div className="flex gap-x-2">
+            {collapsed?<Icons.Actions.SidebarShow className="icons" onClick={()=>{
+              setCollapsed(false)
+            }}/>:<Icons.Actions.SidebarShowRight className="icons" onClick={()=>{
+              setCollapsed(true)
+            }}/>}
+            <Icons.Categories.ApplicationsSystem className="icons"/>
+          </div>
+        </div>
+      <CallView />
       <ul>
       {data!=null && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].data.map(el=>{
         return <li>{el}</li>

@@ -24,16 +24,9 @@ const ServerList = memo(() => {
       {isDialog && <AddServer setVisible={setIsDialog}/>}
 
       <ul className="p-3 h-screen flex flex-col items-center space-y-1"> 
-        <li className="w-12 h-12 my-2">
-            <Link href="/chat/@me">
-                <img
-                src="/image.png"
-                width={48}
-                height={48}
-                className="object-contain opacity-100 transition rounded-full hover:rounded-sm" 
-            />
-            </Link>
-        </li>
+      <Link href="/chat/@me" className="bg-[#FAFAFA] text-[#51956d] dark:bg-[#2A2A2A] size-12 flex items-center justify-center rounded-full cursor-pointer transform hover:bg-gray-600 mb-3 hover:scale-110">
+          <Icons.Status.UserAvailable />
+        </Link>
         <hr className="w-10/12  border-gray-600" />
 
         <ul className="w-full flex flex-col items-center space-y-2">
