@@ -130,6 +130,16 @@ const serverSchema: Schema<Server> = new Schema({
             }
         ]
     }],
+    connections: [
+    {
+        channelID: Number,
+            connections: [
+                {
+                    userID: Number,
+                    peerID: String
+                }
+            ]
+    }],
     adminID: {
         type: Number,
         required: true

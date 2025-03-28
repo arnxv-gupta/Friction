@@ -8,7 +8,7 @@ import { appContext } from "../server/ServerWindow";
 
 import ChatItem from "./ChatItem";
 import ChatInput from "./ChatInput";
-import CallView from "../misc/CallView";
+import CallView from "../call/CallView";
 import FriendsList from "../friend/FriendsList";
 
 const ChatWindow = ({collapsed, setCollapsed}) => {
@@ -42,20 +42,6 @@ const ChatWindow = ({collapsed, setCollapsed}) => {
 
   // VOICE CHAT
   if(data!=null && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].type=="voice") {
-  
-    useEffect(()=>{
-      fetch("http://localhost:3030/joinVoice", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({serverID: data.serverID, channelID: data.currChannel, userID: localStorage.getItem("userID")})
-      }).then(res=>res.json()).then(data=>{
-        console.log(data);
-      })
-    }, []);
-    
-
     return (
       <div className="flex flex-col bg-[#FAFAFA] dark:bg-[#2C2C2C] max-h-screen w-full">
         <div className="text-lg flex justify-between items-center font-bold mb-4 px-4 py-2 border-b-2 border-[#d4d4d4] dark:border-[#333]">
@@ -73,9 +59,9 @@ const ChatWindow = ({collapsed, setCollapsed}) => {
         </div>
       <CallView />
       <ul>
-      {data!=null && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].data.map(el=>{
+      {/* {data!=null && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].data.map(el=>{
         return <li>{el}</li>
-      })}
+      })} */}
       </ul>
       </div>
     )

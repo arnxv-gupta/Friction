@@ -43,6 +43,7 @@ function createServer(name, icon, adminID) {
                         access: []
                     }
                 ],
+                connections: [],
                 adminID: adminID
             };
             let userExists = yield userModel_1.default.exists({ userID: Number(adminID) });

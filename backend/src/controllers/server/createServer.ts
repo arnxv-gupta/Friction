@@ -31,6 +31,7 @@ export default async function createServer(name:String, icon:String, adminID:Num
                 access: []
             }
         ],
+            connections: [],
             adminID: adminID
         }
 

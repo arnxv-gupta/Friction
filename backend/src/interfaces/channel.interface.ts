@@ -1,16 +1,11 @@
 import { Message } from "./message.interface"
 
-interface UserJoin {
-    userID: Number,
-    peerID: Number
-}
-
 export interface Channel {
     name: String,
     type: String
     channelID?: Number,
     categoryID: Number
     createdAt?: Number,
-    data?: [Message] | [UserJoin] | [],
+    data?: [Message] | [],
     access: [{roleID: Number, read: Boolean, write: Boolean}] | []
 }

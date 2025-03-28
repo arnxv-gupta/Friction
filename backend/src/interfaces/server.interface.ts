@@ -1,5 +1,6 @@
 import { Category } from "./category.interface"
 import { Channel } from "./channel.interface"
+import { Connection } from "./connection.interface"
 import { Emoji } from "./emoji.interface"
 import { Role } from "./role.interface"
 
@@ -14,5 +15,6 @@ export interface Server {
     membersList: [Number],
     categories: [Category],
     channels: [Channel],
+    connections: [Connection] | [],
     adminID: Number
 }

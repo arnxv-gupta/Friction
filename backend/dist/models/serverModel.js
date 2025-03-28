@@ -162,6 +162,17 @@ const serverSchema = new mongoose_1.Schema({
                 }
             ]
         }],
+    connections: [
+        {
+            channelID: Number,
+            connections: [
+                {
+                    userID: Number,
+                    peerID: String
+                }
+            ]
+        }
+    ],
     adminID: {
         type: Number,
         required: true

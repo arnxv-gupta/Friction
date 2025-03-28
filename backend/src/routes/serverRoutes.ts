@@ -14,6 +14,7 @@ import createEmoji from "../controllers/server/createEmoji";
 import deleteEmoji from "../controllers/server/deleteEmoji";
 import createEvent from "../controllers/server/createEvent";
 import deleteEvent from "../controllers/server/deleteEvent";
+import joinVoice from "../controllers/server/joinVoice";
 import sendMessage from "../controllers/server/createMessage";
 
 const router:Router = express.Router();
@@ -74,6 +75,9 @@ router.delete("/deleteEvent", async (req:Request<{}, {}, {}, {serverID:Number, c
     res.json(await deleteEvent(req.query.serverID, req.query.channelID));
 })
 
+router.post("/joinVoice", async (req:Request, res:Response)=>{
+    res.json(await joinVoice(req.body.serverID, req.body.voiceID, req.body.userID, req.body.peerID));
+})
 
 router.post("/sendMessage", async (req:Request, res:Response)=>{
     res.json(await sendMessage(req.body.authorID, req.body.text, req.body.image, req.body.serverID, req.body.channelID));
