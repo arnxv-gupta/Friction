@@ -3,7 +3,9 @@ export interface Event {
     organizerID: Number,
     banner: String,
     startTime: Number,
-    registerDeadline: Number,
+    endTime: Number,
+    deadTime: Number,
     participants: [Number],
+    location: String,
     eventID?:Number
 }

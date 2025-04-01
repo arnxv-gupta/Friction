@@ -3,12 +3,14 @@
 import AddEvent from "./AddEvent";
 import { useContext, useState } from "react";
 import { appContext } from "../server/ServerWindow";
+import EventItem from "./EventItem";
 
 export default function EventWindow() {
     const [isEventOpen, setEventOpen] = useState(false);
     const [name, setName] = useState("")
 
     const data = useContext(appContext);
+    console.log(data);
     
     return (
         <>
@@ -26,11 +28,13 @@ export default function EventWindow() {
                         setEventOpen(true)
                     }}>Create event</button> 
             </div>
-            <ul>
-                {}
+            <ul className="mr-16">
+                {data && data.events.map(el=>(
+                    <EventItem name={el.name} banner={el.banner} deadTime={el.deadTime} startTime={el.startTime} endTime={el.endTime} organizerID={el.organizerID} participants={el.participants}/>
+                ))}
             </ul>
         </div>
-        {isEventOpen?<AddEvent setVisible={setEventOpen} serverID={data.serverID}/>:null}
+        {isEventOpen&&data?.serverID?<AddEvent setVisible={setEventOpen} serverID={data.serverID}/>:null}
         </>
     )
 }

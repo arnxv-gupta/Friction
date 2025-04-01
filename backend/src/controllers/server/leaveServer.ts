@@ -11,7 +11,11 @@ export default async function leaveServer(serverID: Number, userID: Number) {
         } else {
             let serverChanged = await serverModel.updateOne({serverID: serverID}, {$pull: {membersList: userID}});
             let userChanged = await userModel.updateOne({userID: userID}, {$pull: {joinedServers: serverID}});
-
+            await serverModel.updateOne({serverID: serverID, "channels.name": "general"}, {$push: {"channels.$.data": {
+                authorID: Number(userID),
+                type: "system",
+                data: "leave"
+            }}})
             if(serverChanged.modifiedCount == 1 && userChanged.modifiedCount == 1) {
                 return {type: "SUCCESS", msg: "User removed from server"};
             } else {

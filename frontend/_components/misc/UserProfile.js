@@ -40,7 +40,7 @@ export default function UserProfile({userID}) {
                 fetch(`http://localhost:3030/addFriend?userID=${localStorage.getItem("userID")}&friendID=${userID}`).then(res=>res.json()).then(data=>{
                     console.log(data);
                 });
-            }}>Add friend</button>
+            }}>Message</button>
         </div>
     )
 }

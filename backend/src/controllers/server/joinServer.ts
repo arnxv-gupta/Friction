@@ -13,7 +13,8 @@ export default async function joinServer(serverID: Number, userID: Number) {
                 await serverModel.updateOne({serverID: serverID, "roles.name": "everyone"}, {$push: {"roles.$.assignedTo": Number(userID)}})
                 await serverModel.updateOne({serverID: serverID, "channels.name": "general"}, {$push: {"channels.$.data": {
                     authorID: Number(userID),
-                    type: "system"
+                    type: "system",
+                    data: "join"
                 }}})
                 await userModel.updateOne({userID: Number(userID)}, {$push: {joinedServers: Number(serverID)}});
 

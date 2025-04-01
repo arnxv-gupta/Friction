@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { appContext } from "../server/ServerWindow";
 import { socketContext } from '@/app/layout';
 
-import { FaXmark } from "react-icons/fa6";
+import * as Icons from "@mielo-ui/adwaita-symbolic-icons-react"
 
 import Dialog from "../ui/Dialog";
 
@@ -44,7 +44,7 @@ export default function AddChannel({isVisible, categoryID, setVisible}) {
     <Dialog>
         <h3 className="text-lg font-bold flex justify-between items-center mb-4">
               <span>Add channel</span>
-              <FaXmark className="hover:text-[#888] cursor-pointer" onClick={()=>{setVisible(false)}} />
+              <Icons.Actions.ProcessStop className="cursor-pointer" onClick={()=>{setVisible(false)}}/>
         </h3>
 
         <div className="mb-4">
@@ -89,17 +89,13 @@ export default function AddChannel({isVisible, categoryID, setVisible}) {
         <div className="mt-6 flex justify-end">
           <button onClick={()=>[
             setVisible(false)
-          ]} className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded mr-2">
+          ]} className="bg-[#4C4C4C] hover:underline cursor-pointer w-full text-[#fff] px-4 py-2 rounded mr-2">
             Cancel
           </button>
 
             <button
               disabled={!channelName}
-              className={`${
-                channelName
-                  ? "bg-blue-600 hover:bg-blue-700"
-                  : "bg-gray-500 cursor-not-allowed"
-              } px-4 py-2 rounded`}
+              className={`bg-[#51956d] text-[#fff] w-full px-4 py-2 rounded cursor-pointer hover:underline`}
                onClick={()=>{
                 fetch("http://localhost:3030/createChannel/", {
                   method: "POST",
@@ -126,7 +122,7 @@ export default function AddChannel({isVisible, categoryID, setVisible}) {
 
                }}
             >
-              Next
+              Create
             </button>
 
         </div>

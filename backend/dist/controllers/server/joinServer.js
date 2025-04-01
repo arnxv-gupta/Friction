@@ -28,7 +28,8 @@ function joinServer(serverID, userID) {
                     yield serverModel_1.default.updateOne({ serverID: serverID, "roles.name": "everyone" }, { $push: { "roles.$.assignedTo": Number(userID) } });
                     yield serverModel_1.default.updateOne({ serverID: serverID, "channels.name": "general" }, { $push: { "channels.$.data": {
                                 authorID: Number(userID),
-                                type: "system"
+                                type: "system",
+                                data: "join"
                             } } });
                     yield userModel_1.default.updateOne({ userID: Number(userID) }, { $push: { joinedServers: Number(serverID) } });
                     return { type: "SUCCESS", msg: `Server joined!` };

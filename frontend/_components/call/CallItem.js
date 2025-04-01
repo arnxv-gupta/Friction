@@ -10,14 +10,14 @@ export default function CallItem({userID, peerInstance, remotePeerID}) {
         let getUserMedia = navigator.getUserMedia;
 
         getUserMedia({video: true, audio: true}, (mediastream)=>{
-            videoRef.current.srcObject=mediastream;
-            videoRef.current.play();
+            // videoRef.current.srcObject=mediastream;
+            // videoRef.current.play();
 
             const call = peerInstance.current.call(remotePeerID, mediastream);
 
             call.on("stream", (remoteStream)=>{
-                remoteVideoRef.current.srcObject=remoteStream;
-                remoteVideoRef.current.play();
+                videoRef.current.srcObject=remoteStream;
+                video.current.play();
             })
         })
     }
@@ -25,6 +25,8 @@ export default function CallItem({userID, peerInstance, remotePeerID}) {
     useEffect(()=>{
 
         const peer = peerInstance.current;
+        console.log(peerInstance.current);
+        
         call(remotePeerID)
         
 
@@ -36,10 +38,10 @@ export default function CallItem({userID, peerInstance, remotePeerID}) {
                 // videoRef.current.play();
                 call.answer(mediastream);
 
-                call.on("stream", (remoteStream)=>{
-                    videoRef.current.srcObject=remoteStream;
-                    videoRef.current.play();
-                })
+                // call.on("stream", (remoteStream)=>{
+                //     videoRef.current.srcObject=remoteStream;
+                //     videoRef.current.play();
+                // })
             });
         });
     }, [])
@@ -47,7 +49,7 @@ export default function CallItem({userID, peerInstance, remotePeerID}) {
     return (
         <>
         <video ref={videoRef} />
-        {userID}
+        {userID}{Number(localStorage.getItem("userID"))==userID?"(You)":null}{remotePeerID}
         </>
     )
 }

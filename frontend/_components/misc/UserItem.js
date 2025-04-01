@@ -39,7 +39,7 @@ const UserItem = ({ userID }) => {
         onClick={() => {
           setProfileVisible(true);
         }}
-        className={`relative flex items-center my-3 p-1 hover:bg-[#E4E4E4] rounded ${
+        className={`relative flex items-center my-3 p-1 hover:bg-[#E4E4E4] dark:hover:bg-[#484747] rounded ${
           userData.onlinePresence == "Offline" ? "opacity-70" : ""
         }`}
       >

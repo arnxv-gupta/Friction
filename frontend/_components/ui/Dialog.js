@@ -1,7 +1,7 @@
 export default function Dialog({children}) {
     return (
-        <div className="fixed inset-0 flex justify-center items-center z-50 bg-black/40">
-            <div className="bg-[#1d1f24] outline outline-2 outline-gray-800 px-5 py-3 w-96 rounded">
+        <div className="fixed inset-0 flex justify-center items-center z-50 ">
+            <div className="bg-[#383838] px-5 py-3 min-w-96 rounded">
             {children}
             </div>
         </div>

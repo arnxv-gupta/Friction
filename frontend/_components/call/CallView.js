@@ -7,14 +7,17 @@ import { appContext } from "../server/ServerWindow";
 import CallItem from "./CallItem";
 
 export default function CallView() {
-    const {socketData} = useContext(socketContext);
+    const {socketData, sendMessage} = useContext(socketContext);
     const data = useContext(appContext)
+    console.log(data);
 
+    if(!data) {
+        return <span>data not </span>
+    }
+    
     let connections = data.connections.find(el=>data.currChannel==el.channelID)?.connections;
 
     const [peerID, setPeerID] = useState("");
-
-    const videoRef = useRef(null);    
 
     const peerInstance = useRef(null)
 
@@ -22,11 +25,15 @@ export default function CallView() {
 
     useEffect(()=>{
         const peer = new Peer();
-
+        console.log(peer);
+        
+        
         peer.on("open", (id)=>{
+            console.log(123);
+            
             setPeerID(id)
             fetch("http://localhost:3030/joinVoice", {
-                method: "post",
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -37,9 +44,9 @@ export default function CallView() {
                     peerID: id
                 })
             }).then(res=>res.json()).then(data=>{
-                console.log(data);
+                console.log("132");
                 
-                //sendMessage("VOICE JOINED!")
+                sendMessage("VOICE JOINED!")
             })
         });
 
@@ -50,14 +57,10 @@ export default function CallView() {
         peerInstance.current = peer;
     }, [])
 
-
-    if(!peerID) {
-        return <span>Loading</span>
-    }
-
     return (
         <>
         <div>
+            vc
             {connections && connections.map((el)=>{
                 return <CallItem userID={Number(el.userID)} peerInstance={peerInstance} remotePeerID={el.peerID}/>
             })}

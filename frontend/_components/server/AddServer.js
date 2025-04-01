@@ -10,10 +10,6 @@ const AddServer = ({setVisible}) => {
   const serverNameRef = useRef(null);
   const fileInputRef = useRef(null); 
 
-  const handleBackClick = () => {
-    
-  }
-
   const handleFileChange = (e) => {
       let data = new FormData();
       data.append("image", e.target.files[0]);

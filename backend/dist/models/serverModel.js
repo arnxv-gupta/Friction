@@ -85,7 +85,41 @@ const serverSchema = new mongoose_1.Schema({
         }
     ],
     membersList: [Number],
-    events: [], //todo
+    events: [{
+            name: {
+                type: String,
+                required: true
+            },
+            organizerID: {
+                type: Number,
+                required: true
+            },
+            banner: {
+                type: String,
+                required: true
+            },
+            startTime: {
+                type: Number,
+                required: true
+            },
+            endTime: {
+                type: Number,
+                required: true
+            },
+            deadTime: {
+                type: Number,
+                required: true
+            },
+            participants: {
+                type: [Number],
+                required: true
+            },
+            location: String,
+            eventID: {
+                type: Number,
+                default: () => Math.floor(Math.random() * (999999999 - 111111111) + 111111111)
+            },
+        }],
     emojis: [{
             name: {
                 type: String,

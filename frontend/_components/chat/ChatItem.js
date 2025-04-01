@@ -40,7 +40,7 @@ export default function ChatItem({ authorID, roleData, text="", timestamp, image
     return null;
   }
 
-  console.log(roleData);
+  //console.log(roleData);
   
 
   const processText = (inputText) => {
@@ -83,9 +83,9 @@ export default function ChatItem({ authorID, roleData, text="", timestamp, image
   if(type=="system") {
     return <li className="px-5 py-2 mt-1 flex items-center w-auto text-[#909090] hover:bg-[#E4E4E4] dark:hover:bg-[#2E343D]">
       <div className="w-[57px] h-2 flex items-center">
-        <Icons.Actions.ContactNew className="mr-1 text-[#51956d]"/>
+        {text=="leave"?<Icons.Actions.ApplicationExit className="mr-1 text-[#b44d4c]"/> :<Icons.Actions.ContactNew className="mr-1 text-[#51956d]"/>}
       </div>
-      {authorData.username} joined the server!
+      {authorData.username} {text=="leave"?"left  the server.":"joined the server!"}
       </li>
   }
 

@@ -26,6 +26,11 @@ function leaveServer(serverID, userID) {
             else {
                 let serverChanged = yield serverModel_1.default.updateOne({ serverID: serverID }, { $pull: { membersList: userID } });
                 let userChanged = yield userModel_1.default.updateOne({ userID: userID }, { $pull: { joinedServers: serverID } });
+                yield serverModel_1.default.updateOne({ serverID: serverID, "channels.name": "general" }, { $push: { "channels.$.data": {
+                            authorID: Number(userID),
+                            type: "system",
+                            data: "leave"
+                        } } });
                 if (serverChanged.modifiedCount == 1 && userChanged.modifiedCount == 1) {
                     return { type: "SUCCESS", msg: "User removed from server" };
                 }

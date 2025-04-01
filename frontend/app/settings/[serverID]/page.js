@@ -17,7 +17,7 @@ export default function Settings() {
     let params = useParams();
     let [data, setData] = useState(null);
 
-    let [settingCategory, setSettingCategory] = useState("Overview")
+    let [settingCategory, setSettingCategory] = useState("Roles")
 
     let [rolesSearch, setRolesSearch] = useState("");
     let [emojiSearch, setEmojiSearch] = useState("");
@@ -79,8 +79,8 @@ export default function Settings() {
                         className="w-full px-4 py-3 bg-[#1E1F22] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         <button onClick={()=>{
-                            setRoleVisible(true)
-                            // console.log(roleListRef.current.children);
+                            //setRoleVisible(true)
+                            console.log(roleListRef.current.children[0].innerText);
                             
                         }}>Create role</button>
                         </div>
