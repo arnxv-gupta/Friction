@@ -42,16 +42,16 @@ const ChannelList = () => {
       </div>
 
       {/* Channels List */}
-      <div className="mb-6">
+      <div className="mb-6 max-h-[80lvh] overflow-y-scroll">
         {data.categories.length > 0 && (
           <ul>
             {/* Events btn */}
-            <li className="p-3 hover:cursor-pointer hover:bg-[#E4E4E4] mx-2 my-1 rounded">
+            <li className="p-3 hover:cursor-pointer hover:bg-[#E4E4E4] dark:hover:bg-[#484747] mx-2 my-1 rounded">
               <Link href={`/events/${data.serverID}`} className="flex items-center">
                 Events
               </Link>
             </li>
-            <li className="p-3 hover:cursor-pointer hover:bg-[#E4E4E4] mx-2 my-1 rounded">
+            <li className="p-3 hover:cursor-pointer hover:bg-[#E4E4E4] dark:hover:bg-[#484747] mx-2 my-1 rounded">
               <Link href={`/stage/${data.serverID}`} className="flex items-center">
               Stage
               </Link>

@@ -13,6 +13,7 @@ import deleteRole from "../controllers/server/deleteRole";
 import createEmoji from "../controllers/server/createEmoji";
 import deleteEmoji from "../controllers/server/deleteEmoji";
 import createEvent from "../controllers/server/createEvent";
+import joinEvent from "../controllers/server/joinEvent";
 import deleteEvent from "../controllers/server/deleteEvent";
 import joinVoice from "../controllers/server/joinVoice";
 import sendMessage from "../controllers/server/createMessage";
@@ -70,9 +71,11 @@ router.delete("/deleteEmoji", async (req:Request<{}, {}, {}, {serverID:Number, e
 })
 
 router.post("/createEvent", async (req:Request, res:Response)=>{
-    console.log(req.body);
-    
     res.json(await createEvent(req.body.serverID, req.body.name, req.body.organizerID, req.body.banner, req.body.startTime, req.body.endTime, req.body.deadTime, req.body.location));
+})
+
+router.post("/joinEvent", async (req:Request, res:Response)=>{
+    res.json(await joinEvent(req.body.serverID, req.body.eventID, req.body.userID));
 })
 
 router.delete("/deleteEvent", async (req:Request<{}, {}, {}, {serverID:Number, channelID:Number}>, res:Response)=>{

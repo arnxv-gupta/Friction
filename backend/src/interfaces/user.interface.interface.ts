@@ -9,5 +9,5 @@ export interface User {
     createdAt?: Number,
     onlinePresence: presenceType,
     joinedServers: [Number],
-    friends: [Number]
+    messages: [Number]
 }

@@ -1,7 +1,7 @@
 import express, { Router, Request, Response } from "express";
 
 import getUser from "../controllers/user/getUser";
-import addFriend from "../controllers/user/addFriend";
+import createMessage from "../controllers/user/createMessage";
 
 const router:Router = express.Router();
 
@@ -9,8 +9,8 @@ router.get("/userInfo", async (req:Request<{}, {}, {}, {userID:Number}>, res:Res
     res.json(await getUser(req.query.userID));
 });
 
-router.get("/addFriend", async (req:Request<{}, {}, {}, {userID:Number, friendID:Number}>, res:Response)=>{
-    res.json(await addFriend(req.query.userID, req.query.friendID));
+router.get("/createMessage", async (req:Request<{}, {}, {}, {userID:Number, receiverID:Number}>, res:Response)=>{
+    res.json(await createMessage(req.query.userID, req.query.receiverID));
 });
 
 export default router;
