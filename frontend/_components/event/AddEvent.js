@@ -14,7 +14,7 @@ export default function AddEvent({setVisible, serverID}) {
 
     const [beginAt, setbeginAt] = useState((new Date).toISOString().slice(0, 16))
     const [endAt, setEndAt] = useState((new Date).toISOString().slice(0, 16));
-    const [deadAt, setDeadAt] = useState((new Date).toISOString().slice(0, 16));
+    const [desc, setDesc] = useState("");
 
     const [location, setLocation] = useState("")
 
@@ -22,7 +22,6 @@ export default function AddEvent({setVisible, serverID}) {
 
     const startRef = useRef(null);
     const endRef = useRef(null);
-    const deadRef = useRef(null);
 
     return (
         <Dialog>
@@ -75,17 +74,14 @@ export default function AddEvent({setVisible, serverID}) {
             </div>
 
             <div className="mb-4">
-                    <label className="block text-sm mb-2">Dead at</label>
+                    <label className="block text-sm mb-2">Desc</label>
                     <input
-                        type="datetime-local"
-                        value={deadAt}
-                        ref={deadRef}
-                        max={beginAt}
-                        onChange={(e) => setDeadAt(e.target.value)}
+                        value={desc}
+                        onChange={(e) => setDesc(e.target.value)}
                         placeholder="# new-event"
                         className="w-full p-2 rounded bg-gray-700 border border-gray-600 focus:outline-none"
                     />
-                    {deadAt==0 && <p className="text-red-500 text-sm mt-1">Dead time is required.</p>}
+                    {!desc && <p className="text-red-500 text-sm mt-1">Desc is required.</p>}
             </div>
 
             <div className="mb-4">
@@ -108,7 +104,6 @@ export default function AddEvent({setVisible, serverID}) {
                 
                 let startTime = new Date(startRef.current.value);
                 let endTime = new Date(endRef.current.value);
-                let deadTime = new Date(deadRef.current.value);               
 
                 fetch("http://localhost:3030/createEvent/", {
                   method: "POST",
@@ -121,7 +116,7 @@ export default function AddEvent({setVisible, serverID}) {
                       organizerID: Number(localStorage.getItem("userID")),
                       startTime: startTime.getTime(),
                       endTime: endTime.getTime(),
-                      deadTime: deadTime.getTime(),
+                      desc: desc,
                       location: location
                   })
               }).then(res=>res.json()).then(data=>{

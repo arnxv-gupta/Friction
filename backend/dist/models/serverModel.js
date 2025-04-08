@@ -102,8 +102,8 @@ const serverSchema = new mongoose_1.Schema({
                 type: Number,
                 required: true
             },
-            deadTime: {
-                type: Number,
+            desc: {
+                type: String,
                 required: true
             },
             participants: {

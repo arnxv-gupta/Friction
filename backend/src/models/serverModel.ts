@@ -69,8 +69,8 @@ const serverSchema: Schema<Server> = new Schema({
             type: Number,
             required: true
         },
-        deadTime: {
-            type: Number,
+        desc: {
+            type: String,
             required: true
         },
         participants: {

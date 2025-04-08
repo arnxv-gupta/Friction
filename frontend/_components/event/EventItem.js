@@ -8,11 +8,11 @@ export default function EventItem({
   organizerID,
   startTime,
   endTime,
-  deadTime,
   participants,
   serverID,
   eventID,
   location,
+  desc,
 }) {
   const [userData, setUserData] = useState({});
   const router = useRouter();
@@ -110,15 +110,19 @@ export default function EventItem({
               {formatDate(endTime)} ({formatTime(endTime)})
             </span>
           </div>
-          <div className="text-xs text-neutral-500">
-            Registration open until {formatDate(deadTime)} ({formatTime(deadTime)})
-          </div>
         </div>
+
+        {/* Description */}
+        {desc && (
+          <p className="text-sm text-neutral-700 dark:text-neutral-300">
+            {desc}
+          </p>
+        )}
 
         {/* Location */}
         {location && (
           <div>
-            {/^https?:\/\//.test(location) ? (
+            {/^(https?:\/\/)/.test(location) ? (
               <Link
                 href={location}
                 className="text-sm underline underline-offset-2 text-neutral-700 dark:text-neutral-300"
@@ -140,18 +144,19 @@ export default function EventItem({
           </span>
 
           <div className="flex items-center gap-2 ml-auto">
-            {userJoined ? (
-              <span className="px-3 py-1.5 text-xs font-medium rounded-md border bg-green-100 text-green-700 border-green-300">
-                Joined
-              </span>
-            ) : (
-              <button
-                onClick={handleJoinEvent}
-                className="px-3 py-1.5 border border-neutral-500 rounded-md text-sm font-medium hover:bg-neutral-200 dark:hover:bg-neutral-700 transition"
-              >
-                Join
-              </button>
-            )}
+            {status !== "Ended" &&
+              (userJoined ? (
+                <span className="px-3 py-1.5 text-xs font-medium rounded-md border bg-green-100 text-green-700 border-green-300">
+                  Joined
+                </span>
+              ) : (
+                <button
+                  onClick={handleJoinEvent}
+                  className="px-3 py-1.5 border border-neutral-500 rounded-md text-sm font-medium hover:bg-neutral-200 dark:hover:bg-neutral-700 transition"
+                >
+                  Join
+                </button>
+              ))}
 
             <span
               className={`px-3 py-1.5 text-xs font-medium rounded-md border ${getStatusStyle(

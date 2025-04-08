@@ -30,7 +30,7 @@ export default function EventWindow() {
             </div>
             <ul className="mr-16 flex flex-col-reverse max-h-[80lvh] overflow-y-scroll p-2 ">
                 {data && data.events.map(el=>(
-                    <EventItem name={el.name} deadTime={el.deadTime} startTime={el.startTime} endTime={el.endTime} organizerID={el.organizerID} participants={el.participants} serverID={data.serverID} eventID={el.eventID} location={el.location}/>
+                    <EventItem name={el.name} desc={el?.desc} startTime={el.startTime} endTime={el.endTime} organizerID={el.organizerID} participants={el.participants} serverID={data.serverID} eventID={el.eventID} location={el.location}/>
                 ))}
             </ul>
         </div>

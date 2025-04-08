@@ -69,7 +69,7 @@ router.delete("/deleteEmoji", async (req:Request<{}, {}, {}, {serverID:Number, e
 })
 
 router.post("/createEvent", async (req:Request, res:Response)=>{
-    res.json(await createEvent(req.body.serverID, req.body.name, req.body.organizerID, req.body.startTime, req.body.endTime, req.body.deadTime, req.body.location));
+    res.json(await createEvent(req.body.serverID, req.body.name, req.body.organizerID, req.body.startTime, req.body.endTime, req.body.desc, req.body.location));
 })
 
 router.post("/joinEvent", async (req:Request, res:Response)=>{
