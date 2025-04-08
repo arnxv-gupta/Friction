@@ -9,30 +9,12 @@ import { appContext } from "../server/ServerWindow";
 import ChatItem from "./ChatItem";
 import ChatInput from "./ChatInput";
 import CallView from "../call/CallView";
-import FriendsList from "../friend/FriendsList";
 
 const ChatWindow = ({collapsed, setCollapsed}) => {
   const data = useContext(appContext);
-  const pathname = usePathname().split("/");
   const channelName = data!=null && data.currChannel && data.channels[data.channels.findIndex((channel)=>data.currChannel==channel.channelID)].name;   
   
-  if ((data == null || !data.currChannel) && pathname[2]=="@me"&& pathname.length==3) {
-    return (
-      <div className="flex-1 flex flex-row bg-[#FAFAFA] dark:bg-[#2C2C2C] rounded-tl-2xl">
-        <FriendsList/>
-        
-      </div>
-    );
-  } else if((data==null || !data.currChannel) && pathname[2]=="@me" && pathname.length==4) {
-    return (
-      <div className="flex-1 flex flex-row bg-[#FAFAFA] dark:bg-[#2C2C2C] rounded-tl-2xl">
-        <FriendsList/>
-        <div>
-          {pathname[3]}
-        </div>
-      </div>
-    );
-  } else if(data==null||!data.currChannel) {
+  if(data==null||!data.currChannel) {
     return (
       <div className="flex-1 p-6 flex flex-col justify-between bg-[#FAFAFA] dark:bg-[#2C2C2C]">
         <small>This looks empty.. too empty :(</small>{" "}

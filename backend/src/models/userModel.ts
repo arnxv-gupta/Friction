@@ -31,7 +31,7 @@ const userSchema:Schema<User> = new Schema({
         default: "Offline",
     },
     joinedServers: [Number],
-    friends: [Number]
+    messages: [Number]
 })
 
 export default mongoose.model("User", userSchema);

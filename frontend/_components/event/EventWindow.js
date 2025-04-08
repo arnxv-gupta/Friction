@@ -14,7 +14,7 @@ export default function EventWindow() {
     
     return (
         <>
-        <div className="bg-[#FAFAFA] dark:bg-[#2C2C2C] max-h-screen w-full p-4">
+        <div className="bg-[#FAFAFA] dark:bg-[#2C2C2C] w-full p-4">
             <h3>Events</h3>
             <div className="flex m-3">
                 <input
@@ -28,9 +28,9 @@ export default function EventWindow() {
                         setEventOpen(true)
                     }}>Create event</button> 
             </div>
-            <ul className="mr-16 flex flex-col-reverse max-h-[80lvh] overflow-y-scroll">
+            <ul className="mr-16 flex flex-col-reverse max-h-[80lvh] overflow-y-scroll p-2 ">
                 {data && data.events.map(el=>(
-                    <EventItem name={el.name} banner={el.banner} deadTime={el.deadTime} startTime={el.startTime} endTime={el.endTime} organizerID={el.organizerID} participants={el.participants} serverID={data.serverID} eventID={el.eventID}/>
+                    <EventItem name={el.name} deadTime={el.deadTime} startTime={el.startTime} endTime={el.endTime} organizerID={el.organizerID} participants={el.participants} serverID={data.serverID} eventID={el.eventID} location={el.location}/>
                 ))}
             </ul>
         </div>

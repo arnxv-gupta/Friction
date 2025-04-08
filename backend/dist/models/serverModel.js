@@ -94,10 +94,6 @@ const serverSchema = new mongoose_1.Schema({
                 type: Number,
                 required: true
             },
-            banner: {
-                type: String,
-                required: true
-            },
             startTime: {
                 type: Number,
                 required: true

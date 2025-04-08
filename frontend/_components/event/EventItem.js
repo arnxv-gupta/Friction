@@ -1,11 +1,21 @@
 import { useEffect, useState } from "react";
 import * as Icons from "@mielo-ui/adwaita-symbolic-icons-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-export default function EventItem({name, banner, organizerID, startTime, endTime, deadTime, participants, serverID, eventID}) {
+export default function EventItem({
+  name,
+  organizerID,
+  startTime,
+  endTime,
+  deadTime,
+  participants,
+  serverID,
+  eventID,
+  location,
+}) {
   const [userData, setUserData] = useState({});
-
-  let router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     fetch(`http://localhost:3030/userInfo?userID=${organizerID}`)
@@ -16,24 +26,21 @@ export default function EventItem({name, banner, organizerID, startTime, endTime
   }, [organizerID]);
 
   const handleJoinEvent = () => {
-    console.log(serverID, eventID, Number(localStorage.getItem("userID")));
-
     fetch(`http://localhost:3030/joinEvent`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        serverID: serverID,
-        eventID: eventID,
+        serverID,
+        eventID,
         userID: Number(localStorage.getItem("userID")),
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then(() => {
         router.refresh();
-    });
+      });
   };
 
   const formatDate = (date) => {
@@ -57,54 +64,103 @@ export default function EventItem({name, banner, organizerID, startTime, endTime
     return "Ended";
   };
 
+  const getStatusStyle = (status) => {
+    switch (status) {
+      case "Not started":
+        return "bg-blue-100 text-blue-700 border-blue-300";
+      case "In progress":
+        return "bg-yellow-100 text-yellow-700 border-yellow-300";
+      case "Ended":
+        return "bg-red-100 text-red-700 border-red-300";
+      default:
+        return "bg-neutral-200 text-neutral-700 border-neutral-300";
+    }
+  };
+
+  const status = eventStatus();
+  const userJoined = participants.includes(Number(localStorage.getItem("userID")));
+
   return (
-    <div className="mb-4 border-b-2 border-[#d4d4d4] dark:border-[#333] bg-[#FAFAFA] dark:bg-[#2A2A2A] rounded-lg shadow-md overflow-hidden">
-      <div className="relative">
-        <img
-          src={banner}
-          alt="Event Banner"
-          className="w-full h-48 object-cover"
-        />
-        <h4 className="text-xl font-semibold absolute bottom-0 left-0 p-4 text-white bg-gradient-to-t from-black w-full">
-          {name}
-        </h4>
+    <div className="mb-6 rounded-xl shadow border dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800">
+      <div className="px-5 py-4 border-b dark:border-neutral-700">
+        <h2 className="text-xl font-semibold tracking-tight">{name}</h2>
       </div>
-      <section className="p-4">
-        <div className="flex items-center mb-2">
-          <img
-            src={userData.pfpURL}
-            alt="Organizer Profile"
-            className="w-8 h-8 rounded-full mr-2"
-          />
-          <span className="text-sm text-gray-700 dark:text-gray-300">
+
+      <section className="p-5 space-y-4 text-sm">
+        {/* Organizer */}
+        <div className="flex items-center space-x-3">
+          {userData.pfpURL && (
+            <img
+              src={userData.pfpURL}
+              alt="Organizer Profile"
+              className="w-8 h-8 rounded-full"
+            />
+          )}
+          <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
             {userData.username}
           </span>
         </div>
-        <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-          <span className="flex items-center">
-            <Icons.Categories.EmojiRecent className="inline mr-1" />
-            {formatDate(startTime)} ({formatTime(startTime)}) - {formatTime(endTime)}
-          </span>
+
+        {/* Time Info */}
+        <div className="space-y-1 text-neutral-700 dark:text-neutral-300">
+          <div className="flex items-center space-x-2">
+            <Icons.Categories.EmojiRecent className="w-4 h-4" />
+            <span className="text-sm">
+              {formatDate(startTime)} ({formatTime(startTime)}) –{" "}
+              {formatDate(endTime)} ({formatTime(endTime)})
+            </span>
+          </div>
+          <div className="text-xs text-neutral-500">
+            Registration open until {formatDate(deadTime)} ({formatTime(deadTime)})
+          </div>
         </div>
-        <div className="flex justify-between items-center">
-          <span className="text-sm text-gray-600 dark:text-gray-400">
-            {participants.length} participants
-          </span>
+
+        {/* Location */}
+        {location && (
           <div>
-            {participants.includes(Number(localStorage.getItem("userID"))) ? (
-              <span className="text-green-500 font-semibold">Joined</span>
+            {/^https?:\/\//.test(location) ? (
+              <Link
+                href={location}
+                className="text-sm underline underline-offset-2 text-neutral-700 dark:text-neutral-300"
+              >
+                {location}
+              </Link>
+            ) : (
+              <div className="text-sm text-neutral-700 dark:text-neutral-300">
+                {location}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Footer */}
+        <div className="flex items-center justify-between pt-4 border-t dark:border-neutral-700">
+          <span className="text-sm text-neutral-600 dark:text-neutral-400">
+            {participants.length} participant{participants.length !== 1 ? "s" : ""}
+          </span>
+
+          <div className="flex items-center gap-2 ml-auto">
+            {userJoined ? (
+              <span className="px-3 py-1.5 text-xs font-medium rounded-md border bg-green-100 text-green-700 border-green-300">
+                Joined
+              </span>
             ) : (
               <button
                 onClick={handleJoinEvent}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="px-3 py-1.5 border border-neutral-500 rounded-md text-sm font-medium hover:bg-neutral-200 dark:hover:bg-neutral-700 transition"
               >
                 Join
               </button>
             )}
+
+            <span
+              className={`px-3 py-1.5 text-xs font-medium rounded-md border ${getStatusStyle(
+                status
+              )}`}
+            >
+              {status}
+            </span>
           </div>
-          <span className={`text-sm ${eventStatus() === 'Not started' ? 'text-gray-500' : eventStatus() === 'In progress' ? 'text-yellow-500' : 'text-red-500'}`}>
-            {eventStatus()}
-          </span>
         </div>
       </section>
     </div>

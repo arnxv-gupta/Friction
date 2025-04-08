@@ -61,10 +61,6 @@ const serverSchema: Schema<Server> = new Schema({
             type: Number,
             required: true
         },
-        banner: {
-            type:String,
-            required: true
-        },
         startTime: {
             type: Number,
             required: true

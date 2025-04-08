@@ -37,7 +37,7 @@ export default function UserProfile({userID}) {
                 </div>
             </div>
             <button className="m-3" onClick={()=>{
-                fetch(`http://localhost:3030/addFriend?userID=${localStorage.getItem("userID")}&friendID=${userID}`).then(res=>res.json()).then(data=>{
+                fetch(`http://localhost:3030/createDM?userID=${localStorage.getItem("userID")}&receiverID=${userID}`).then(res=>res.json()).then(data=>{
                     console.log(data);
                 });
             }}>Message</button>

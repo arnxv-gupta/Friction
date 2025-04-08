@@ -41,7 +41,6 @@ router.delete("/deleteServer", (req, res) => __awaiter(void 0, void 0, void 0, f
     res.json(yield (0, deleteServer_1.default)(req.query.serverID));
 }));
 router.get("/leaveServer", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("123");
     res.json(yield (0, leaveServer_1.default)(req.query.serverID, req.query.userID));
 }));
 router.get("/serverInfo", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -69,7 +68,7 @@ router.delete("/deleteEmoji", (req, res) => __awaiter(void 0, void 0, void 0, fu
     res.json(yield (0, deleteEmoji_1.default)(req.query.serverID, req.query.emojiID));
 }));
 router.post("/createEvent", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.json(yield (0, createEvent_1.default)(req.body.serverID, req.body.name, req.body.organizerID, req.body.banner, req.body.startTime, req.body.endTime, req.body.deadTime, req.body.location));
+    res.json(yield (0, createEvent_1.default)(req.body.serverID, req.body.name, req.body.organizerID, req.body.startTime, req.body.endTime, req.body.deadTime, req.body.location));
 }));
 router.post("/joinEvent", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.json(yield (0, joinEvent_1.default)(req.body.serverID, req.body.eventID, req.body.userID));

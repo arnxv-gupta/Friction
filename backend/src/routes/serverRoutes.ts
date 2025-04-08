@@ -32,9 +32,7 @@ router.delete("/deleteServer", async (req:Request<{}, {}, {}, {serverID: Number}
     res.json(await deleteServer(req.query.serverID));
 })
 
-router.get("/leaveServer", async (req:Request<{}, {}, {}, {serverID: Number, userID: Number}>, res:Response)=>{
-    console.log("123");
-    
+router.get("/leaveServer", async (req:Request<{}, {}, {}, {serverID: Number, userID: Number}>, res:Response)=>{   
     res.json(await leaveServer(req.query.serverID, req.query.userID));
 })
 
@@ -71,7 +69,7 @@ router.delete("/deleteEmoji", async (req:Request<{}, {}, {}, {serverID:Number, e
 })
 
 router.post("/createEvent", async (req:Request, res:Response)=>{
-    res.json(await createEvent(req.body.serverID, req.body.name, req.body.organizerID, req.body.banner, req.body.startTime, req.body.endTime, req.body.deadTime, req.body.location));
+    res.json(await createEvent(req.body.serverID, req.body.name, req.body.organizerID, req.body.startTime, req.body.endTime, req.body.deadTime, req.body.location));
 })
 
 router.post("/joinEvent", async (req:Request, res:Response)=>{

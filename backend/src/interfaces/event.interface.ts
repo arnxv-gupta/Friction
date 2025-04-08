@@ -1,7 +1,6 @@
 export interface Event {
     name: String,
     organizerID: Number,
-    banner: String,
     startTime: Number,
     endTime: Number,
     deadTime: Number,

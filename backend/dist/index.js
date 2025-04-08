@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.currentUsers = void 0;
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -24,6 +25,7 @@ const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const miscRoutes_1 = __importDefault(require("./routes/miscRoutes"));
 const updateUser_1 = __importDefault(require("./controllers/user/updateUser"));
 dotenv_1.default.config();
+exports.currentUsers = 0;
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
 const io = new socket_io_1.Server(server, {
@@ -39,10 +41,6 @@ app.use("/", authRoutes_1.default);
 app.use("/", serverRoutes_1.default);
 app.use("/", userRoutes_1.default);
 app.use("/", miscRoutes_1.default);
-let count = 0;
-app.get("/api/count", (req, res) => {
-    res.json(count);
-});
 io.on("connection", (socket) => {
     console.log("Socket: New client connected!");
     socket.on("message", (msg) => {
@@ -54,13 +52,13 @@ io.on("connection", (socket) => {
         socket.data.userID = userObj.userID;
         yield (0, updateUser_1.default)(userObj.userID, userObj.status);
         io.emit("message", Date.now());
-        count++;
+        exports.currentUsers++;
     }));
     socket.on("disconnecting", () => __awaiter(void 0, void 0, void 0, function* () {
         yield (0, updateUser_1.default)(socket.data.userID, "Offline");
         io.emit("message", Date.now());
         console.log("Socket: User disconnected!");
-        count--;
+        exports.currentUsers--;
     }));
 });
 mongoose_1.default.connect(process.env.DB_URL || "").then(() => {

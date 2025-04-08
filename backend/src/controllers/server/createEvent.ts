@@ -1,12 +1,11 @@
 import { Event } from "../../interfaces/event.interface";
 import serverModel from "../../models/serverModel";
 
-export default async function createEvent(serverID: Number, name:String, organizerID:Number, banner:String, startTime:Number, endTime:Number, deadTime:Number, location:String) {
+export default async function createEvent(serverID: Number, name:String, organizerID:Number, startTime:Number, endTime:Number, deadTime:Number, location:String) {
         try {
             let eventObj:Event = {
                 name: name,
                 organizerID: organizerID,
-                banner:banner,
                 startTime: startTime,
                 endTime: endTime,
                 deadTime: deadTime,

@@ -14,12 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const getUser_1 = __importDefault(require("../controllers/user/getUser"));
-const addFriend_1 = __importDefault(require("../controllers/user/addFriend"));
+const createInbox_1 = __importDefault(require("../controllers/user/createInbox"));
 const router = express_1.default.Router();
 router.get("/userInfo", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.json(yield (0, getUser_1.default)(req.query.userID));
 }));
-router.get("/addFriend", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.json(yield (0, addFriend_1.default)(req.query.userID, req.query.friendID));
+router.get("/createInbox", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.json(yield (0, createInbox_1.default)(req.query.userID, req.query.receiverID));
 }));
 exports.default = router;

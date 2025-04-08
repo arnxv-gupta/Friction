@@ -10,10 +10,6 @@ import { useRouter } from "next/navigation";
 export default function AddEvent({setVisible, serverID}) {
 
     const router = useRouter()
-
-    const [selectedFile, setSelectedFile] = useState(null);
-    const fileInputRef = useRef(null); 
-
     const [name, setName] = useState("")
 
     const [beginAt, setbeginAt] = useState((new Date).toISOString().slice(0, 16))
@@ -28,27 +24,6 @@ export default function AddEvent({setVisible, serverID}) {
     const endRef = useRef(null);
     const deadRef = useRef(null);
 
-    const handleFileChange = (e) => {
-        let data = new FormData();
-        data.append("image", e.target.files[0]);
-        fetch("http://localhost:3030/uploadImage", {
-          method: "POST",
-          body: data,
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            if (data.type == "SUCCESS") {
-              setSelectedFile(data.res);
-            }
-            
-          });
-    };
-
-    const handleImageClick = () => {
-        fileInputRef.current.click();
-      };
-
     return (
         <Dialog>
             <div>
@@ -56,32 +31,6 @@ export default function AddEvent({setVisible, serverID}) {
                 <span>Add event</span>
                 <Icons.Actions.ProcessStop className="inline hover:cursor-pointer" onClick={()=>{setVisible(false)}}/>
             </h3>
-
-            <div className="flex justify-center items-center mb-4 relative">     
-            <div
-                className="w-16 h-24 border-2 border-gray-400 flex-1 flex items-center justify-center cursor-pointer"
-                onClick={handleImageClick}
-            >
-                {selectedFile ? (
-                <img
-                    src={selectedFile}
-                    alt="Selected Server Icon"
-                    className="h-24"
-                />
-                ) : (
-                <span className="text-white text-3xl">
-                    X
-                </span>
-                )}
-                <input
-                type="file"
-                accept="image/*"
-                ref={fileInputRef}
-                onChange={handleFileChange}
-                className="hidden"
-                />
-            </div>
-            </div>
 
             <div className="mb-4">
                 <label className="block text-sm mb-2">Event Name</label>
@@ -168,7 +117,6 @@ export default function AddEvent({setVisible, serverID}) {
                   },
                   body: JSON.stringify({
                       name: name,
-                      banner: selectedFile,
                       serverID: Number(serverID),
                       organizerID: Number(localStorage.getItem("userID")),
                       startTime: startTime.getTime(),
