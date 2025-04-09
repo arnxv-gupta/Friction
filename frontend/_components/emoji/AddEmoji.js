@@ -37,11 +37,11 @@ export default function AddEmoji({setVisible, serverID}) {
     return (
         <Dialog>
             <h3 className="text-lg font-bold flex justify-between items-center mb-4">
-                    <span>Add Emoji</span>
+                    <span>Add emoji</span>
                     <FaXmark className="hover:text-[#888] cursor-pointer" onClick={()=>{setVisible(false)}} />
             </h3>
 
-            <div className="mb-4">
+            <div className="mb-4 flex justify-center">
                 <div
                     className="w-16 h-16 border-2 border-gray-400 rounded-full flex items-center justify-center cursor-pointer"
                     onClick={handleImageClick}
@@ -71,13 +71,15 @@ export default function AddEmoji({setVisible, serverID}) {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="new emoji"
+                    placeholder="Emoji label"
                     className="w-full p-2 rounded bg-gray-700 border border-gray-600 focus:outline-none"
                 />
                 {!name && <p className="text-red-500 text-sm mt-1">Emoji name is required.</p>}
             </div>
 
-            <button className="bg-[#5865F2] text-white py-2 px-4 rounded-lg shadow-lg hover:bg-[#4853d4] transition duration-200" onClick={() => {
+            <button
+              className="bg-[#51956d] text-[#fff] w-full px-4 py-2 rounded cursor-pointer hover:underline"
+              onClick={() => {
                 fetch("http://localhost:3030/createEmoji", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -86,10 +88,8 @@ export default function AddEmoji({setVisible, serverID}) {
                 .then((res) => res.json())
                 .then((data) => {
                     console.log(data);
-                    
-                    if(data.type=="SUCCESS") {
                     router.push(`/settings/${serverID}`)
-                    }
+                    
                 });
                 }}>
                 Create

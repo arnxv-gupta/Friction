@@ -14,7 +14,7 @@ export default function EmojiList({emojiList, inputRef, setVisible}) {
                 >
                     <img
                         src={el.src}
-                        className="size-7"
+                        className="w-10 h-7"
                     />
                 </li>
             ))}

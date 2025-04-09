@@ -37,7 +37,7 @@ const ChannelList = () => {
           <span className="text-lg">
             {isDropdownOpen ? <Icons.Actions.ProcessStop /> : <Icons.Actions.OpenMenu className="icons" />}
           </span>
-          {isDropdownOpen && <DropDown serverID={data.serverID} channelDialog={setChannelOpen} categoryDialog={setCategoryOpen}/>}
+          {isDropdownOpen && <DropDown serverID={data.serverID} adminID={data.adminID} channelDialog={setChannelOpen} categoryDialog={setCategoryOpen}/>}
         </button>
       </div>
 

@@ -9,7 +9,6 @@ import * as Icons from "@mielo-ui/adwaita-symbolic-icons-react"
 import Dialog from "../ui/Dialog";
 
 export default function AddChannel({isVisible, categoryID, setVisible}) {
-  const [isPrivate, setIsPrivate] = useState(false);
   const [channelType, setChannelType] = useState("text");
   const [channelName, setChannelName] = useState("");
 
@@ -66,25 +65,6 @@ export default function AddChannel({isVisible, categoryID, setVisible}) {
           />
           {!channelName && <p className="text-red-500 text-sm mt-1">Channel name is required.</p>}
         </div>
-
-        <div className="flex items-center mb-4">
-          <input
-            type="checkbox"
-            checked={isPrivate}
-            onChange={() => setIsPrivate(!isPrivate)}
-            id="privateChannel"
-            className="w-5 h-5 accent-blue-500 cursor-pointer"
-          />
-          <label htmlFor="privateChannel" className="ml-2 cursor-pointer">
-            Private Channel
-          </label>
-        </div>
-
-        {isPrivate && (
-          <p className="text-gray-400 text-sm">
-            Only selected members and roles will be able to view this channel.
-          </p>
-        )}
 
         <div className="mt-6 flex justify-end">
           <button onClick={()=>[

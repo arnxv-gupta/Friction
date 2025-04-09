@@ -14,7 +14,7 @@ export default function FriendItem({userID}) {
     }, [])
     return (
         <li key={userID} className="px-3 py-2 hover:bg-[#35373C] block rounded-md">
-            <Link href={`/chat/@me/${userID}`} className="flex items-center">
+            <Link href={`/inbox/@me/${userID}`} className="flex items-center">
             <img
             src={data.pfpURL}
             className="rounded-full size-9 mr-3 mt-1"

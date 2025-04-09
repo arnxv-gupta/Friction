@@ -1,20 +1,16 @@
-[ ] open graph embed for links (backend and frontend)
 [X] fix user profile
-[ ] complete friend chat
+[-] complete friend chat
 [X] fix user mention dilaog in chat
 [X] add ability to set emojis in chat
 [X] add user online presence indication not remove text
 [X] complete events
 [ ] complete stages
-[ ] fix roles and color logic
 [X] settle on a unqiue theme for the website
-[ ] improve the ui for dialogs
+[X] improve the ui for dialogs
 [ ] make logo for friction
 [ ] make the homepage
-[X] add custom fonts
+[-] add custom fonts
 [ ] make image cropping 
-[ ] channel permissions
 [ ] dynamic rendering in chat input
-[ ] ability to change font and font size
-![ ] implement voice chat
+s![ ] implement voice chat
 ![ ] implement video chat

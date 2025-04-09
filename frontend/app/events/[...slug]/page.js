@@ -1,4 +1,3 @@
-import EventWindow from "@/_components/event/EventWindow";
 import ServerList from "@/_components/server/ServerList";
 import ServerWindow from "@/_components/server/ServerWindow";
 

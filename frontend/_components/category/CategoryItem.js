@@ -19,9 +19,9 @@ export default function CategoryItem({channels, name, showDialog}) {
             <Icons.Actions.GoNext  className="inline mr-1 size-3 icons"/>}
             {name}
             </span>
-            <Icons.Actions.ListAdd className="inline text-base cursor-pointer icons" onClick={()=>{
+            {data.adminID==Number(localStorage.getItem("userID")) &&  <Icons.Actions.ListAdd className="inline text-base cursor-pointer icons" onClick={()=>{
                 showDialog(true);
-            }}/>
+            }}/>}
             </h3>
         {isOpen?(
             channels.map((el, i)=>{

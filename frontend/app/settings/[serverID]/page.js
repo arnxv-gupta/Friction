@@ -46,9 +46,9 @@ export default function Settings() {
                 <h3 className="text-2xl p-4 font-semibold">Settings</h3>
                 <div className="flex">
                     <ul className="w-80 flex flex-col">
-                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] cursor-pointer rounded flex items-center"><Icons.Status.UserAvailable className="icon inline mr-1"/> Overview</li>
-                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] cursor-pointer rounded flex items-center"><Icons.Emotes.FaceCool className="icon inline mr-1"/> Emojis</li>
-                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] cursor-pointer rounded flex items-center"><Icons.Status.AvatarDefault className="icon inline mr-1" />Members</li>
+                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] dark:hover:bg-[#484747] cursor-pointer rounded flex items-center"><Icons.Status.UserAvailable className="icon inline mr-1"/> Overview</li>
+                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] dark:hover:bg-[#484747] cursor-pointer rounded flex items-center"><Icons.Emotes.FaceCool className="icon inline mr-1"/> Emojis</li>
+                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] dark:hover:bg-[#484747] cursor-pointer rounded flex items-center"><Icons.Status.AvatarDefault className="icon inline mr-1" />Members</li>
                     </ul>
                     <div>
                         {}
@@ -58,13 +58,35 @@ export default function Settings() {
             <div className="bg-[#FAFAFA] dark:bg-[#2C2C2C] flex-1 p-6">
                 <Link href={`/chat/${params.serverID}`} className="flex justify-between pb-6">
                     <h5 className="text-xl">{settingCategory}</h5>
-                    <span  className="bg-[#EAEAEA] p-3 rounded-full flex items-center justify-center"><Icons.Actions.ProcessStop className="inline"/></span>
+                    <span  className="bg-[#EAEAEA] dark:bg-[#404040] p-3 rounded-full flex items-center justify-center"><Icons.Actions.ProcessStop className="inline"/></span>
                 </Link>
 
                 {settingCategory=="Overview"?(
                     <div className="p-3">
-                        <label htmlFor="serverName" className="block text-sm font-medium">SERVER NAME</label>
-                        <input type="text" id="serverName" value={data.name} className="my-3 w-full px-4 py-3 bg-[#1E1F22] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                        <div className="flex">
+                            <img
+                                src={data?.serverIcon}
+                                className="size-36 rounded-lg"
+                                alt="Icon"
+                            />
+                            <div className="p-3 pt-0">
+                                <label htmlFor="serverName" className="mb-2 block text-sm font-medium">Name</label>
+                                <input 
+                                    type="text" 
+                                    id="serverName" 
+                                    value={data?.name} 
+                                    className="w-full block border-none py-2 px-4 rounded placeholder-black focus:outline-[#1c71d8] dark:focus:outline-[#78aeed] bg-[#EAEAEA] dark:bg-[#404040] dark:text-white dark:placeholder-gray-400 focus:outline-none transition duration-200"
+                                />
+                                <span className="mt-2 block text-[#888]">Server ID: {data?.serverID}</span>
+                                <span className="text-[#888] block">Admin ID: {data?.adminID}</span>
+                                <span className="text-[#888]">Created at: {new Date(data?.createdAt).toDateString()}</span>
+                            </div>
+                        </div>
+
+                        <div className="bg-red-500 p-3 rounded inline-block">
+                            <h3 className="flex items-center"><Icons.Status.UserTrashFull className="inline mr-1"/>Delete server</h3>
+                            <span className="text-sm text-red-300">Are the sure you want to delete the server. Action can't be undone!</span>
+                        </div>
                     </div>
                 ):settingCategory=="Roles"?(
                     <div className="p-3">
@@ -102,18 +124,30 @@ export default function Settings() {
                             setEmojiSearch(e.target.value)
                         }} 
                         placeholder="Search Emojis" 
-                        className="w-full px-4 py-3 bg-[#1E1F22] rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="flex-grow block border-none py-2 px-4 rounded placeholder-black focus:outline-[#1c71d8] dark:focus:outline-[#78aeed] bg-[#EAEAEA] dark:bg-[#404040] dark:text-white dark:placeholder-gray-400 focus:outline-none transition duration-200"
                         />
-                        <button onClick={()=>[
-                            setEmojiVisible(true)
-                        ]}>Add emoji</button>
+                        <button
+                            className="mx-2 bg-[#51956d] text-[#fff] px-4 py-2 rounded cursor-pointer hover:underline"
+                            onClick={()=>[
+                                setEmojiVisible(true)
+                            ]}  
+                        ><Icons.Actions.ListAdd className="icons" /></button>
                         </div>
 
-                        <ul className="flex">
-                            {data.emojis.filter(el=>el.name.includes(emojiSearch)).map((el)=>{
+                        <table className="w-full text-left mt-3">
+                            <thead>
+                                <tr className="border-b-2 border-[#d4d4d4] dark:border-[#333] bg-[#F3F3F3] dark:bg-[#2A2A2A] shadow-sm ">
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>EmojiID</th>
+                                </tr>
+                            </thead>
+                            <tbody>                            {data.emojis.filter(el=>el.name.includes(emojiSearch)).map((el)=>{
                                 return <EmojiItem name={el.name} src={el.src} emojiID={el.emojiID} serverID={data.serverID}/>
                             })}
-                        </ul>
+                            </tbody>
+
+                        </table>
 
                         {emojiVisible?<AddEmoji setVisible={setEmojiVisible} serverID={data.serverID}/>:null}
                     </div>

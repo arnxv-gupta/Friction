@@ -38,7 +38,8 @@ export default function ChatInput({userID, serverID, chatID}) {
                 image: imageURL
             })
         }).then(res=>res.text()).then(data=>{
-            inputRef.current.innerText = null;         
+            inputRef.current.innerText = null;   
+            setImageURL(null)      
             sendMessage("MESSAGE RECEIVED!")
         })
     }
