@@ -89,7 +89,8 @@ export default function AddChannel({isVisible, categoryID, setVisible}) {
         <div className="mt-6 flex justify-end">
           <button onClick={()=>[
             setVisible(false)
-          ]} className="bg-[#4C4C4C] hover:underline cursor-pointer w-full text-[#fff] px-4 py-2 rounded mr-2">
+          ]}
+           className="bg-[#4C4C4C] hover:underline cursor-pointer w-full text-[#fff] px-4 py-2 rounded mr-2">
             Cancel
           </button>
 

@@ -14,7 +14,7 @@ export default function UserProfile({userID}) {
         return;
 
     return (
-        <div className="bg-[#EBEBEB] border-2 border-[#d4d4d4] dark:border-[#333] rounded-md z-50">
+        <div className="bg-[#404040] border-2 border-[#d4d4d4] dark:border-[#333] rounded-md z-50">
             <div className="bg-gray-500 h-8 rounded-t-md">
             </div>
             <div className="flex">
@@ -36,8 +36,8 @@ export default function UserProfile({userID}) {
                     <small className="text-[#888]">Joined on {new Date(data.createdAt).toDateString()}</small>
                 </div>
             </div>
-            <button className="m-3" onClick={()=>{
-                fetch(`http://localhost:3030/createDM?userID=${localStorage.getItem("userID")}&receiverID=${userID}`).then(res=>res.json()).then(data=>{
+            <button className="m-3 text-sm bg-[#51956d] text-[#fff] px-3 py-2 rounded cursor-pointer hover:underline" onClick={()=>{
+                fetch(`http://localhost:3030/createInbox?userID=${localStorage.getItem("userID")}&receiverID=${userID}`).then(res=>res.json()).then(data=>{
                     console.log(data);
                 });
             }}>Message</button>

@@ -10,7 +10,7 @@ export default function CategoryItem({channels, name, showDialog}) {
     
     return (
         <>
-        <h3 className="px-3 flex justify-between items-center">
+        <h3 className="px-3 flex justify-between items-center mb-1">
             <span className="flex-1 cursor-pointer flex items-center" onClick={()=>{
             setOpen(!isOpen)
             }}>

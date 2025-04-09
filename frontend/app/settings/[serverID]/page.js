@@ -17,7 +17,7 @@ export default function Settings() {
     let params = useParams();
     let [data, setData] = useState(null);
 
-    let [settingCategory, setSettingCategory] = useState("Roles")
+    let [settingCategory, setSettingCategory] = useState("Overview")
 
     let [rolesSearch, setRolesSearch] = useState("");
     let [emojiSearch, setEmojiSearch] = useState("");
@@ -47,7 +47,6 @@ export default function Settings() {
                 <div className="flex">
                     <ul className="w-80 flex flex-col">
                         <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] cursor-pointer rounded flex items-center"><Icons.Status.UserAvailable className="icon inline mr-1"/> Overview</li>
-                        <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] cursor-pointer rounded flex items-center"><Icons.Actions.SystemSwitchUser className="icon inline mr-1"/> Roles</li>
                         <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] cursor-pointer rounded flex items-center"><Icons.Emotes.FaceCool className="icon inline mr-1"/> Emojis</li>
                         <li onClick={(e)=>{setSettingCategory(e.target.innerText)}} className="px-3 py-2 m-2 hover:bg-[#E4E4E4] cursor-pointer rounded flex items-center"><Icons.Status.AvatarDefault className="icon inline mr-1" />Members</li>
                     </ul>

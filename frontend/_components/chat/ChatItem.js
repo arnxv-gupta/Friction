@@ -113,7 +113,7 @@ export default function ChatItem({ authorID, roleData, text="", timestamp, image
             <div className="flex items-baseline">
               <h5
                 className="text-md cursor-pointer text-[#2e2e2e] dark:text-[#fff]"
-                style={roleData.color!="#FFFFFF"?{ color: roleData.color }:null}
+                // style={roleData.color!="#FFFFFF"?{ color: roleData.color }:null}
                 onClick={() => setProfileVisible(true)}
               >
                 {authorData.username}

@@ -42,17 +42,15 @@ export default function AddCategory({isVisible, setVisible}) {
         <div className="mt-6 flex justify-end">
           <button onClick={()=>[
             setVisible(false)
-          ]} className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded mr-2">
+          ]}
+          className="bg-[#4C4C4C] hover:underline cursor-pointer w-full text-[#fff] px-4 py-2 rounded mr-2">
             Cancel
           </button>
 
             <button
               disabled={!categoryName}
-              className={`${
-                categoryName
-                  ? "bg-blue-600 hover:bg-blue-700"
-                  : "bg-gray-500 cursor-not-allowed"
-              } px-4 py-2 rounded`}
+              className={`bg-[#51956d] text-[#fff] w-full px-4 py-2 rounded cursor-pointer hover:underline`}
+
                onClick={()=>{
                 fetch("http://localhost:3030/createCategory/", {
                     method: "POST",
@@ -76,7 +74,7 @@ export default function AddCategory({isVisible, setVisible}) {
 
                }}
             >
-              Next
+              Create
             </button>
 
         </div>

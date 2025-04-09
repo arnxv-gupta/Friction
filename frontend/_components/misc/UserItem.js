@@ -40,14 +40,14 @@ const UserItem = ({ userID }) => {
           setProfileVisible(true);
         }}
         className={`relative flex items-center my-3 p-1 hover:bg-[#E4E4E4] dark:hover:bg-[#484747] rounded ${
-          userData.onlinePresence == "Offline" ? "opacity-70" : ""
+          userData.onlinePresence === "Offline" ? "opacity-70" : ""
         }`}
       >
         <div className="relative">
           <img src={userData.pfpURL} className="w-8 h-8 rounded-full" />
           <div
             className={`absolute bottom-0 right-0 w-3 h-3 rounded-full ${
-              userData.onlinePresence == "Online" ? "bg-[#3F9754]" : "hidden"
+              userData.onlinePresence === "Online" ? "bg-[#3F9754]" : "hidden"
             }`}
           ></div>
         </div>
@@ -57,7 +57,7 @@ const UserItem = ({ userID }) => {
         {isProfileVisible && (
           <div ref={profileRef} className="absolute top-full left-0 z-10">
             <div className="absolute left-[-200px] top-[-50px]">
-            <UserProfile userID={userID}/>
+              <UserProfile userID={userID}/>
             </div>
           </div>
         )}

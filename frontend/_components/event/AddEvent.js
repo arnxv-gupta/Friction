@@ -37,10 +37,20 @@ export default function AddEvent({setVisible, serverID}) {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="# new-event"
+                    placeholder="Event name"
                     className="w-full p-2 rounded bg-gray-700 border border-gray-600 focus:outline-none"
                 />
                 {!name && <p className="text-red-500 text-sm mt-1">Event name is required.</p>}
+            </div>
+
+            <div className="mb-4">
+                    <label className="block text-sm mb-2">Description</label>
+                    <input
+                        value={desc}
+                        onChange={(e) => setDesc(e.target.value)}
+                        placeholder="Describe the event"
+                        className="w-full p-2 rounded bg-gray-700 border border-gray-600 focus:outline-none"
+                    />
             </div>
 
             <div className="flex gap-x-5">
@@ -74,33 +84,21 @@ export default function AddEvent({setVisible, serverID}) {
             </div>
 
             <div className="mb-4">
-                    <label className="block text-sm mb-2">Desc</label>
-                    <input
-                        value={desc}
-                        onChange={(e) => setDesc(e.target.value)}
-                        placeholder="# new-event"
-                        className="w-full p-2 rounded bg-gray-700 border border-gray-600 focus:outline-none"
-                    />
-                    {!desc && <p className="text-red-500 text-sm mt-1">Desc is required.</p>}
-            </div>
-
-            <div className="mb-4">
                 <label className="block text-sm mb-2">Location</label>
                 <input
                     type="text"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    placeholder="location"
+                    placeholder="Where is the event taking place 👀"
                     className="w-full p-2 rounded bg-gray-700 border border-gray-600 focus:outline-none"
                 />
-                {!location && <p className="text-red-500 text-sm mt-1">Location is required.</p>}
             </div>
 
             </div>
 
             <button
-              className={`w-full bg-[#4C4C4C] px-4 py-2 rounded-b`}
-               onClick={()=>{
+                    className="w-full bg-[#51956d] text-[#fff] px-4 py-2 rounded cursor-pointer hover:underline"
+                    onClick={()=>{
                 
                 let startTime = new Date(startRef.current.value);
                 let endTime = new Date(endRef.current.value);

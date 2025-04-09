@@ -36,7 +36,6 @@ const ChatWindow = ({collapsed, setCollapsed}) => {
             }}/>:<Icons.Actions.SidebarShowRight className="icons" onClick={()=>{
               setCollapsed(true)
             }}/>}
-            <Icons.Categories.ApplicationsSystem className="icons"/>
           </div>
         </div>
       <CallView />
@@ -76,11 +75,10 @@ const ChatWindow = ({collapsed, setCollapsed}) => {
         }}/>:<Icons.Actions.SidebarShowRight className="icons" onClick={()=>{
           setCollapsed(true)
         }}/>}
-        <Icons.Categories.ApplicationsSystem className="icons"/>
       </div>
     </div>
     <div className="flex-1 pb-6 flex flex-col justify-between max-h-[100lvh] ">
-      <ul className="max-h-[80lvh] overflow-y-scroll">
+      <ul className="max-h-[78lvh] overflow-y-scroll">
         {
         (()=>{
           
