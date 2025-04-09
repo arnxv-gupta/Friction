@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { AnimatedBackground } from 'animated-backgrounds';
 
 export default function Auth() {
   const router = useRouter();
@@ -59,26 +60,21 @@ export default function Auth() {
   return (
     <div
       className="flex h-screen items-center justify-center bg-cover bg-center"
-      style={{
-        backgroundImage: "url('/bg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-      }}
     >
+      <AnimatedBackground animationName="gradientWave"
+       />
       <form
-        className="relative w-full max-w-md p-10 space-y-4 bg-[#313338] text-white rounded-md"
+        className="relative w-full max-w-md p-10 space-y-4 shadow border dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 rounded-md"
         onSubmit={handleSubmit}
         style={{
           maxHeight: isLogin ? "600px" : "700px",
           overflow: "hidden",
         }}
       >
-        <h2 className="text-4xl font-bold text-center">
+        <h2 className="text-4xl font-bold leading-4">
           {isLogin ? "Welcome back!" : "Create an Account"}
         </h2>
-        <p className="text-center text-[#888] mb-4">
+        <p className="text-[#888] mb-4">
           {isLogin
             ? "We're so excited to see you again!"
             : "Pleasure to meet you!"}
@@ -107,19 +103,18 @@ export default function Auth() {
             }}
             required={!isLogin}
           />
-            <input label="USERNAME" type="text" id="username" name="username" required={!isLogin} />
-
+            <input label="USERNAME" type="text" id="username" name="username" required={!isLogin} placeholder="Username" className="w-full mt-2 block border-none py-2 px-4 rounded placeholder-black focus:outline-[#1c71d8] dark:focus:outline-[#78aeed] bg-[#EAEAEA] dark:bg-[#404040] dark:text-white dark:placeholder-gray-400 focus:outline-none transition duration-200"/>
         </div>
 
         <div>
-            <input label="EMAIL" type="email" id="email" name="email" required={true}/>
-            <input label="PASSWORD" type="password" id="password" name="password" required={true} />
+            <input label="EMAIL" type="email" id="email" name="email" required={true} placeholder="Email" className="w-full block border-none py-2 px-4 rounded placeholder-black focus:outline-[#1c71d8] dark:focus:outline-[#78aeed] bg-[#EAEAEA] dark:bg-[#404040] dark:text-white dark:placeholder-gray-400 focus:outline-none transition duration-200"/>
+            <input label="PASSWORD" type="password" id="password" placeholder="Password" name="password" required={true} className="w-full mt-2 block border-none py-2 px-4 rounded placeholder-black focus:outline-[#1c71d8] dark:focus:outline-[#78aeed] bg-[#EAEAEA] dark:bg-[#404040] dark:text-white dark:placeholder-gray-400 focus:outline-none transition duration-200"/>
         </div>
 
         <button
           type="submit"
-          className="bg-[#5865F2] w-full py-3 px-4 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md transition-all duration-200"
-        >
+          className={`bg-[#51956d] text-[#fff] w-full px-4 py-2 rounded cursor-pointer hover:underline`}
+          >
           {isLogin ? "Log In" : "Sign Up"}
         </button>
 

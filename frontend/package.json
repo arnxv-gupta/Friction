@@ -15,6 +15,7 @@
     "@next/font": "^14.2.15",
     "@tailwindcss/postcss": "^4.0.4",
     "@tailwindcss/vite": "^4.0.4",
+    "animated-backgrounds": "^1.1.0",
     "autoprefixer": "^10.4.20",
     "next": "^14.2.15",
     "open-graph-scraper": "^6.9.0",
